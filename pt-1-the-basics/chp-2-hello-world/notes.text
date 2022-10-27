@@ -1,0 +1,32 @@
+Takeaways from drills/exercises.
+ 1. Doing drills and exercises are useful for,
+   - Reinforce understanding of the chapter content thru practice.
+   - Exploration of the small building blocks.
+   - Thinking a little deeper about the content presented.
+ 2. The size (in bytes) for a text file matches the number of characters in file. 1 character = 1 byte (8 bits).
+
+ 3. Compiler: [C++ source code]-->[C++ compiler]-->[Object code]
+
+ 4. Linker: [Object code - Programmer] [Object Code - C++ Standard Library]
+                                 \      /
+                                 [Linker]
+                                    |
+                                    v
+                           [Executable binary]
+
+ 5. Compile-time error: Bad use of C++ language.
+ 6. Link-time error: Bad referencing of data to be preprocessed.
+ 7. Run-time error: Bad programming logic.
+ 8. The object code file is larger than the source file and the executable file is larger than object code file.
+    This is because the instructions are lines are expanded machine code and more characters added still during linking. 
+    Recall that C++ is a high-level langauge that has to be converted to 0s and 1s for the computer to execute.
+ 9. Computers have 0 intuition, 0 common sense.
+    -------------------------------------------
+10. Computers are extremely good at counting. This is why instructions need to be DETAILED and as much as possible - QUANTIFIED.
+    ----------------------------------------------------------------------------------------------------------------------------
+11. g++ file.cpp: Compile, link and produce a.out executable.
+12. g++ -c: Compile only.
+13. g++ -o <program name> file.cpp ... .cpp: Compile, link and produce executable program with name specified.
+14. Function definition vs declaration. Definitions are preprocessed not declarations.
+15. Details first, program is correct, then optimizations (refactorings). 
+16. Comments are not compiled to object code so be detailed but succint with them.
