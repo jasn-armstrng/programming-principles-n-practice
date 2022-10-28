@@ -5,7 +5,7 @@ int main()
 {
   int word_counter = 0;
   std::string previous = " "; // previous word initialized to not a word. Recall cin skips spaces
-  std::string current;
+  std::string current; // holds the current word in stream
 
   std::cout << "Note: To end this program press CTRL+D.\n";
   std::cout << "Please enter a sentence >= 2 words: ";
