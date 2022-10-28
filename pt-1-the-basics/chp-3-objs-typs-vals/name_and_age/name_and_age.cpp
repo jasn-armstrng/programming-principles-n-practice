@@ -5,7 +5,7 @@
 int main(){
   std::cout << "Please enter your first name and age\n";
   std::string first_name = "???"; // String variable with default value
-  int age = -1; // integer variable (default -1 means "don't know the age")
+  double age = -1.0; // double variable (default -1 means "don't know the age")
   std::cin >> first_name >> age;
-  std::cout << "Hello, " << first_name << " (age " << age * 12 << ")\n";
+  std::cout << "Hello, " << first_name << " (age " << age << ")\n";
 }
