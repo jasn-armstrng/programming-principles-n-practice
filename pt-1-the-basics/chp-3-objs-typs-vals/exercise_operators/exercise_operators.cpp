@@ -4,8 +4,8 @@
 #include <math.h> // to access sqrt() function
 int main()
 {
-  std::cout << "Please enter a floating-point value: ";
-  double n;
+  std::cout << "Please enter a integer value: ";
+  int n;
   std::cin >> n;
   std::cout << "  n == " << n
             << "\nn+1 == " << n+1
@@ -13,6 +13,7 @@ int main()
             << "\n2*n == " << n*2
             << "\nn^2 == " << n*n
             << "\nn/2 == " << n/2
+            << "\nn%2 == " << n%2 // No modulo operation for double (floating-point) values
             << "\n √n == " << sqrt(n)
             << '\n';
 }
