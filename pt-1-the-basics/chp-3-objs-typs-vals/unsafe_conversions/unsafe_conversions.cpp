@@ -1,4 +1,5 @@
-// This programs is used to demonstrate results of unsafe type conversions
+// This programs is used to demonstrate results of unsafe type conversions.
+// See results and further comments below.
 
 #include <iostream>
 int main()
@@ -40,3 +41,24 @@ int main()
 // d==9 i==9 i2==9 char(   )
 // d==43 i==43 i2==43 char(+)
 // d==126 i==126 i2==126 char(~)
+
+/*
+Note: that if we rewrite the above using the list initialization syntax for
+variable value declaration this will not compile. The compiler will let us
+know we are trying to narrow values by the squeezing. See errors below,
+
+unsafe_conversions.cpp:9:12: error: type 'double' cannot be narrowed to 'int' in initializer list [-Wc++11-narrowing]
+    int i {d};  // try to squeeze a double into an int
+           ^
+unsafe_conversions.cpp:9:12: note: insert an explicit cast to silence this issue
+    int i {d};  // try to squeeze a double into an int
+           ^
+           static_cast<int>( )
+unsafe_conversions.cpp:10:13: error: non-constant-expression cannot be narrowed from type 'int' to 'char' in initializer list [-Wc++11-narrowing]
+    char c {i}; // try to squeeze an int into a char
+            ^
+unsafe_conversions.cpp:10:13: note: insert an explicit cast to silence this issue
+    char c {i}; // try to squeeze an int into a char
+            ^
+            static_c
+*/
