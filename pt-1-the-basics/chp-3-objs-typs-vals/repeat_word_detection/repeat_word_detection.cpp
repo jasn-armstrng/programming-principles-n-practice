@@ -9,7 +9,7 @@ int main()
 
   std::cout << "Note: To end this program press CTRL+D.\n";
   std::cout << "Please enter a sentence >= 2 words: ";
-  while (std::cin >> current) // read a stream of words
+  while (std::cin >> current) // read a word stream one by one into current
   {
     ++word_counter;
     if (previous == current) // check if current being read is same as last
