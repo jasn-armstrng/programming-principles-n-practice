@@ -25,6 +25,15 @@
 */
 
 #include <iostream>
+#include <ostream> // for cerr: standard error stream
+
+inline void simple_error(std::string s)
+  // write error s and exit program
+{
+  std::cerr << "error: " << s << '\n';
+  exit(1);
+}
+
 int main()
 {
   // 1. Prompt user for their first name.
@@ -74,6 +83,8 @@ int main()
   std::cout << "\nStep 4. Enter the age of the recipient: ";
   int age;
   std::cin >> age;
+  if (age <= 0 || age >= 110)
+    simple_error("You're kidding!");
 
   // 11. Add birthday acknowledgement
   letter += ("\nI hear you just had a birthday and you are "+ std::to_string(age) + " years old.");
