@@ -32,7 +32,7 @@ int main()
   std::string author;
   std::cin >> author;
   // Greet user.
-  std::cout << "Hello, " << author << ". Welcome to a simple form letter builder.\n";
+  std::cout << "\nHello, " << author << ". Welcome to a simple form letter builder.\n";
 
   // Letter that will be built over course of program.
   std::string letter = "Dear ";
@@ -48,13 +48,21 @@ int main()
 
   // 4-5. Add opening lines.
   letter += " How are you? I am fine. I miss you.\n";
-  letter += "I am sorry it took so long for me to\nget in touch with you.";
+  letter += "I am sorry it took so long for me to contact you.\n";
   std::cout << letter;
 
   // 6. Prompt author for the name of the friend they're writing to inquire about.
-  std::cout << "\nStep 1. Enter the name of " << recipient << "'s friend: ";
+  std::cout << "\nStep 1. Enter the first name of the recipient's friend: ";
   std::string friend_name;
   std::cin >> friend_name;
+
+  // 7. Add friend inquiry to letter.
+  letter += "\n Have you seen <friend_name> lately?";
+
+  // 8. Prompt for the sex of the friend.
+  std::cout << "\nStep 1. Enter the sex (m/f) of the recipient's friend: ";
+  char friend_sex;
+  std::cin >> friend_sex;
 
   return 0;
 }
