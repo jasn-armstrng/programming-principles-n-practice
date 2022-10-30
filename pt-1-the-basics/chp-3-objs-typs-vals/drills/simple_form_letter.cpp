@@ -27,7 +27,10 @@
 #include <iostream>
 int main()
 {
-
+  // 1. Prompt user for their first name
+  std::cout << "Please enter your first name: ";
+  std::string author;
+  std::cin >> author;
 
   return 0;
 }
