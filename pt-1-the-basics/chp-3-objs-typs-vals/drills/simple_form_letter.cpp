@@ -34,5 +34,17 @@ int main()
   // Greet user
   std::cout << "Hello, " << author << ". Welcome to a simple form letter builder.\n";
 
+  // Letter that will be built over course of program
+  std::string letter = "Dear ";
+
+  // 2. Prompt user for the name of the recipient
+  std::cout << "\nStep 1. Enter the first name of the recipient: ";
+  std::string recipient;
+  std::cin >> recipient;
+
+  // 3. Add salutation to letter
+  letter += (recipient + ",\n");
+  std::cout << letter; // view letter
+
   return 0;
 }
