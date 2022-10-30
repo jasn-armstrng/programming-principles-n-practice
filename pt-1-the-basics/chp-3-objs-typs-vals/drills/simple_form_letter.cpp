@@ -94,7 +94,7 @@ int main()
   // 14. Add sign-off to letter
   letter += ("\nYours sincerely,\n\n\n" + author + "\n");
 
-  // Preview letter to author
+  // Show letter
   std::cout << "Your letter:\n{\n";
   std::cout << letter;
   std::cout << "}\n";
