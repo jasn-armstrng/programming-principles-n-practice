@@ -35,7 +35,7 @@ int main()
   std::cout << "\nHello, " << author << ". Welcome to a simple form letter builder.\n";
 
   // Letter that will be built over course of program.
-  std::string letter = "Dear ";
+  std::string letter {"Dear "};
 
   // 2. Prompt user for the name of the recipient.
   std::cout << "\nStep 1. Enter the first name of the recipient: ";
@@ -47,22 +47,30 @@ int main()
   // std::cout << letter; // view letter check to verify letter is built correctly.
 
   // 4-5. Add opening lines.
-  letter += " How are you? I am fine. I miss you.\n";
-  letter += "I am sorry it took so long for me to contact you.\n";
-  std::cout << letter;
+  letter += " How are you? I am fine. I miss you. I am sorry it took so\nlong for me to contact you.\n";
+  // std::cout << letter;
 
   // 6. Prompt author for the name of the friend they're writing to inquire about.
-  std::cout << "\nStep 1. Enter the first name of the recipient's friend: ";
+  std::cout << "\nStep 2. Enter the first name of the recipient's friend: ";
   std::string friend_name;
   std::cin >> friend_name;
 
   // 7. Add friend inquiry to letter.
-  letter += "\n Have you seen <friend_name> lately?";
+  letter += ("\n Have you seen "+ friend_name + " lately? ");
+  // std::cout << letter;
 
   // 8. Prompt for the sex of the friend.
-  std::cout << "\nStep 1. Enter the sex (m/f) of the recipient's friend: ";
+  std::cout << "\nStep 3. Enter the sex (m/f) of the recipient's friend: ";
   char friend_sex;
   std::cin >> friend_sex;
+
+  // 9. Use conditionals to format next sentence in letter.
+  if (friend_sex == 'f')
+    letter += ("If you see " + friend_name + " tell her to call me.\n");
+  else
+    letter += ("If you see " + friend_name + " tell him to call me.\n");
+
+  std::cout << letter;
 
   return 0;
 }
