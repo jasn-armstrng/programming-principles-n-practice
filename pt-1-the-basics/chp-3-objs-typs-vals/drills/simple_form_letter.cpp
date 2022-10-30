@@ -27,24 +27,34 @@
 #include <iostream>
 int main()
 {
-  // 1. Prompt user for their first name
+  // 1. Prompt user for their first name.
   std::cout << "Please enter your first name: ";
   std::string author;
   std::cin >> author;
-  // Greet user
+  // Greet user.
   std::cout << "Hello, " << author << ". Welcome to a simple form letter builder.\n";
 
-  // Letter that will be built over course of program
+  // Letter that will be built over course of program.
   std::string letter = "Dear ";
 
-  // 2. Prompt user for the name of the recipient
+  // 2. Prompt user for the name of the recipient.
   std::cout << "\nStep 1. Enter the first name of the recipient: ";
   std::string recipient;
   std::cin >> recipient;
 
-  // 3. Add salutation to letter
+  // 3. Add salutation to letter.
   letter += (recipient + ",\n");
-  std::cout << letter; // view letter
+  // std::cout << letter; // view letter check to verify letter is built correctly.
+
+  // 4-5. Add opening lines.
+  letter += " How are you? I am fine. I miss you.\n";
+  letter += "I am sorry it took so long for me to\nget in touch with you.";
+  std::cout << letter;
+
+  // 6. Prompt author for the name of the friend they are writing to inquire about.
+  std::cout << "\nStep 1. Enter the name of " << recipient << "'s friend: ";
+  std::string friend_name;
+  std::cin >> friend_name;
 
   return 0;
 }
