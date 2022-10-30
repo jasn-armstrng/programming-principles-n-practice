@@ -31,6 +31,8 @@ int main()
   std::cout << "Please enter your first name: ";
   std::string author;
   std::cin >> author;
+  // Greet user
+  std::cout << "Hello, " << author << ". Welcome to a simple form letter builder.\n";
 
   return 0;
 }
