@@ -56,7 +56,7 @@ int main()
   std::cin >> friend_name;
 
   // 7. Add friend inquiry to letter.
-  letter += ("\n Have you seen "+ friend_name + " lately? ");
+  letter += ("\nHave you seen "+ friend_name + " lately? ");
   // std::cout << letter;
 
   // 8. Prompt for the sex of the friend.
@@ -69,6 +69,14 @@ int main()
     letter += ("If you see " + friend_name + " tell her to call me.\n");
   else
     letter += ("If you see " + friend_name + " tell him to call me.\n");
+
+  // 10. Prompt for the age of recipient
+  std::cout << "\nStep 4. Enter the age of the recipient: ";
+  int age;
+  std::cin >> age;
+
+  // 11. Add birthday acknowledgement
+  letter += ("\nI hear you just had a birthday and you are "+ std::to_string(age) + " years old.");
 
   std::cout << letter;
 
