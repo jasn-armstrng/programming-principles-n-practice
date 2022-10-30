@@ -51,7 +51,7 @@ int main()
   letter += "I am sorry it took so long for me to\nget in touch with you.";
   std::cout << letter;
 
-  // 6. Prompt author for the name of the friend they are writing to inquire about.
+  // 6. Prompt author for the name of the friend they're writing to inquire about.
   std::cout << "\nStep 1. Enter the name of " << recipient << "'s friend: ";
   std::string friend_name;
   std::cin >> friend_name;
