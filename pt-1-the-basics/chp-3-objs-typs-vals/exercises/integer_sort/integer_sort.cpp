@@ -1,30 +1,39 @@
-// This program sorts 3 integers from user and returns them sorted
+// This program sorts 3 integers from user and returns them sorted.
+// Duplicated integers should appear in sequence.
 
 #include <iostream>
 int main()
 {
   int val1, val2, val3;
-  double first, second, third;
+  int first = 0; int second = 0; int third = 0;
   std::cout << "+--------------+\n";
   std::cout << "| Integer Sort |\n";
   std::cout << "+--------------+\n\n";
   std::cout << "Please enter 3 integer values: ";
   std::cin >> val1 >> val2 >> val3;
 
+  // The following ifs do comparisons and swap using bitwise xor.
   if (val1 > val2)
-    first = val2;
-    second = val1;
+  {
+    val1 ^= val2;
+    val2 ^= val1;
+    val1 ^= val2;
+  }
 
-  // if (first >= val3)
-  //   third = first;
-  //   first = val3;
+  if (val1 > val3)
+  {
+    val1 ^= val3;
+    val3 ^= val1;
+    val1 ^= val3;
+  }
 
-  // if (second >= third)
-  //   second ^= third;
-  //   third ^= second;
-  //   second ^= third;
+  if (val2 > val3)
+  {
+    val2 ^= val3;
+    val3 ^= val2;
+    val2 ^= val3;
+  }
 
-  std::cout << val1 << ' ' << val2 << ' ' << val3 << '\n';
-  std::cout << first << ' ' << second << '\n';
+  std::cout << "\nSorted: " << val1 << ' ' << val2 << ' ' << val3 << '\n';
   return 0;
 }
