@@ -1,4 +1,4 @@
-// This program takes as input 2 integers from user and returns these evals:
+// This program takes as input 2 floats from user and returns these evals:
 // 1. min(val1, val2)
 // 2. max(val1, val2)
 // 3. sum(val1, val2)
@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-std::string min_max(int v1, int v2)
+std::string min_max(double v1, double v2)
 {
   if (v1 > v2)
     return "Smaller: " + std::to_string(v2) + '\n' + "Larger: " + std::to_string(v1) + '\n';
@@ -20,11 +20,11 @@ std::string min_max(int v1, int v2)
 
 int main()
 {
-  int val1, val2;
-  std::cout << "+------------------------+\n";
-  std::cout << "| Operations on Integers |\n";
-  std::cout << "+------------------------+\n\n";
-  std::cout << "Please enter 2 integer values: ";
+  double val1, val2;
+  std::cout << "+----------------------+\n";
+  std::cout << "| Operations on Floats |\n";
+  std::cout << "+----------------------+\n\n";
+  std::cout << "Please enter 2 floating-point values: ";
   std::cin >> val1 >> val2;
   std::cout << "\n";
   std::cout << min_max(val1, val2);
