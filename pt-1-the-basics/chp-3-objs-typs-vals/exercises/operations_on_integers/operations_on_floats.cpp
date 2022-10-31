@@ -15,7 +15,7 @@ std::string min_max(double v1, double v2)
   else if (v1 < v2)
     return "Smaller: " + std::to_string(v1) + '\n' + "Larger: " + std::to_string(v2) + '\n';
   else
-    return "Both equal.\n";
+    return "Both equal\n";
 }
 
 int main()
