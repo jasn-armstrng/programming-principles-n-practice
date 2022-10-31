@@ -1,6 +1,7 @@
 // This program checks if user integer input is even or odd.
 
 #include <iostream>
+
 int main()
 {
   int num;
