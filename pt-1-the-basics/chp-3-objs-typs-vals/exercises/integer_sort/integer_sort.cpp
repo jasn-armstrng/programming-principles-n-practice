@@ -5,14 +5,13 @@
 int main()
 {
   int val1, val2, val3;
-  int first = 0; int second = 0; int third = 0;
   std::cout << "+--------------+\n";
   std::cout << "| Integer Sort |\n";
   std::cout << "+--------------+\n\n";
   std::cout << "Please enter 3 integer values: ";
   std::cin >> val1 >> val2 >> val3;
 
-  // The following ifs do comparisons and swap using bitwise xor.
+  // The following ifs do comparisons and value swap using bitwise xor.
   if (val1 > val2)
   {
     val1 ^= val2;
