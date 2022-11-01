@@ -28,17 +28,17 @@ int main()
   // Output
   std::cout << "\nYour receipt:\n";
   std::cout << "You have " << pennies;
-    (pennies > 1) ? std::cout << " pennies.\n" : std::cout << " penny.\n";
+    (pennies == 1) ? std::cout << " penny.\n" : std::cout << " pennies.\n";
   std::cout << "You have " << nickels ;
-    (nickels > 1) ? std::cout << " nickels.\n" : std::cout << " nickel.\n";
+    (nickels == 1) ? std::cout << " nickel.\n" : std::cout << " nickels.\n";
   std::cout << "You have " << dimes ;
-    (dimes > 1) ? std::cout << " dimes.\n" : std::cout << " dime.\n";
+    (dimes == 1) ? std::cout << " dime.\n" : std::cout << " dimes.\n";
   std::cout << "You have " << quarters ;
-    (quarters > 1) ? std::cout << " quarters.\n" : std::cout << " quarter.\n";
+    (quarters == 1) ? std::cout << " quarter.\n" : std::cout << " quarters.\n";
   std::cout << "You have " << half_dollars ;
-    (half_dollars > 1) ? std::cout << " half dollars.\n" : std::cout << " half dollar.\n";
+    (half_dollars == 1) ? std::cout << " half dollar.\n" : std::cout << " half dollars.\n";
   std::cout << "You have " << silver_dollars ;
-    (silver_dollars > 1) ? std::cout << " silver dollars.\n" : std::cout << " silver dollar.\n";
+    (silver_dollars == 1) ? std::cout << " silver dollar.\n" : std::cout << " silver dollars.\n";
 
   std::cout << "The value of all your coins is $" << total_in_dollars << " dollars.\n";
   return 0;
