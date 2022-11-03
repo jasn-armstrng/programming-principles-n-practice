@@ -17,7 +17,7 @@ int main()
   std::cout << "\t      | Currency Converter |\n";
   std::cout << "\t      +--------------------+\n\n";
   // Prompt for user values. Read in user input.
-  std::cout << "Please enter currency from the numbered options below\n\n";
+  std::cout << "Please enter currency from the numbered options below:\n\n";
   std::cout << "\t1: €\t2: £\t3: ¥\t4: ₩\t5: dkk\n\n";
   std::cout << "Option: ";
   std::cin >> currency;
