@@ -6,6 +6,7 @@
 
 std::string check_blacklist(std::string x)
 {
+  // Is in the function the best place to keep/maintain blacklist?
   std::vector<std::string> blacklist = {"fox", "lazy", "dog"};
   for(std::string w:blacklist)
     {
