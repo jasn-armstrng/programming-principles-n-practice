@@ -8,7 +8,6 @@
 */
 
 #include <iostream>
-#include <cwchar>
 int main()
 {
   double amount;
