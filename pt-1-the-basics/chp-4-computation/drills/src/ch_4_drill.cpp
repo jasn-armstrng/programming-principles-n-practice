@@ -5,18 +5,19 @@ This program completes Chapter 4's Drill on pg. 126
 2. - Write out "the smaller value is: " << number
    - Write out "the larger value is: " << number
 3. - Write out "the numbers are equal" when this is true
+4. - Change program to use doubles instead of ints
 */
 
 #include <iostream>
 
-int min(int x, int y)
+double min(double x, double y)
 {
   if (x > y)
     return y;
   return x;
 }
 
-int max(int x, int y)
+double max(double x, double y)
 {
   if (x > y)
     return x;
@@ -25,7 +26,7 @@ int max(int x, int y)
 
 int main()
 {
-  int num1, num2;
+  double num1, num2;
 
   // Prompt user for input
   std::cout << "Please enter two integers. Enter | to terminate program.\n";
