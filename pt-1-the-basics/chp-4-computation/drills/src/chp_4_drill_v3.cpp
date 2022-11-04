@@ -17,14 +17,9 @@ This program completes Chapter 4's Drill on pg. 126
 9. - Print summary:
    - Smallest input, largest input, number of inputs,
      total of inputs in metres.
-10.- Store all values converted in metres in a vector
-   - At the end output all values in vector
-11.- Sort values before output in summary
 */
 
-#include <algorithm>
 #include <iostream>
-#include <vector>
 
 double min(double x, double y)
 {
@@ -44,15 +39,12 @@ int main()
 {
   double number;
   std::string unit;
-  std::vector<double> values; // track values entered by user converted to m
+  int values; // track values entered by user
   double cm; // track total of values in cm
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
 
-  std::cout << "+---------------------------+\n";
-  std::cout << "| Distance Measures Summary |\n";
-  std::cout << "+---------------------------+\n\n";
-  std::cout << "Please enter a number followed by a unit (cm, in, m, ft) e.g. 9 cm\n";
+  std::cout << "Please enter a number followed by a unit (cm, in, m, ft)\n";
   std::cout << "\nInput:> ";
 
   while (std::cin >> number >> unit) // Read in input and compare
@@ -62,48 +54,39 @@ int main()
       cm+=number;
       smallest = min(smallest, number);
       largest = max(largest, number);
-      values.push_back(number/100);
     }
     else if (unit=="in")
     { // 1in == 2.54cm
       cm+=number*2.54;
       smallest = min(smallest, number*2.54);
       largest = max(largest, number*2.54);
-      values.push_back(number*2.54/100);
     }
     else if (unit=="m")
     { // 1m == 100cm
       cm+=number*100;
       smallest = min(smallest, number*100);
       largest = max(largest, number*100);
-      values.push_back(number);
     }
     else if (unit=="ft")
     { // 1ft == 30.48cm
       cm+=number*30.48;
       smallest = min(smallest, number*30.48);
       largest = max(largest, number*30.48);
-      values.push_back(number*30.48/100);
     }
     else
     {
+      --values; // decrement for bad input
       std::cout << "I cannot accept that input.\n";
     }
+
+    ++values; // keeps valid input count though consecutive invalids entered
     std::cout << "\nInput:> "; // Prompt for another round of input
   }
-
-  std::sort(values.begin(), values.end()); // sort values ascending
 
   std::cout << "\nSummary:\n";
   std::cout << " - Smallest value: " << smallest << "cm\n";
   std::cout << " - Largest value: " << largest << "cm\n";
-  std::cout << " - Number of values: " << values.size() << '\n';
-  std::cout << " - Values in metres: \n";
-  for (int i = 0; i < values.size(); ++i)
-  {
-    std::cout << "   " << i+1 << ". " << values[i] << "m\n";
-  }
+  std::cout << " - Number of values: " << values-1 << '\n'; // -1 because |
   std::cout << " - Total in metres: " << cm/100 << "m\n";
-
   return 0;
 }
