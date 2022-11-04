@@ -6,20 +6,22 @@ This program completes Chapter 4's Drill on pg. 126
    - Write out "the larger value is: " << number
 3. - Write out "the numbers are equal" when this is true
 4. - Change program to use doubles instead of ints
+5. - Write out "the numbers are almost equal" after 2. if
+     their difference is less than 0.01(one hundredth)
 */
 
 #include <iostream>
 
 double min(double x, double y)
 {
-  if (x > y)
+  if (x>y)
     return y;
   return x;
 }
 
 double max(double x, double y)
 {
-  if (x > y)
+  if (x>y)
     return x;
   return y;
 }
@@ -36,14 +38,20 @@ int main()
   while (std::cin >> num1 >> num2)
   {
     // std::cout << "You entered: " << num1 << ' ' << num2 << "\n\nIntegers:";
-    if (num1 == num2)
+    if (num1==num2)
     {
       std::cout << "The numbers are equal\n";
     }
     else
     {
-      std::cout << "The smaller value is " << min(num1, num2) << '\n';
-      std::cout << "The larger value is " << max(num1, num2) << '\n';
+      double smaller = min(num1, num2);
+      double larger = max(num1, num2);
+      std::cout << "The smaller value is " << smaller << '\n';
+      std::cout << "The larger value is " << larger << '\n';
+      // When numbers are within 0.01 of each other
+      // std::cout << larger-smaller << '\n';
+      if ((larger-smaller) < 0.01)
+        std::cout << "- the numbers are almost equal\n";
     }
     // Prompt for another round of inputs
     std::cout << "\nInput:> ";
