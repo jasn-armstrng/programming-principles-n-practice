@@ -27,15 +27,25 @@ int main()
   int num1, num2;
 
   // Prompt user for input
-  std::cout << "Please enter two integers. Enter a '|' to terminate the program.\n";
+  std::cout << "Please enter two integers. Enter | to terminate program.\n";
   std::cout << "\nInput:> ";
 
+  // Read in input and compare
   while (std::cin >> num1 >> num2)
   {
-    //std::cout << "You entered: " << num1 << ' ' << num2 << "\n\nIntegers:";
-    std::cout << "The smaller value is " << min(num1, num2) << '\n';
-    std::cout << "The larger value is " << max(num1, num2) << '\n';
+    // std::cout << "You entered: " << num1 << ' ' << num2 << "\n\nIntegers:";
+    if (num1 == num2)
+    {
+      std::cout << "The numbers are equal\n";
+    }
+    else
+    {
+      std::cout << "The smaller value is " << min(num1, num2) << '\n';
+      std::cout << "The larger value is " << max(num1, num2) << '\n';
+    }
+    // Prompt for another round of inputs
     std::cout << "\nInput:> ";
   }
+
   return 0;
 }
