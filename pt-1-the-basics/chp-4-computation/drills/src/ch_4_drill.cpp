@@ -19,6 +19,7 @@ This program completes Chapter 4's Drill on pg. 126
      total of inputs in metres.
 10.- Store all values converted in metres in a vector
    - At the end output all values in vector
+11.- Sort values before output in summary
 */
 
 #include <algorithm>
@@ -48,6 +49,9 @@ int main()
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
 
+  std::cout << "+-----------------------------------------+\n";
+  std::cout << "| Chp 4 Drill: Practice language features |\n";
+  std::cout << "+-----------------------------------------+\n\n";
   std::cout << "Please enter a number followed by a unit (cm, in, m, ft)\n";
   std::cout << "\nInput:> ";
 
@@ -85,20 +89,21 @@ int main()
     {
       std::cout << "I cannot accept that input.\n";
     }
-
     std::cout << "\nInput:> "; // Prompt for another round of input
   }
+
+  std::sort(values.begin(), values.end()); // sort values ascending
 
   std::cout << "\nSummary:\n";
   std::cout << " - Smallest value: " << smallest << "cm\n";
   std::cout << " - Largest value: " << largest << "cm\n";
   std::cout << " - Number of values: " << values.size() << '\n';
   std::cout << " - Values in metres: \n";
-  std::sort(values.begin(), values.end()); // sort values ascending
   for (int i = 0; i < values.size(); ++i)
   {
     std::cout << "   " << i+1 << ". " << values[i] << "m\n";
   }
   std::cout << " - Total in metres: " << cm/100 << "m\n";
+
   return 0;
 }
