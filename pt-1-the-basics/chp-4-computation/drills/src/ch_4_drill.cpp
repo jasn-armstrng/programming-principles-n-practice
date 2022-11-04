@@ -21,6 +21,7 @@ This program completes Chapter 4's Drill on pg. 126
    - At the end output all values in vector
 */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -93,6 +94,7 @@ int main()
   std::cout << " - Largest value: " << largest << "cm\n";
   std::cout << " - Number of values: " << values.size() << '\n';
   std::cout << " - Values in metres: \n";
+  std::sort(values.begin(), values.end()); // sort values ascending
   for (int i = 0; i < values.size(); ++i)
   {
     std::cout << "   " << i+1 << ". " << values[i] << "m\n";
