@@ -8,6 +8,10 @@ This program completes Chapter 4's Drill on pg. 126
 4. - Change program to use doubles instead of ints
 5. - Write out "the numbers are almost equal" after 2. if
      their difference is less than 0.01(one hundredth)
+6. - Read one variable from user
+   - track the largest and smallest number input from user
+   - After each iteration of while if the current entry is
+     the smallest/largest of inputs notify user.
 */
 
 #include <iostream>
@@ -28,32 +32,34 @@ double max(double x, double y)
 
 int main()
 {
-  double num1, num2;
+  double current;
+  double smallest = std::numeric_limits<double>::infinity();
+  double largest = 0;
 
   // Prompt user for input
-  std::cout << "Please enter two integers. Enter | to terminate program.\n";
+  std::cout << "Please enter a real number. Enter | to terminate program.\n";
   std::cout << "\nInput:> ";
 
   // Read in input and compare
-  while (std::cin >> num1 >> num2)
+  while (std::cin >> current)
   {
-    // std::cout << "You entered: " << num1 << ' ' << num2 << "\n\nIntegers:";
-    if (num1==num2)
+    smallest = min(smallest, current);
+    largest = max(largest, current);
+
+    if (smallest==current)
     {
-      std::cout << "The numbers are equal\n";
+      std::cout << current << " is the smallest so far\n";
+    }
+    else if (largest==current)
+    {
+      std::cout << current << " is the largest so far\n";
     }
     else
     {
-      double smaller = min(num1, num2);
-      double larger = max(num1, num2);
-      std::cout << "The smaller value is " << smaller << '\n';
-      std::cout << "The larger value is " << larger << '\n';
-      // When numbers are within 0.01 of each other
-      // std::cout << larger-smaller << '\n';
-      if ((larger-smaller) < 0.01)
-        std::cout << "- the numbers are almost equal\n";
+      std::cout << current << " meh, nothing special\n";
     }
-    // Prompt for another round of inputs
+
+    // Prompt for another round of input
     std::cout << "\nInput:> ";
   }
 
