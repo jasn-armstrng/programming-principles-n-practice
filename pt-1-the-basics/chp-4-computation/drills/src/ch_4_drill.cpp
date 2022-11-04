@@ -2,8 +2,9 @@
 This program completes Chapter 4's Drill on pg. 126
 1. - Read in two integers and print them to console.
    - Exit program when a '|' is entered
-2. - Write out the "the smaller value is: " << number
-   - Write out the "the larger value is: " << number
+2. - Write out "the smaller value is: " << number
+   - Write out "the larger value is: " << number
+3. - Write out "the numbers are equal" when this is true
 */
 
 #include <iostream>
