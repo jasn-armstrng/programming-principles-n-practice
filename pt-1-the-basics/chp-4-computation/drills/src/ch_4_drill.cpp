@@ -49,9 +49,9 @@ int main()
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
 
-  std::cout << "+-----------------------------------------+\n";
-  std::cout << "| Chp 4 Drill: Practice language features |\n";
-  std::cout << "+-----------------------------------------+\n\n";
+  std::cout << "+---------------------------+\n";
+  std::cout << "| Distance Measures Summary |\n";
+  std::cout << "+---------------------------+\n\n";
   std::cout << "Please enter a number followed by a unit (cm, in, m, ft)\n";
   std::cout << "\nInput:> ";
 
