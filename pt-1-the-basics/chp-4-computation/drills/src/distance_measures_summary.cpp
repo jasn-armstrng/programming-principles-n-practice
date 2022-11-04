@@ -52,7 +52,7 @@ int main()
   std::cout << "+---------------------------+\n";
   std::cout << "| Distance Measures Summary |\n";
   std::cout << "+---------------------------+\n\n";
-  std::cout << "Please enter a number followed by a unit (cm, in, m, ft)\n";
+  std::cout << "Please enter a number followed by a unit (cm, in, m, ft) e.g. 9 cm\n";
   std::cout << "\nInput:> ";
 
   while (std::cin >> number >> unit) // Read in input and compare
