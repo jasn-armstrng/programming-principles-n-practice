@@ -12,6 +12,7 @@ This program completes Chapter 4's Drill on pg. 126
    - track the largest and smallest number input from user
    - After each iteration of while if the current entry is
      the smallest/largest of inputs notify user.
+7. - Allow the user to enter a number and unit of measure
 */
 
 #include <iostream>
@@ -32,36 +33,56 @@ double max(double x, double y)
 
 int main()
 {
-  double current;
+  double number;
+  std::string unit;
+  int values; // track values entered by user
+  double cm; // track total of values in cm
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
 
-  // Prompt user for input
-  std::cout << "Please enter a real number. Enter | to terminate program.\n";
+  std::cout << "Please enter a number followed by a unit (cm, in, m, ft)\n";
   std::cout << "\nInput:> ";
 
-  // Read in input and compare
-  while (std::cin >> current)
+  while (std::cin >> number >> unit) // Read in input and compare
   {
-    smallest = min(smallest, current);
-    largest = max(largest, current);
-
-    if (smallest==current)
+    if (unit=="cm")
     {
-      std::cout << current << " is the smallest so far\n";
+      cm+=number;
+      smallest = min(smallest, number);
+      largest = max(largest, number);
     }
-    else if (largest==current)
-    {
-      std::cout << current << " is the largest so far\n";
+    else if (unit=="in")
+    { // 1in == 2.54cm
+      cm+=number*2.54;
+      smallest = min(smallest, number*2.54);
+      largest = max(largest, number*2.54);
+    }
+    else if (unit=="m")
+    { // 1m == 100cm
+      cm+=number*100;
+      smallest = min(smallest, number*100);
+      largest = max(largest, number*100);
+    }
+    else if (unit=="ft")
+    { // 1ft == 30.48cm
+      cm+=number*30.48;
+      smallest = min(smallest, number*30.48);
+      largest = max(largest, number*30.48);
     }
     else
     {
-      std::cout << current << " meh, nothing special\n";
+      --values; // decrement for bad input
+      std::cout << "I cannot accept that input.\n";
     }
 
-    // Prompt for another round of input
-    std::cout << "\nInput:> ";
+    ++values; // keeps valid input count though consecutive invalids entered
+    std::cout << "\nInput:> "; // Prompt for another round of input
   }
 
+  std::cout << "\nSummary:\n";
+  std::cout << " - Smallest value: " << smallest << "cm\n";
+  std::cout << " - Largest value: " << largest << "cm\n";
+  std::cout << " - Number of values: " << values-1 << '\n'; // -1 because |
+  std::cout << " - Total in metres: " << cm/100 << "m\n";
   return 0;
 }
