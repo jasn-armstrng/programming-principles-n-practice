@@ -9,11 +9,12 @@ int main()
   double sum, average;
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
-  std::vector<double> distances;
+  std::vector<double> distances_to_location;
+  std::vector<double> distances_between_locations;
 
   std::cout << "Please enter a the sequence of distances along the route.\n";
   std::cout << "Use | to signal the end of the sequence.\n";
   std::cout << "Values:_ ";
 
-  for(double val; std::cin >> val;) distances.push_back(val);
+  for(double val; std::cin >> val;) distances_to_location.push_back(val);
 }
