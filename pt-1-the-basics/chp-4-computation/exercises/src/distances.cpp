@@ -4,6 +4,14 @@
 
 #include <iostream>
 #include <vector>
+
+double min(double x, double y)
+{
+  if (x>y)
+    return y;
+  return x;
+}
+
 int main()
 {
   double sum, average;
@@ -24,14 +32,17 @@ int main()
     {
       double dist_between = dist_to_loc[i]-dist_to_loc[i-1];
       dist_between_loc.push_back(dist_between);
+      smallest = min(smallest, dist_between);
     } else
     {
       dist_between_loc.push_back(dist_to_loc[i]);
     }
   }
-
-  for (double x: dist_to_loc) std::cout << x << '\n';
-  for (double x: dist_between_loc) std::cout << x << '\n';
+  std::cout << "\nDistances: ";
+  for (double x: dist_to_loc) std::cout << x << ' ';
+  std::cout << "\nDifferences: ";
+  for (double x: dist_between_loc) std::cout << x << ' ';
+  std::cout << "\nSmallest Diff: " << smallest << '\n';
 
   return 0;
 }
