@@ -12,6 +12,13 @@ double min(double x, double y)
   return x;
 }
 
+double max(double x, double y)
+{
+  if (x>y)
+    return x;
+  return y;
+}
+
 int main()
 {
   double sum, average;
@@ -22,7 +29,7 @@ int main()
 
   std::cout << "Please enter a the sequence of distances along the route.\n";
   std::cout << "Use | to signal the end of the sequence.\n";
-  std::cout << "Values:_ ";
+  std::cout << "\nValues: ";
 
   for(double val; std::cin >> val;) dist_to_loc.push_back(val);
 
@@ -33,16 +40,20 @@ int main()
       double dist_between = dist_to_loc[i]-dist_to_loc[i-1];
       dist_between_loc.push_back(dist_between);
       smallest = min(smallest, dist_between);
+      largest = max(largest, dist_between);
     } else
     {
       dist_between_loc.push_back(dist_to_loc[i]);
+      smallest = min(smallest, dist_to_loc[i]);
+      largest = max(largest, dist_to_loc[i]);
     }
   }
   std::cout << "\nDistances: ";
   for (double x: dist_to_loc) std::cout << x << ' ';
   std::cout << "\nDifferences: ";
   for (double x: dist_between_loc) std::cout << x << ' ';
-  std::cout << "\nSmallest Diff: " << smallest << '\n';
+  std::cout << "\nSmallest Diff: " << smallest;
+  std::cout << "\nlargest Diff: " << largest << '\n';
 
   return 0;
 }
