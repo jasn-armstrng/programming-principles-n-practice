@@ -40,7 +40,10 @@ int main()
           mid = (min+max)/2;
           break;
         default:
+          // When this executes it returns to "is mid your number" and as a
+          // result will add an extra guess. Hence the --guesses below.
           std::cout << "C'mon, that's not a hint.\n";
+          --guesses;
           break;
       }
     }
