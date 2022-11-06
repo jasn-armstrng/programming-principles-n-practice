@@ -14,10 +14,12 @@ double mean(std::vector<double> v)
 double median(std::vector<double> v)
 {
   std::sort(v.begin(), v.end());
+  int mid = v.size()/2;
+
   if (v.size()%2 != 0)
-  {
-    return v[(v.size()/2)];
-  }
+    return v[mid];
+  else
+    return (v[mid]+v[mid-1])/2;
 }
 
 int main()
@@ -35,15 +37,7 @@ int main()
   for(double temp; std::cin >> temp;) temps.push_back(temp);
 
   // Compute mean
-  std::cout << "Mean: "<< mean << '\n';
-
-  // Compute median
-  std::sort(temps.begin(), temps.end());
-  for(double i:temps)
-  {
-    std::cout << i << '\n';
-  }
-
+  std::cout << "Mean: "<< mean(temps) << '\n';
   std::cout << "Median: "<< median(temps) << '\n';
 
   return 0;
