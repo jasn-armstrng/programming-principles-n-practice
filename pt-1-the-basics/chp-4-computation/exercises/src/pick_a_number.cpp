@@ -7,4 +7,7 @@ int main()
   std::cout << "| Number Guessing |\n";
   std::cout << "+-----------------+\n\n";
 
+  std::cout << "Welcome player.\nPlease choose a number between 1 and 100.\n";
+
+  return 0;
 }
