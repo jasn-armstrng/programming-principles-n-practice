@@ -9,12 +9,29 @@ int main()
   double sum, average;
   double smallest = std::numeric_limits<double>::infinity();
   double largest = 0;
-  std::vector<double> distances_to_location;
-  std::vector<double> distances_between_locations;
+  std::vector<double> dist_to_loc; // distance to location
+  std::vector<double> dist_between_loc;
 
   std::cout << "Please enter a the sequence of distances along the route.\n";
   std::cout << "Use | to signal the end of the sequence.\n";
   std::cout << "Values:_ ";
 
-  for(double val; std::cin >> val;) distances_to_location.push_back(val);
+  for(double val; std::cin >> val;) dist_to_loc.push_back(val);
+
+  for (int i = 0; i<dist_to_loc.size(); ++i)
+  {
+    if(i>0)
+    {
+      double dist_between = dist_to_loc[i]-dist_to_loc[i-1];
+      dist_between_loc.push_back(dist_between);
+    } else
+    {
+      dist_between_loc.push_back(dist_to_loc[i]);
+    }
+  }
+
+  for (double x: dist_to_loc) std::cout << x << '\n';
+  for (double x: dist_between_loc) std::cout << x << '\n';
+
+  return 0;
 }
