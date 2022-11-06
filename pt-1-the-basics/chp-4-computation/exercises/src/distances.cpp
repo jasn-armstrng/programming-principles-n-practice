@@ -19,6 +19,13 @@ double max(double x, double y)
   return y;
 }
 
+double mean(std::vector<double> v)
+{
+  double sum = 0;
+  for (double i:v) sum+=i; // Note: type of the iterator matches element type.
+  return sum/v.size();
+}
+
 int main()
 {
   double sum, average;
@@ -53,7 +60,8 @@ int main()
   std::cout << "\nDifferences: ";
   for (double x: dist_between_loc) std::cout << x << ' ';
   std::cout << "\nSmallest Diff: " << smallest;
-  std::cout << "\nlargest Diff: " << largest << '\n';
+  std::cout << "\nlargest Diff: " << largest;
+  std::cout << "\nAverage Diff: " << mean(dist_between_loc) << '\n';
 
   return 0;
 }
