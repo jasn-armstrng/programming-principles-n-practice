@@ -4,24 +4,24 @@
 
 #include <iostream>
 
-double calculate(double x, double y, char oper)
+void calculate(double x, double y, char oper)
 {
   switch(oper)
   {
     case('+'):
-      return x+y;
+      std::cout << "The sum of " << x << " and " << y << " is " << x+y << '\n';
       break;
     case('-'):
-      return x-y;
+      std::cout << "The difference between " << x << " and " << y << " is " << x-y << '\n';;
       break;
     case('/'):
-      return x/y;
+      std::cout << "The division of " << x << " by " << y << " is " << x/y << '\n';;
       break;
     case('*'):
-      return x*y;
+      std::cout << "The product of " << x << " and " << y << " is " << x*y << '\n';
       break;
     default:
-      return 0;
+      std::cout << "I'm sorry, I can perform the operation " << oper << '\n';
   }
 }
 
@@ -40,7 +40,7 @@ int main()
 
   while (std::cin >> num1 >> num2 >> operation)
   {
-    std::cout << "Result: " << calculate(num1, num2, operation) << '\n';
+    calculate(num1, num2, operation);
     std::cout << "\nCalculate: ";
   }
   return 0;
