@@ -21,7 +21,7 @@ void calculate(double x, double y, char oper)
       std::cout << "The product of " << x << " and " << y << " is " << x*y << '\n';
       break;
     default:
-      std::cout << "I'm sorry, I can perform the operation " << oper << '\n';
+      std::cout << "I'm sorry, I can't perform the operation " << oper << '\n';
   }
 }
 
