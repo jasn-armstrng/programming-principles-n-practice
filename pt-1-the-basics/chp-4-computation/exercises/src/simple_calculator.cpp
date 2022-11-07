@@ -3,6 +3,28 @@
 // operation.
 
 #include <iostream>
+
+double calculate(double x, double y, char oper)
+{
+  switch(oper)
+  {
+    case('+'):
+      return x+y;
+      break;
+    case('-'):
+      return x-y;
+      break;
+    case('/'):
+      return x/y;
+      break;
+    case('*'):
+      return x*y;
+      break;
+    default:
+      return 0;
+  }
+}
+
 int main()
 {
   double num1, num2;
@@ -13,12 +35,13 @@ int main()
   std::cout << "+-------------------+\n\n";
 
   std::cout << "Hello User!\n";
-  std::cout << "\nPlease enter your calculation to be performed e.g. 35.6 24.1 + =\n";
-  std::cout << "Calculate: ";
+  std::cout << "\nUsage:\n- Calculate: 35.6 24.1 + \n- To exit enter |\n";
+  std::cout << "\nCalculate: ";
 
   while (std::cin >> num1 >> num2 >> operation)
   {
-    std::cout << num1 << ' ' << num2 << ' ' << operation << '\n';
+    std::cout << "Result: " << calculate(num1, num2, operation) << '\n';
+    std::cout << "\nCalculate: ";
   }
   return 0;
 }
