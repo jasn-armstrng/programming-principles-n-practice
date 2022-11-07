@@ -43,5 +43,6 @@ int main()
     calculate(num1, num2, operation);
     std::cout << "\nCalculate: ";
   }
+  std::cout << "\nThanks for using Simple Calculator :)\n";
   return 0;
 }
