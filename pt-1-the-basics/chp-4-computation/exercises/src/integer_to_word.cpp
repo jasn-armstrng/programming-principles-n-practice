@@ -14,13 +14,21 @@ int main()
   std::cout << "+-----------------+\n\n";
 
   std::cout << "Hello User!\n";
-  std::cout << "\nProgram usage:\n- Input: 7 Output: seven\n";
+  std::cout << "\nProgram usage:\n- Input: 7 \n  Output: seven\n- To exit enter |\n";
 
   std::cout << "\nInput: ";
   while(std::cin >> num)
   {
-    std::cout << " Output: " << integer_spelling[num] << '\n';
+    if (num < 0 || num >= int(integer_spelling.size()))
+    {
+      std::cout << "I'm sorry I don't know that one.\n";
+      std::cout << "\nInput: ";
+    }
+    else
+    {
+      std::cout << "Output: " << integer_spelling[num] << '\n';
+      std::cout << "\nInput: ";
+    }
   }
-
   return 0;
 }
