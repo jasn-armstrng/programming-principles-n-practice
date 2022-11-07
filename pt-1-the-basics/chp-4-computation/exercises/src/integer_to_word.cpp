@@ -14,7 +14,10 @@ int main()
   std::cout << "+-----------------+\n\n";
 
   std::cout << "Hello User!\n";
-  std::cout << "\nProgram usage:\n- Input: 7 \n  Output: seven\n- To exit enter |\n";
+  std::cout << "\nHow to use this program:";
+  std::cout << "\n------------------------";
+  std::cout << "\n- At Input: below enter an integer e.g. 7";
+  std::cout << "\n- To exit enter the | symbol.\n";
 
   std::cout << "\nInput: ";
   while(std::cin >> num)
@@ -30,5 +33,6 @@ int main()
       std::cout << "\nInput: ";
     }
   }
+  std::cout << "\nThanks for using Integer to Word :)\n";
   return 0;
 }
