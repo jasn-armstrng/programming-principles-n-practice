@@ -16,4 +16,12 @@ int main()
   std::cout << "+----------------------+\n";
   std::cout << "| Simple Calculator v2 |\n";
   std::cout << "+----------------------+\n\n";
+
+  std::cout << "Hello User\n";
+  std::cout << "\nHow to use this program:\n";
+  std::cout << "- Input examples,\n";
+  std::cout << "  6 7 +, 7 8 *, five four -, nine three /\n";
+  std::cout << "- To exit program enter ctrl-D\n";
+
+  return 0;
 }
