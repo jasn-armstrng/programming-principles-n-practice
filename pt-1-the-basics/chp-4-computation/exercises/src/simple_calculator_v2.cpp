@@ -27,10 +27,32 @@ int word_to_int(std::string word)
   return 0;
 }
 
+void calculate(int x, int y, char oper)
+{
+  switch(oper)
+  {
+    case('+'):
+      std::cout << "The sum of " << x << " and " << y << " is " << x+y << '\n';
+      break;
+    case('-'):
+      std::cout << "The difference between " << x << " and " << y << " is " << x-y << '\n';;
+      break;
+    case('/'):
+      std::cout << "The division of " << x << " by " << y << " is " << x/y << '\n';;
+      break;
+    case('*'):
+      std::cout << "The product of " << x << " and " << y << " is " << x*y << '\n';
+      break;
+    default:
+      std::cout << "I'm sorry, I can't perform the operation " << oper << '\n';
+  }
+}
+
 int main()
 {
 
-  std::string int1, int2, operation;
+  std::string int1, int2;
+  char operation;
 
   std::cout << "+----------------------+\n";
   std::cout << "| Simple Calculator v2 |\n";
@@ -39,15 +61,15 @@ int main()
   std::cout << "Hello User\n";
   std::cout << "\nHow to use this program:\n";
   std::cout << "- Input examples,\n";
-  std::cout << "  6 7 +\n  7 8 *\n  five four -\n  nine three /\n";
-  std::cout << "- Single digits only\n";
+  std::cout << "  6 7 +\n  7 8 *\n  five 4 -\n  nine three /\n";
+  std::cout << "- Use +ve single digits only\n";
   std::cout << "- To exit program enter ctrl-D\n";
 
-  std::cout << "Input: ";
+  std::cout << "\nInput: ";
   while (std::cin >> int1 >> int2 >> operation)
   {
-    // std::cout << int1 << ' ' << int2 << ' ' << operation << '\n';
-    std::cout << word_to_int(int1) << ' ' << word_to_int(int2) << ' ' << operation << '\n';
+    calculate(word_to_int(int1), word_to_int(int2), operation);
+    std::cout << "\nInput: ";
   }
   return 0;
 }
