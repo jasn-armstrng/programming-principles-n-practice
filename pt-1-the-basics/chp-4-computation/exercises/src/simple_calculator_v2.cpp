@@ -45,7 +45,7 @@ void calculate(int x, int y, char oper)
       std::cout << "The product of " << x << " and " << y << " is " << x*y << '\n';
       break;
     default:
-      std::cout << "Sorry, I can't perform the operation " << oper << '\n';
+      std::cout << "Sorry, invalid operation " << oper << '\n';
   }
 }
 
@@ -54,13 +54,14 @@ int main()
   std::string int1, int2;
   char operation;
 
-  std::cout << "+----------------------+\n";
-  std::cout << "| Simple Calculator v2 |\n";
-  std::cout << "+----------------------+\n\n";
+  std::cout << "+-------------------+\n";
+  std::cout << "| Simple Calculator |\n";
+  std::cout << "+-------------------+\n\n";
 
   std::cout << "Hello User!\n";
   std::cout << "\nHow to use this program:\n";
-  std::cout << "- Input examples,\n";
+  std::cout << "------------------------\n";
+  std::cout << "+ Input examples,\n";
   std::cout << "  6 7 +\n  7 8 *\n  five 4 -\n  nine three /\n";
   std::cout << "- Use +ve single digits only\n";
   std::cout << "- To exit program enter ctrl-D\n";
@@ -79,5 +80,6 @@ int main()
       std::cout << "\nInput: ";
     }
   }
+  std::cout << "\n\nThanks for using Simple Calculator :)\n";
   return 0;
 }
