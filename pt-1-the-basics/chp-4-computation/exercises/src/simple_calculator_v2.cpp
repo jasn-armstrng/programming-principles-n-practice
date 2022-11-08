@@ -20,8 +20,10 @@ int main()
   std::cout << "Hello User\n";
   std::cout << "\nHow to use this program:\n";
   std::cout << "- Input examples,\n";
-  std::cout << "  6 7 +, 7 8 *, five four -, nine three /\n";
+  std::cout << "  6 7 +\n  7 8 *\n  five four -\n  nine three /\n";
   std::cout << "- To exit program enter ctrl-D\n";
+
+  std::cout << "Input: ";
 
   return 0;
 }
