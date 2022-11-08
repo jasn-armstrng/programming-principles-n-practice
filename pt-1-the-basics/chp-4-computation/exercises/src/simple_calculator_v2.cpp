@@ -1,10 +1,5 @@
 // This program performs basic arithmetic calculations on single digit integers.
-// The user can input statements in the following forms,
-//    6 5 +
-//    six five +
-//    5 six +
-// and the output expected,
-//    The sum of 6 and 5 is 11
+// Users enter integers as words or digits followed by an operator +, -, /, *
 
 #include <iostream>
 #include <vector>
