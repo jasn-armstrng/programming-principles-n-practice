@@ -51,3 +51,13 @@ int main()
   std::cout << outro;
   return 0;
 }
+/*
+Note: The max reward cannot be stored in the double as integer literal, as
+highlighted in the warning below,
+
+ rice_and_chess.cpp:51:10: warning: integer literal is too large to be represented in a signed integer type, interpreting as unsigned [-Wimplicitly-unsigned-literal]
+ test = 18446744073709551615;
+
+Favour scientific notation instead,
+ test = 1.8446744e+19
+*/
