@@ -5,13 +5,12 @@
 // grains of rice.
 
 #include <iostream>
-#include <cmath>
 int main()
 {
   int squares;
   double rice_on_squares;
   double rice_reward;
-  double test;
+
   std::string intro =
     "There is an old story that the inventor of chess asked for his reward -"
     "\n1 grain of rice on the first square of the board, 2 on the second, 4 on"
@@ -36,7 +35,7 @@ int main()
   std::cout << "\nRice grains: ";
   while(std::cin >> rice_reward)
   {
-    squares = 0;
+    squares = 0; // Reset this and rice on squares after each iteration
     rice_on_squares = 0;
     for (double i = 1; rice_on_squares <= rice_reward; i*=2)
     {
@@ -48,6 +47,7 @@ int main()
     std::cout << "At least " << squares << " squares are needed.\n";
     std::cout << "\nRice grains: ";
   }
+
   std::cout << outro;
   return 0;
 }
