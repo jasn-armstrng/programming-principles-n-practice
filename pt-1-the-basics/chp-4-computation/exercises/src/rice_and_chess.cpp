@@ -8,7 +8,10 @@
 #include <cmath>
 int main()
 {
-  double rice_grains;
+  int squares;
+  double rice_on_squares;
+  double rice_reward;
+  double test;
   std::string intro =
     "There is an old story that the inventor of chess asked for his reward -"
     "\n1 grain of rice on the first square of the board, 2 on the second, 4 on"
@@ -31,13 +34,20 @@ int main()
   std::cout << "- Enter | to exit program.\n";
 
   std::cout << "\nRice grains: ";
-  while(std::cin >> rice_grains)
+  while(std::cin >> rice_reward)
   {
-
+    squares = 0;
+    rice_on_squares = 0;
+    for (double i = 1; rice_on_squares <= rice_reward; i*=2)
+    {
+      ++squares;
+      rice_on_squares += i;
+      std::cout << "Rice: " << rice_on_squares << " Squares: " << squares << '\n';
+    }
+    std::cout << "------------------------------\n";
+    std::cout << "At least " << squares << " squares are needed.\n";
+    std::cout << "\nRice grains: ";
   }
   std::cout << outro;
   return 0;
 }
-
-
-// 184467440737095516150
