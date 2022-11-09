@@ -20,7 +20,7 @@ int main()
 
   std::string outro =
     "\nP.S. If the reward could have been granted he would have been given"
-    "\na stupendous 18,446,744,073,709,551,615 grains.\n\n";
+    "\na stupendous 18,446,744,073,709,551,615 grains.\n~ End.\n";
 
   std::cout << "+----------------+\n";
   std::cout << "| Rice and Chess |\n";
@@ -29,7 +29,7 @@ int main()
   std::cout << intro << '\n';
   std::cout << "How to use this program:\n";
   std::cout << "------------------------\n";
-  std::cout << "- Enter number at 'Rice grains:' prompt\n";
+  std::cout << "- Enter number at 'Rice reward:' prompt\n";
   std::cout << "- Enter | to exit program.\n";
 
   std::cout << "\nRice grains: ";
@@ -37,13 +37,16 @@ int main()
   {
     squares = 0; // Reset this and rice on squares after each iteration
     rice_on_squares = 0;
+    std::cout << "+-----------------------------------+\n";
+    std::cout << "| Grains          | Squares         |\n";
+    std::cout << "+-----------------------------------+\n";
     for (double i = 1; rice_on_squares <= rice_reward; i*=2)
     {
       ++squares;
       rice_on_squares += i;
-      std::cout << "Rice: " << rice_on_squares << " Squares: " << squares << '\n';
+      std::cout << "  " << rice_on_squares << "\t\t  | " << squares << '\n';
     }
-    std::cout << "------------------------------\n";
+    std::cout << "+-----------------------------------+\n";
     std::cout << "At least " << squares << " squares are needed.\n";
     std::cout << "\nRice grains: ";
   }
