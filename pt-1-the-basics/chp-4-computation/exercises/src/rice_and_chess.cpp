@@ -20,8 +20,8 @@ int main()
     "\nleast N grains of rice.\n";
 
   std::string outro =
-    "\nIf the reward could have been granted he would have been given"
-    "\n18,446,744,073,709,551,615 grains.\n";
+    "\nP.S. If the reward could have been granted he would have been given"
+    "\na stupendous 18,446,744,073,709,551,615 grains.\n\n";
 
   std::cout << "+----------------+\n";
   std::cout << "| Rice and Chess |\n";
