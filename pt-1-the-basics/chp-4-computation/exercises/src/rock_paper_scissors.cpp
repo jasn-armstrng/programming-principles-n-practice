@@ -26,7 +26,7 @@ std::string outcome(std::string p_move, std::string c_move)
 
   // Easter egg
   if (p_move == "love")
-    return "Love conquers all!";
+    return "Love always wins!";
 
   return "No result!";
 }
@@ -51,7 +51,17 @@ int main()
   std::cout << "Your move: ";
   while (std::cin >> player_move)
   {
+    computer_move = moves[dist(ran_dev)];
+    std::cout << "Computer: " << computer_move << '\n';
+    std::cout << "Result: " << outcome(player_move, computer_move) << '\n';
 
+    // Play again?
+    std::cout << "\nPlay again [y/n]: ";
+    std::cin >> play_again;
+    if (play_again == 'n')
+      break;
+    else
+      std::cout << "\nYour move: ";
   }
   std::cout << "\nThanks for playing!\n";
   return 0;
