@@ -34,7 +34,7 @@ std::string outcome(std::string p_move, std::string c_move)
 int main()
 {
   // List of moves computer randomly chooses from
-  std::vector<std::string> moves = {"rock", "paper", "scissors", "rock", "paper", "scissors", "rock", "paper", "scissors"};
+  std::vector<std::string> moves = {"scissors", "rock", "paper", "paper", "rock", "scissors", "paper", "scissors", "rock"};
 
   // Next 2 lines make up our psuedo-random number generator
   std::random_device ran_dev;
@@ -47,6 +47,8 @@ int main()
   std::cout << "+-----------------------+\n";
   std::cout << "| Rock, Paper, Scissors |\n";
   std::cout << "+-----------------------+\n\n";
+
+  std::cout << "To play: Enter either 'rock', 'paper', or 'scissors' at the prompt below.\n\n";
 
   std::cout << "Your move: ";
   while (std::cin >> player_move)
