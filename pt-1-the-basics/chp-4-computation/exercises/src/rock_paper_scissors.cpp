@@ -4,10 +4,10 @@
 #include <random>
 #include <vector>
 
-// Global. Updated by function update_score_board
+// Global. Updated by function update_score_board. Read by final_score.
 std::vector<int> score_board = {0, 0};
 
-std::string outcome(std::string p_move, std::string c_move)
+std::string round_result(std::string p_move, std::string c_move)
 {
   if (p_move == c_move)
     return "Draw!";
@@ -36,12 +36,22 @@ std::string outcome(std::string p_move, std::string c_move)
   return "No result!";
 }
 
-void update_score_board(std::string o_come)
+void update_score_board(std::string r_result)
 {
-  if (o_come == "Player wins!" || o_come == "Love always wins!")
+  if (r_result == "Player wins!" || r_result == "Love always wins!")
     ++score_board[0];
-  else if (o_come == "Computer wins!")
+  else if (r_result == "Computer wins!")
     ++score_board[1];
+}
+
+void final_score(std::vector<int> s_board)
+{
+  if (s_board[0] > s_board[1])
+    std::cout << "\nWinner!" << '\n';
+  else if (s_board[1] > s_board[0])
+    std::cout << "\nLoser :P" << '\n';
+  else
+    std::cout << "\nThanks for playing!" << '\n';
 }
 
 int main()
@@ -53,8 +63,7 @@ int main()
   std::random_device ran_dev;
   std::uniform_int_distribution<int> dist(0,8);
 
-  std::string player_move;
-  std::string computer_move;
+  std::string player_move, computer_move;
   int rounds = 1;
   char play_again;
 
@@ -64,33 +73,37 @@ int main()
 
   std::cout << "To play: Enter either 'rock', 'paper', or 'scissors' at the prompt below.\n\n";
 
-  std::cout << "Round: " << rounds << '\n';
-  std::cout << "------------\n";
-  std::cout << "Your move: ";
+  std::cout << "Round: " << rounds;
+  std::cout << "\n-----------------------------";
+  std::cout << "\nYour move: ";
   while (std::cin >> player_move)
   {
+    // Random draw from moves
     computer_move = moves[dist(ran_dev)];
+
+    // Show user computer move and round outcome
     std::cout << "Computer: " << computer_move << '\n';
-    std::cout << "Result: " << outcome(player_move, computer_move) << '\n';
+    std::cout << "Result: " << round_result(player_move, computer_move) << '\n';
 
     // Update score-board
-    update_score_board(outcome(player_move, computer_move));
+    update_score_board(round_result(player_move, computer_move));
 
     // Show score
     std::cout << "-----------------------------\n";
     std::cout << "Score: Player[" << score_board[0] << "] Computer [" << score_board[1] << "]\n";
 
-    // Play again?
+    // Ask user to play again
     std::cout << "\nPlay again [y/n]: ";
     std::cin >> play_again;
     if (play_again == 'n')
       break;
     else
       ++rounds;
-      std::cout << "Round: " << rounds << '\n';
-      std::cout << "------------\n";
+      std::cout << "\nRound: " << rounds;
+      std::cout << "\n-----------------------------";
       std::cout << "\nYour move: ";
   }
-  std::cout << "\nThanks for playing!\n";
+  // outro
+  final_score(score_board);
   return 0;
 }
