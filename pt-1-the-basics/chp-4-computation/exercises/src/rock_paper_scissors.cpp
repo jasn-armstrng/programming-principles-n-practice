@@ -4,15 +4,20 @@
 #include <random>
 #include <vector>
 
+// Global. Updated by function update_score_board
+std::vector<int> score_board = {0, 0};
+
 std::string outcome(std::string p_move, std::string c_move)
 {
   if (p_move == c_move)
     return "Draw!";
 
-  if (p_move == "rock" && c_move == "scissors")
+  if (p_move == "rock" && c_move == "scissors"){
     return "Player wins!";
-  else if (c_move == "rock" && p_move == "scissors")
+  }else if (c_move == "rock" && p_move == "scissors")
+  {
     return "Computer wins!";
+  }
 
   if (p_move == "paper" && c_move == "rock")
     return "Player wins!";
@@ -31,6 +36,14 @@ std::string outcome(std::string p_move, std::string c_move)
   return "No result!";
 }
 
+void update_score_board(std::string o_come)
+{
+  if (o_come == "Player wins!" || o_come == "Love always wins!")
+    ++score_board[0];
+  else if (o_come == "Computer wins!")
+    ++score_board[1];
+}
+
 int main()
 {
   // List of moves computer randomly chooses from
@@ -42,6 +55,7 @@ int main()
 
   std::string player_move;
   std::string computer_move;
+  int rounds = 1;
   char play_again;
 
   std::cout << "+-----------------------+\n";
@@ -50,6 +64,8 @@ int main()
 
   std::cout << "To play: Enter either 'rock', 'paper', or 'scissors' at the prompt below.\n\n";
 
+  std::cout << "Round: " << rounds << '\n';
+  std::cout << "------------\n";
   std::cout << "Your move: ";
   while (std::cin >> player_move)
   {
@@ -57,12 +73,22 @@ int main()
     std::cout << "Computer: " << computer_move << '\n';
     std::cout << "Result: " << outcome(player_move, computer_move) << '\n';
 
+    // Update score-board
+    update_score_board(outcome(player_move, computer_move));
+
+    // Show score
+    std::cout << "-----------------------------\n";
+    std::cout << "Score: Player[" << score_board[0] << "] Computer [" << score_board[1] << "]\n";
+
     // Play again?
     std::cout << "\nPlay again [y/n]: ";
     std::cin >> play_again;
     if (play_again == 'n')
       break;
     else
+      ++rounds;
+      std::cout << "Round: " << rounds << '\n';
+      std::cout << "------------\n";
       std::cout << "\nYour move: ";
   }
   std::cout << "\nThanks for playing!\n";
