@@ -60,6 +60,6 @@ int main()
     }
     std::cout << "\n\nN:";
   }
-  // std::cout << "\n"
+  std::cout << "\nPeace!\n";
   return 0;
 }
