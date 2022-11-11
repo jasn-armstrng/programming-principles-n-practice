@@ -27,7 +27,7 @@ void sieve_of_eras(int max_val)
   int counter; // Counter for number of primes below max_val. Output at the end
 
   for (int i = 0; i < max_val; ++i)
-    b_values[i] = true;
+    b_values[i] = true; // Initialize all vector values to true
 
   for (int i = 2; i*i < max_val; ++i)
   {
@@ -38,19 +38,19 @@ void sieve_of_eras(int max_val)
       }
   }
 
-  std::cout << "\nPrimes: ";
+  std::cout << "\nPrimes:\n\n";
   for(int i = 2; i < int(b_values.size()); ++i)
   {
     if(b_values[i]){
       std::cout << i << '\t';
-      if (counter%12 == 0)
+      if (counter%10 == 0) // Split results in columns of 10
       {
-        std::cout << "\n\t";
+        std::cout << '\n'; // Formatting results
       }
       ++counter;
     }
   }
-  std::cout << "\n\nTotal: " << counter << " primes below " << max_val << '\n';
+  std::cout << "\n\nTotal: " << counter << " primes below " << max_val << "\n\n";
 }
 
 int main()
@@ -58,9 +58,9 @@ int main()
   std::vector<int> primes;
   int max;
 
-  std::cout << "+----------------+\n";
-  std::cout << "| Finding Primes |\n";
-  std::cout << "+----------------+\n\n";
+  std::cout << "+-------------+\n";
+  std::cout << "| Find Primes |\n";
+  std::cout << "+-------------+\n\n";
 
   std::cout << "Find all primes below: ";
   std::cin >> max;
