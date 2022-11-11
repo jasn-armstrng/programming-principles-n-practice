@@ -39,9 +39,13 @@ int main()
   std::cout << "| First N Primes |\n";
   std::cout << "+----------------+\n\n";
 
-  std::cout << "\nThis program takes an input N and finds the first N primes.";
-  std::cout << "\nNote: Limited to first 1000 primes.";
-  std::cout << "\n-----------------------------------";
+  std::cout << "\nHow this program works:";
+  std::cout << "\n---------------------------------------------------";
+  std::cout << "\n- It takes an input N and finds the first N primes.";
+  std::cout << "\n- Limited to first 1000 primes.";
+  std::cout << "\n- To exit the program enter - .";
+  std::cout << "\n---------------------------------------------------";
+
   std::cout << "\n\nN: ";
   while(std::cin >> n)
   {
@@ -54,9 +58,8 @@ int main()
         std::cout << '\n'; // Formatting results
       }
     }
-
     std::cout << "\n\nN:";
   }
-
+  // std::cout << "\n"
   return 0;
 }
