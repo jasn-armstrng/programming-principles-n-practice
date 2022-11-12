@@ -11,4 +11,16 @@ int main()
   std::cout << "| Find Mode |\n";
   std::cout << "+-----------+\n\n";
 
+  std::cout << "\nHow this program works:";
+  std::cout << "\n----------------------------------------";
+  std::cout << "\n- Enter set of space separated integers.";
+  std::cout << "\n- End set of integers with a | ";
+  std::cout << "\n- To exit the program enter - .";
+  std::cout << "\n----------------------------------------";
+
+  std::cout << "\n\nIntegers: ";
+  while (std::cin >> integer)
+  {
+    integers.push_back(integer);
+  }
 }
