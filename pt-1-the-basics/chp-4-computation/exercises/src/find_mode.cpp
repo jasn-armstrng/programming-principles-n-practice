@@ -3,6 +3,7 @@
 // - This program's limitation: when elements have the same frequency - where
 //   frequency is greater > 1 - it outputs the first element found with that
 //   frequency.
+// - A better solution would make use of a hash table.
 
 #include <iostream>
 #include <vector>
@@ -12,17 +13,16 @@ int mode(std::vector<int> v)
   int max_value = 0, // Mode
       max_count = 0; // Tracks the max frequency of a value in the vector
 
+  // No need for vector to be sorted before entering the loop
   for(int i = 0; i < int(v.size()); ++i)
-  { // This nested iteration works because the mode does not beat
+  { // This nested iteration and count works because the mode does not beat
     // the count it got on first iteration thru the inner for.
     int count = 0; // Tracks the consecutive count of a value
                    // reset to 0 for each iteration/value
     for(int j = 0; j < int(v.size()); ++j)
     {
       if(v[j] == v[i])
-      {
         ++count;
-      }
     }
     if (count > max_count)
     {
@@ -40,11 +40,10 @@ int mode(std::vector<int> v)
 int main()
 {
   std::vector<int> integers;
-
+  // Title and program instructions
   std::cout << "+-----------+\n";
   std::cout << "| Find Mode |\n";
   std::cout << "+-----------+\n\n";
-
   std::cout << "\nHow this program works:";
   std::cout << "\n--------------------------------------------";
   std::cout << "\n- Enter sequence of space separated integers";
