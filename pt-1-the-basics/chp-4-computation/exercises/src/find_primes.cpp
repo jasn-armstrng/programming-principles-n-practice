@@ -17,7 +17,6 @@ From Wikipedia: Algorithm Sieve of Eratosthenes is
     return all i such that A[i] is true.
 */
 
-#include <cmath>
 #include <iostream>
 #include <vector>
 
