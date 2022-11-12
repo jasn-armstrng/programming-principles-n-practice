@@ -13,25 +13,23 @@ int mode(std::vector<int> v)
   int max_value = 0, // Mode
       max_count = 0; // Tracks the max frequency of a value in the vector
 
-  // No need for vector to be sorted before entering the loop
-  for(int i = 0; i < int(v.size()); ++i)
-  { // This nested iteration and count works because the mode does not beat
-    // the count it got on first iteration thru the inner for.
-    int count = 0; // Tracks the consecutive count of a value
-                   // reset to 0 for each iteration/value
-    for(int j = 0; j < int(v.size()); ++j)
+  // This nested iteration and count works because if there is a mode it does
+  // not beat the count it got on first iteration thru the inner for.
+  for(int i: v)
+  {
+    int count = 0; // Tracks consecutive value counts. Reset for each iteration.
+    for(int j: v)
     {
-      if(v[j] == v[i])
+      if(i==j)
         ++count;
     }
-    if (count > max_count)
+    if (count>max_count) // Then update the mode and frequency
     {
-      // update the mode and frequency
-      max_value = v[i];
+      max_value = i;
       max_count = count;
     }
   }
-  if (max_count > 1)
+  if (max_count>1)
     return max_value;
 
   return -1; // If no repeated numbers in a set of elements > 0, then no mode
@@ -54,7 +52,7 @@ int main()
   std::cout << "\n--------------------------------------------";
   // User in
   std::cout << "\n\nIntegers: ";
-  for(double val; std::cin >> val;) integers.push_back(val);
+  for(double val; std::cin>>val;) integers.push_back(val);
   // Program out
   std::cout << "\nMode: " << mode(integers) << '\n';
   return 0;
