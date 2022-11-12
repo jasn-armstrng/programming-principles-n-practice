@@ -14,20 +14,20 @@ int mode(std::vector<int> v)
       max_count = 0; // Tracks the max frequency of a value in the vector
 
   // No need for vector to be sorted before entering the loop
-  for(int i = 0; i < int(v.size()); ++i)
+  for(int i: v)
   { // This nested iteration and count works because the mode does not beat
     // the count it got on first iteration thru the inner for.
     int count = 0; // Tracks the consecutive count of a value
                    // reset to 0 for each iteration/value
-    for(int j = 0; j < int(v.size()); ++j)
+    for(int j: v)
     {
-      if(v[j] == v[i])
+      if(i == j)
         ++count;
     }
     if (count > max_count)
     {
       // update the mode and frequency
-      max_value = v[i];
+      max_value = i;
       max_count = count;
     }
   }
