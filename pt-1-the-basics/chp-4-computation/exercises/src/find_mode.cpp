@@ -4,7 +4,6 @@
 //   frequency is greater > 1 - it outputs the first element found with that
 //   frequency.
 
-#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -13,14 +12,12 @@ int mode(std::vector<int> v)
   int max_value = 0, // Mode
       max_count = 0; // Tracks the max frequency of a value in the vector
 
-  std::sort(v.begin(), v.end());  // Sort vector ascending
-
   for(int i = 0; i < int(v.size()); ++i)
   { // This nested iteration works because the mode does not beat
     // the count it got on first iteration thru the inner for.
     int count = 0; // Tracks the consecutive count of a value
                    // reset to 0 for each iteration/value
-    for(int j = i; j < int(v.size()); ++j)
+    for(int j = 0; j < int(v.size()); ++j)
     {
       if(v[j] == v[i])
       {
