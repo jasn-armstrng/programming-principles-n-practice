@@ -44,6 +44,7 @@ int main()
   std::cout << "+-----------+\n";
   std::cout << "| Find Mode |\n";
   std::cout << "+-----------+\n\n";
+
   std::cout << "\nHow this program works:";
   std::cout << "\n--------------------------------------------";
   std::cout << "\n- Enter sequence of space separated integers";
