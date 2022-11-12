@@ -1,5 +1,8 @@
 // This program finds the mode of a set of integers.
-
+// - Mode: The element of a set that has the highest frequency.
+// - This program's limitation: when elements have the same frequency - where
+//   frequency is greater > 1 - it outputs the first element found with that
+//   frequency.
 
 #include <algorithm>
 #include <iostream>
