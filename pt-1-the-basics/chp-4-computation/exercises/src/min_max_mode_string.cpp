@@ -41,6 +41,7 @@ int main()
     std::cout << "Min (string): " << min(strings) << '\n';
     std::cout << "Max (string): " << max(strings) << '\n';
     std::cout << "Mode(string): " << mode(strings) << '\n';
+    std::cout << '\n';
   }
   else
   {
