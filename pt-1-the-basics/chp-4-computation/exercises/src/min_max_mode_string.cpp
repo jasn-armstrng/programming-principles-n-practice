@@ -5,14 +5,7 @@ Definitions:
  max: longest length string
  mode: string that appears most frequently
 
- 1. Find min string: Store the first string. Compare the length of each
-    subsequent string with the length of stored string. If subsequent string is
-    less store that string ...
- 2. Find max string: Same as 1 but if length is greater then store.
- 3. Find mode: Count the occurence of each string in the vector each count is
-    compared against a max count and replaces it if greater.
-
-  - Note for 1 and 2 if 2 strings are the same length then compare Ascii values
+ Note: still in development
 */
 
 #include <iostream>
