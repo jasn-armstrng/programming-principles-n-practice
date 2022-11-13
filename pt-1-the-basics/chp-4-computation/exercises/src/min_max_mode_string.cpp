@@ -34,12 +34,18 @@ int main()
   std::cout << "Enter a sequence of strings to get the min, max and mode (To finish, press Enter then Ctrl-D):\n";
   for(std::string str; std::cin>>str;) strings.push_back(str);
 
-  std::cout << "\nResults:\n";
-  std::cout << "--------\n";
-  std::cout << "Min (string): " << min(strings) << '\n';
-  std::cout << "Max (string): " << max(strings) << '\n';
-  std::cout << "Mode(string): " << mode(strings) << '\n';
-
+  if (!strings.empty())
+  {
+    std::cout << "\nResults:\n";
+    std::cout << "--------\n";
+    std::cout << "Min (string): " << min(strings) << '\n';
+    std::cout << "Max (string): " << max(strings) << '\n';
+    std::cout << "Mode(string): " << mode(strings) << '\n';
+  }
+  else
+  {
+    std::cout << "\nNo results.\n";
+  }
   return 0;
 }
 
