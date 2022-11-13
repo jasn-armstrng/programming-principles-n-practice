@@ -22,5 +22,15 @@ int max(int x, int y){ return (x>y) ? x : y; }
 
 int main()
 {
+  std::vector<std::string> strings;
+  std::string str;
 
+  std::cout << "+---------------------------+\n";
+  std::cout << "| Min, Max, Mode of Strings |\n";
+  std::cout << "+---------------------------+\n\n";
+
+  std::cout << "Enter a sequence of strings: ";
+  for(std::string str; std::cin>>str;) strings.push_back(str);
+
+  return 0;
 }
