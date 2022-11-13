@@ -17,6 +17,8 @@ Definitions:
 #include <iostream>
 #include <vector>
 
+std::string min(const std::vector<std::string> v);
+std::string max(const std::vector<std::string> v);
 std::string mode(const std::vector<std::string> v);
 
 int main()
@@ -30,24 +32,46 @@ int main()
 
   std::cout << "Enter a sequence of strings: ";
   for(std::string str; std::cin>>str;) strings.push_back(str);
-  min_string = strings[0], max_string = strings[1];
+  // min_string = strings[0], max_string = strings[0];
 
-  for(std::string s: strings)
-  {
-    if (int(s.size()) < int(min_string.size()) && s < min_string)
-      min_string = s;
+  // for(std::string s: strings)
+  // {
+  //   if (int(s.size()) < int(min_string.size()) && s < min_string)
+  //     min_string = s;
 
-    if (int(s.size()) > int(max_string.size()) && s > max_string)
-      max_string = s;
-  }
+  //   if (int(s.size()) > int(max_string.size()) && s > max_string)
+  //     max_string = s;
+  // }
 
   std::cout << "\nResults:\n";
   std::cout << "--------\n";
-  std::cout << "Min (string): " << min_string << '\n';
-  std::cout << "Max (string): " << max_string << '\n';
+  std::cout << "Min (string): " << min(strings) << '\n';
+  std::cout << "Max (string): " << max(strings) << '\n';
   std::cout << "Mode(string): " << mode(strings) << '\n';
 
   return 0;
+}
+
+std::string min(const std::vector<std::string> v)
+{
+  std::string min_string = v[0];
+  for(std::string s: v)
+  {
+    if (int(s.size()) < int(min_string.size()) && s < min_string)
+      min_string = s;
+  }
+  return min_string;
+}
+
+std::string max(const std::vector<std::string> v)
+{
+  std::string max_string = v[0];
+  for(std::string s: v)
+  {
+    if (int(s.size()) > int(max_string.size()) && s > max_string)
+      max_string = s;
+  }
+  return max_string;
 }
 
 std::string mode(const std::vector<std::string> v)
