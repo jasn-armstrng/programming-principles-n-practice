@@ -17,6 +17,8 @@ Definitions:
 #include <iostream>
 #include <vector>
 
+std::string mode(const std::vector<std::string> v);
+
 int main()
 {
   std::vector<std::string> strings;
@@ -39,10 +41,38 @@ int main()
       max_string = s;
   }
 
-  // std::cout << "Min: " << min_string << " Max: " << max_string <<'\n';
-  // std::string s1 = "is",
-  //             s2 = "be";
-  // bool comp = s1 < s2;
-  // std::cout << comp << '\n';
+  std::cout << "\nResults:\n";
+  std::cout << "--------\n";
+  std::cout << "Min (string): " << min_string << '\n';
+  std::cout << "Max (string): " << max_string << '\n';
+  std::cout << "Mode(string): " << mode(strings) << '\n';
+
   return 0;
+}
+
+std::string mode(const std::vector<std::string> v)
+{
+  std::string max_value; // Mode
+  int max_count = 0; // Tracks the max frequency of a value in the vector
+
+  // This nested iteration and count works because if there is a mode it does
+  // not beat the count it got on first iteration thru the inner for.
+  for(std::string i: v)
+  {
+    int count = 0; // Tracks consecutive value counts. Reset for each iteration.
+    for(std::string j: v)
+    {
+      if(i==j)
+        ++count;
+    }
+    if (count>max_count) // Then update the mode and frequency
+    {
+      max_value = i;
+      max_count = count;
+    }
+  }
+  if (max_count>1)
+    return max_value;
+
+  return "No mode"; // If no repeated numbers in a set of elements > 0, then no mode
 }
