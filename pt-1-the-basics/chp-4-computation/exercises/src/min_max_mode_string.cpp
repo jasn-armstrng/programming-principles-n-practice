@@ -1,9 +1,5 @@
 /*
 This programs finds the min, max, and mode of a sequence of strings.
-Definitions:
- min: shortest length string
- max: longest length string
- mode: string that appears most frequently
 
 Note:
 1. The min and max functions: does a lexicographical comparison on the strings.
