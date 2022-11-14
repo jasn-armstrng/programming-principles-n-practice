@@ -25,6 +25,7 @@ int main()
   std::cout << "Solution: x=" << result1 << " or x=" << result2 << '\n';
 
   std::cout << "\nNote: If solutions are 'nans', they are complex numbers.\n";
+  std::cout << "\n      Complex number solutions in later version.\n";
   return 0;
 }
 
