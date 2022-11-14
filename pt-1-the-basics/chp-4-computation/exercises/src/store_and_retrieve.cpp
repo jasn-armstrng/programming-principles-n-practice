@@ -16,6 +16,9 @@ int main()
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
   char option;
 
+  std::cout << "+--------------------+\n";
+  std::cout << "| Store and Retrieve |\n";
+  std::cout << "+--------------------+\n\n";
 
   std::cout << "Please enter player name and score on a new line below. To end enter: NoName 0\n";
   std::cout << "\nPlayer Score:\n";
