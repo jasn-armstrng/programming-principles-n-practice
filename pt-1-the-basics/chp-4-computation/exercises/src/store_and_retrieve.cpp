@@ -4,31 +4,74 @@
 #include <vector>
 
 int mode(const std::vector<std::string> v);
+void show_all(const std::vector<std::string> n, const std::vector<std::string> s);
+std::string find_score(const std::vector<std::string> n, const std::vector<std::string> s);
 
 int main()
 {
-  std::vector<std::string> names;
+  std::vector<std::string> players;
   std::vector<std::string> scores;
-  std::string name, score;
+  std::string player, score;
+  char option;
 
-
-  std::cout << "Please enter name and score. To end enter NoName 0.\n";
-  std::cout << "Name Score: ";
-
-  for (std::string name, score; std::cin >> name >> score;)
+  std::cout << "Please enter player name and score on a new line below. To end enter: NoName 0\n";
+  std::cout << "\nPlayer Score:\n";
+  std::cout << "-------------\n";
+  for (std::string player, score; std::cin >> player >> score;)
   {
-    if(name == "NoName" && score == "0")
+    if(player == "NoName" && score == "0")
     {
+      break;
+    }
+    else
+    {
+      players.push_back(player);
+      scores.push_back(score);
+    }
+
+    if(mode(players) > 1){
+      std::cout << "\nERROR: Duplicate name entry.\n";
+      players.pop_back(), scores.pop_back();
       break;
     }
   }
 
-  for (int i = 0; i < int(names.size()); ++i)
+  std::cout << "\nOptions:\n";
+  std::cout << "[1] Show all entries\n[2] Find player score\n1/2: ";
+  std::cin >> option;
+  if (option == 1)
   {
-    std::cout << "Name: " << names[i] << " Score: " << scores[i] << '\n';
+    show_all(players, scores);
   }
+  // if (option == 2)
+  // {
+  //   std::cout
+  //   find_score(players, scores, user_entry)
+  // }
 
   return 0;
+}
+
+// std::string find_score(const std::vector<std::string> n, const std::vector<std::string> s)
+// {
+//   std::string player;
+//   std::cout << "Player: "; std::cin >> player;
+//   for (int i = 0; i < int(n.size()); ++i)
+//   {
+//     if (n[i] == player)
+//       return s[i];
+//   }
+//   return "\nname not found";
+// }
+
+void show_all(const std::vector<std::string> n, const std::vector<std::string> s)
+{
+  std::cout << "\nStats:\n";
+  std::cout << "------\n";
+  for (int i = 0; i < int(n.size()); ++i)
+  {
+    std::cout << i+1 << ". " << n[i] << ", " << s[i] << '\n';
+  }
 }
 
 int mode(const std::vector<std::string> v)
