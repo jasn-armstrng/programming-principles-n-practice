@@ -20,18 +20,11 @@ int main()
   std::cout << "b = "; std::cin >> b;
   std::cout << "c = "; std::cin >> c;
 
-  // std::tie(result1, result2) = solve_quadratic(1, -5, 6);
-  // std::cout << "\nEquation: x^2 + -5x + 6 = 0";
-  // std::cout << "\nSolution: x=" << result1 << " or x=" << result2 << '\n';
-  // Tests
-  // std::tie(result1, result2) = solve_quadratic(1, -5, 6);
-  // std::cout << "\nEquation: x^2 + -5x + 6 = 0";
-  // std::cout << "\nSolution: x=" << result1 << " or x=" << result2 << '\n'; // expect 3, 2
+  std::tie(result1, result2) = solve_quadratic(a, b, c);
+  std::cout << "\nEquation: " << a << "x^2 + " << b << "x + " << c << " = 0\n";
+  std::cout << "Solution: x=" << result1 << " or x=" << result2 << '\n';
 
-  // std::tie(result1, result2) = solve_quadratic(5, 6, 1);
-  // std::cout << "\nEquation: 5x^2 + 6x + 1 = 0";
-  // std::cout << "\nSolution: x=" << result1 << " or x=" << result2 << '\n'; // expect -0.2, -1
-
+  std::cout << "\nNote: If solutions are 'nans', they are complex numbers.\n";
   return 0;
 }
 
