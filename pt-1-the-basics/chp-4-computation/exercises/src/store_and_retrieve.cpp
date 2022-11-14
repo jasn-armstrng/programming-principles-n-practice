@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+// Function declarations
 int mode(const std::vector<std::string> v);
 void show_all(const std::vector<std::string> n, const std::vector<std::string> s);
 void find_player_score(const std::vector<std::string> n, const std::vector<std::string> s);
@@ -23,9 +24,10 @@ int main()
   std::cout << "Please enter player name and score on a new line below. To end enter: NoName 0\n";
   std::cout << "\nPlayer Score:\n";
   std::cout << "-------------\n";
+
   for (std::string player, score; std::cin >> player >> score;)
   {
-    if(player == "NoName" && score == "0")
+    if(player == "NoName" && score == "0") // Input terminator
     {
       break;
     }
@@ -34,7 +36,7 @@ int main()
       players.push_back(player);
       scores.push_back(score);
     }
-
+    // Notify of and remove duplicate name entry
     if(mode(players) > 1){
       std::cout << "\nERROR: Duplicate name entry.\n";
       players.pop_back(), scores.pop_back();
@@ -42,6 +44,7 @@ int main()
     }
   }
 
+  // List, search, and exit options
   std::cout << queries;
   while(std::cin >> option)
   {
@@ -59,12 +62,12 @@ int main()
       std::cout << '\n';
       break;
     }
-
-    std::cout << queries;
+    std::cout << queries; // Repeat options
   }
   return 0;
 }
 
+// Function definitions
 void find_score(const std::vector<std::string> n, const std::vector<std::string> s)
 {
   std::string score;
