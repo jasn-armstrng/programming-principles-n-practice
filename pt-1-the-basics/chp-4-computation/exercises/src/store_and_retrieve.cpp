@@ -5,7 +5,7 @@
 
 int mode(const std::vector<std::string> v);
 void show_all(const std::vector<std::string> n, const std::vector<std::string> s);
-std::string find_score(const std::vector<std::string> n, const std::vector<std::string> s);
+void find_score(const std::vector<std::string> n, const std::vector<std::string> s);
 
 int main()
 {
@@ -36,33 +36,36 @@ int main()
     }
   }
 
-  std::cout << "\nOptions:\n";
-  std::cout << "[1] Show all entries\n[2] Find player score\n1/2: ";
+
+  std::cout << "\nSelect:\n[1] Show all entries\n[2] Find player score\n";
+  std::cout << "\nOption: ";
   std::cin >> option;
-  if (option == 1)
+  if (option == '1')
   {
     show_all(players, scores);
   }
-  // if (option == 2)
-  // {
-  //   std::cout
-  //   find_score(players, scores, user_entry)
-  // }
+  if (option == '2')
+  {
+    find_score(players, scores);
+  }
 
   return 0;
 }
 
-// std::string find_score(const std::vector<std::string> n, const std::vector<std::string> s)
-// {
-//   std::string player;
-//   std::cout << "Player: "; std::cin >> player;
-//   for (int i = 0; i < int(n.size()); ++i)
-//   {
-//     if (n[i] == player)
-//       return s[i];
-//   }
-//   return "\nname not found";
-// }
+void find_score(const std::vector<std::string> n, const std::vector<std::string> s)
+{
+  std::string player, score = "-1";
+  std::cout << "Player: "; std::cin >> player;
+  for (int i = 0; i < int(n.size()); ++i)
+  {
+    if (n[i] == player)
+      score = s[i];
+  }
+  if (score != "-1")
+    std::cout << "Score: " << score << '\n';
+  else
+    std::cout << "no name found";
+}
 
 void show_all(const std::vector<std::string> n, const std::vector<std::string> s)
 {
