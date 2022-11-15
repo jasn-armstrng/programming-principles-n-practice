@@ -1,14 +1,13 @@
 // This program stores and retrieves name/value pairs
-
 #include <iostream>
 #include <vector>
 
 // Function declarations
 int mode(const std::vector<std::string> v);
+void options(const std::vector<std::string> p, const std::vector<std::string> s);
 void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
 void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s);
 void find_score(const std::vector<std::string> p, const std::vector<std::string> s);
-void options(const std::vector<std::string> p, const std::vector<std::string> s);
 
 int main()
 {
@@ -24,9 +23,9 @@ int main()
   std::cout << "\nPlayer Score:\n";
   std::cout << "-------------\n";
 
-  for (std::string player, score; std::cin >> player >> score;)
+  for (std::string player, score; std::cin>>player>>score;)
   {
-    if(player == "NoName" && score == "0") // Input terminator
+    if(player=="NoName" && score=="0") // Input terminator
     {
       break;
     }
@@ -36,7 +35,7 @@ int main()
       scores.push_back(score);
     }
     // Notify of and remove duplicate name entry
-    if(mode(players) > 1)
+    if(mode(players)>1)
     {
       std::cout << "\nERROR: Duplicate name entry.\n";
       players.pop_back(), scores.pop_back();
@@ -55,18 +54,18 @@ void options(const std::vector<std::string> p, const std::vector<std::string> s)
   char option;
 
   std::cout << queries;
-  while(std::cin >> option)
+  while(std::cin>>option)
   {
-    if (option == '1')
+    if(option=='1')
       show_all(p, s);
 
-    if (option == '2')
+    if(option=='2')
       find_player_score(p, s);
 
-    if (option == '3')
+    if(option=='3')
       find_score(p, s);
 
-    if (option == '4')
+    if(option=='4')
     {
       std::cout << '\n';
       break;
@@ -83,31 +82,31 @@ void find_score(const std::vector<std::string> p, const std::vector<std::string>
 
   std::cout << "Players:\n";
   std::cout << "--------\n";
-  for (int i = 0; i < int(s.size()); ++i)
+  for(int i = 0; i<int(s.size()); ++i)
   {
-    if (s[i] == score)
+    if(s[i]==score)
     {
       ++count;
       std::cout << p[i] << ", " << s[i] << '\n';
     }
   }
-  if (count == 0)
+  if(count==0)
     std::cout << "-, -\n";
 }
 
 void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::string player, score = "-1";
-  std::cout << "\nPlayer: "; std::cin >> player;
-  for (int i = 0; i < int(p.size()); ++i)
+  std::cout << "\nPlayer: "; std::cin>>player;
+  for(int i = 0; i<int(p.size()); ++i)
   {
-    if (p[i] == player)
+    if(p[i]==player)
     {
       score = s[i];
       break;
     }
   }
-  if (score != "-1")
+  if(score!="-1")
     std::cout << "Score: " << score << '\n';
   else
     std::cout << "Error: Player not found.\n";
@@ -117,7 +116,7 @@ void show_all(const std::vector<std::string> p, const std::vector<std::string> s
 {
   std::cout << "\nScores:\n";
   std::cout << "-------\n";
-  for (int i = 0; i < int(p.size()); ++i)
+  for(int i = 0; i<int(p.size()); ++i)
   {
     std::cout << p[i] << ", " << s[i] << '\n';
   }
@@ -134,7 +133,7 @@ int mode(const std::vector<std::string> v)
       if(i==j)
         ++count;
     }
-    if (count>max_count)
+    if(count>max_count)
     {
       max_count = count;
     }
