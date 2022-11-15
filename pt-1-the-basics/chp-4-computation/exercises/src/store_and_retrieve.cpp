@@ -5,17 +5,16 @@
 
 // Function declarations
 int mode(const std::vector<std::string> v);
-void show_all(const std::vector<std::string> n, const std::vector<std::string> s);
-void find_player_score(const std::vector<std::string> n, const std::vector<std::string> s);
-void find_score(const std::vector<std::string> n, const std::vector<std::string> s);
+void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
+void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s);
+void find_score(const std::vector<std::string> p, const std::vector<std::string> s);
+void options(const std::vector<std::string> p, const std::vector<std::string> s);
 
 int main()
 {
   std::vector<std::string> players;
   std::vector<std::string> scores;
   std::string player, score;
-  std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
-  char option;
 
   std::cout << "+--------------------+\n";
   std::cout << "| Store and Retrieve |\n";
@@ -37,25 +36,35 @@ int main()
       scores.push_back(score);
     }
     // Notify of and remove duplicate name entry
-    if(mode(players) > 1){
+    if(mode(players) > 1)
+    {
       std::cout << "\nERROR: Duplicate name entry.\n";
       players.pop_back(), scores.pop_back();
       break;
     }
   }
-
   // List, search, and exit options
+  options(players, scores);
+
+  return 0;
+}
+
+void options(const std::vector<std::string> p, const std::vector<std::string> s)
+{
+  std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
+  char option;
+
   std::cout << queries;
   while(std::cin >> option)
   {
     if (option == '1')
-      show_all(players, scores);
+      show_all(p, s);
 
     if (option == '2')
-      find_player_score(players, scores);
+      find_player_score(p, s);
 
     if (option == '3')
-      find_score(players, scores);
+      find_score(p, s);
 
     if (option == '4')
     {
@@ -64,11 +73,10 @@ int main()
     }
     std::cout << queries; // Repeat options
   }
-  return 0;
 }
 
 // Function definitions
-void find_score(const std::vector<std::string> n, const std::vector<std::string> s)
+void find_score(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::string score;
   int count = 0;
@@ -81,20 +89,20 @@ void find_score(const std::vector<std::string> n, const std::vector<std::string>
     if (s[i] == score)
     {
       ++count;
-      std::cout << n[i] << ", " << s[i] << '\n';
+      std::cout << p[i] << ", " << s[i] << '\n';
     }
   }
   if (count == 0)
     std::cout << "-, -\n";
 }
 
-void find_player_score(const std::vector<std::string> n, const std::vector<std::string> s)
+void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::string player, score = "-1";
   std::cout << "\nPlayer: "; std::cin >> player;
-  for (int i = 0; i < int(n.size()); ++i)
+  for (int i = 0; i < int(p.size()); ++i)
   {
-    if (n[i] == player)
+    if (p[i] == player)
     {
       score = s[i];
       break;
@@ -106,20 +114,19 @@ void find_player_score(const std::vector<std::string> n, const std::vector<std::
     std::cout << "Error: Player not found.\n";
 }
 
-void show_all(const std::vector<std::string> n, const std::vector<std::string> s)
+void show_all(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::cout << "\nScores:\n";
   std::cout << "-------\n";
-  for (int i = 0; i < int(n.size()); ++i)
+  for (int i = 0; i < int(p.size()); ++i)
   {
-    std::cout << n[i] << ", " << s[i] << '\n';
+    std::cout << p[i] << ", " << s[i] << '\n';
   }
 }
 
 int mode(const std::vector<std::string> v)
 {
   int max_count = 0;
-
   for(std::string i: v)
   {
     int count = 0;
