@@ -45,10 +45,10 @@ int main()
   }
   // List, search, and exit options
   options(players, scores);
-
   return 0;
 }
 
+// Function definitions
 void options(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
@@ -75,7 +75,6 @@ void options(const std::vector<std::string> p, const std::vector<std::string> s)
   }
 }
 
-// Function definitions
 void find_score(const std::vector<std::string> p, const std::vector<std::string> s)
 {
   std::string score;
