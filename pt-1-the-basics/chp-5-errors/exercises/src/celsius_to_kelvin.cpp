@@ -1,6 +1,7 @@
 // This program converts Celsius to Kelvin
 #include <iostream>
 
+// Function declarations
 inline void keep_window_open();
 inline void error(const std::string& s);
 double ctok(double c);
@@ -26,7 +27,8 @@ try{
     std::cout << "Conv: " << c << " ˚C\n";
   }
   else{
-    error("Unknown unit");
+    error("Bad input");
+    keep_window_open();
   }
 
   keep_window_open();
@@ -43,9 +45,10 @@ catch(...){
   return 2; // indicates failure
 }
 
-inline void keep_window_open(){ char ch; std::cin>>ch; }
+// Function definitions
+inline void keep_window_open(){char ch; std::cin>>ch;}
 
-inline void error(const std::string& s){ throw std::runtime_error(s); }
+inline void error(const std::string& s){throw std::runtime_error(s);}
 
 double ctok(double c){
   // converts Celsius to Kelvin
