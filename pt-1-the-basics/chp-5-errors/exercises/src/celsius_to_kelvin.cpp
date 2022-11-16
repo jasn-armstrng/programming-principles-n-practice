@@ -8,11 +8,27 @@ double ktoc(double c);
 
 int main()
 try{
-  double c = 0;
-  std::cout << "Celsius: ";
-  std::cin >> c;
-  double k = ctok(c);
-  std::cout << "Kelvin: " << k << '\n';
+  double v; // value
+  char u; // unit
+
+  std::cout << "+--------------------+\n";
+  std::cout << "| Celsius <-> Kelvin |\n";
+  std::cout << "+--------------------+\n\n";
+  std::cout << "Enter temperature value and unit e.g. 32 c, 100 k\nTemp: ";
+  std::cin >>v>>u;
+
+  if (u=='c'){
+    double k = ctok(v);
+    std::cout << "Conv: " << k << " K\n";
+  }
+  else if(u=='k'){
+    double c = ktoc(v);
+    std::cout << "Conv: " << c << " ˚C\n";
+  }
+  else{
+    error("Unknown unit");
+  }
+
   keep_window_open();
   return 0;
 }
