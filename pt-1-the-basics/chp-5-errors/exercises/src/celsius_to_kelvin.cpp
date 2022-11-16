@@ -6,31 +6,11 @@ inline void keep_window_open();
 inline void error(const std::string& s);
 double ctok(double c);
 double ktoc(double c);
+void ui();
 
 int main()
 try{
-  double v; // value
-  char u; // unit
-
-  std::cout << "+--------------------+\n";
-  std::cout << "| Celsius <-> Kelvin |\n";
-  std::cout << "+--------------------+\n\n";
-  std::cout << "Enter temperature value and unit e.g. 32 c, 100 k\nTemp: ";
-  std::cin >>v>>u;
-
-  if (u=='c'){
-    double k = ctok(v);
-    std::cout << "Conv: " << k << " K\n";
-  }
-  else if(u=='k'){
-    double c = ktoc(v);
-    std::cout << "Conv: " << c << " ˚C\n";
-  }
-  else{
-    error("Bad input");
-    keep_window_open();
-  }
-
+  ui();
   keep_window_open();
   return 0;
 }
@@ -64,4 +44,27 @@ double ktoc(double k){
   // post-conditions: returns a value above absolute zero (-273.15c)
   if (k < 0) { error("Value entered is below absolute zero"); }
   return k-273.15;
+}
+
+void ui(){
+  // presents gui
+  double v; // value
+  char u; // unit
+
+  std::cout << "+--------------------+\n";
+  std::cout << "| Celsius <-> Kelvin |\n";
+  std::cout << "+--------------------+\n\n";
+  std::cout << "Enter temperature value and unit e.g. 32 c, 100 k\nTemp: ";
+  std::cin >>v>>u;
+  if (u=='c'){
+    double k = ctok(v);
+    std::cout << "Conv: " << k << " K\n";
+  }
+  else if(u=='k'){
+    double c = ktoc(v);
+    std::cout << "Conv: " << c << " ˚C\n";
+  }
+  else{
+    error("Bad input");
+  }
 }
