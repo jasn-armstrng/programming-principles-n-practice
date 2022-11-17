@@ -5,14 +5,21 @@
 inline void error(const std::string& s);
 double ctof(double c);
 double ftoc(double f);
-int main(){
+int main()
+try{
 
-  std::cout << ctof(10) << '\n';
-  std::cout << ctof(-10) << '\n';
-  std::cout << ctof(100) << '\n';
-  std::cout << ctof(-100) << '\n';
-  //std::cout << ctof(-300) << '\n';
+  // std::cout << ctof(10) << '\n';
+  // std::cout << ctof(-10) << '\n';
+  // std::cout << ctof(100) << '\n';
+  // std::cout << ctof(-100) << '\n';
+  std::cout << ctof(-300) << '\n';
   return 0;
+}
+catch(std::exception& e){
+  std::cerr << "\nError: " << e.what() << '\n';
+}
+catch(...){ // all other unthrown errors
+  std::cerr << "\nError: unknown exception" << '\n';
 }
 
 inline void error(const std::string& s){throw std::runtime_error(s);}
