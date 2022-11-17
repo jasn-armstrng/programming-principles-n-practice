@@ -1,4 +1,4 @@
-// This program converts Celsius to Kelvin
+// This program does conversions between Celsius and Kelvin
 #include <iostream>
 
 // Function declarations
