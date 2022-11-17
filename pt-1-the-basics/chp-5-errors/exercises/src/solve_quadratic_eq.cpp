@@ -4,14 +4,24 @@
 // function declaration(s)
 inline void error(const std::string& s);
 void solve_quadratic(double a, double b, double c);
-int main(){
+int main()
+try{
   // a = 1, b = -5, c = 6, Roots: x = 2, 3
   // a = 5, b = 6, c = 1, Roots: x = − 0.2, −1
+  // a = 1, b = 2, c = 3, Roots: No real roots
 
   solve_quadratic(1, -5, 6);
   solve_quadratic(5, 6, 1);
   solve_quadratic(1, 2, 3);
   return 0;
+}
+catch(std::exception& e){
+  std::cerr << "\nError: " << e.what() << '\n';
+  return 1;
+}
+catch(...){
+  std::cerr << "\nError: Unknown exception\n";
+  return 2;
 }
 
 // function definition(s)
