@@ -1,7 +1,7 @@
 // This program does conversions between Celsius and Fahrenheit
 #include <iostream>
 
-// function declarations
+// function declaration(s)
 inline void error(const std::string& s);
 inline void keep_window_open();
 double ctof(double c);
@@ -28,7 +28,7 @@ catch(...){ // all other unthrown errors
   return 2;
 }
 
-// functions definitions
+// function definition(s)
 inline void error(const std::string& s){throw std::runtime_error(s);}
 
 inline void keep_window_open(){char ch; std::cin>>ch;};
@@ -57,15 +57,28 @@ void ui(){
   std::cout << "Enter temperature value and unit e.g. 32 c, 100 f\nTemp: ";
   std::cin >>v>>u;
 
-  if(u=='c'){
-    double f = ctof(v);
-    std::cout << "Conv: " << f << " F\n";
+  switch(u){
+    case('c'):
+      double f = ctof(v);
+      std::cout << "Conv: " << f << " F\n";
+      break;
+    case('f'):
+      double f = ctof(v);
+      std::cout << "Conv: " << f << " F\n";
+      break;
+    default:
+      std::cout << "\nError: Unrecognized unit";
+      break;
   }
-  else if(u=='f'){
-    double c = ftoc(v);
-    std::cout << "Conv: " << c << " ˚C\n";
-  }
-  else{
-    error("Bad input");
-  }
+  // if(u=='c'){
+  //   double f = ctof(v);
+  //   std::cout << "Conv: " << f << " F\n";
+  // }
+  // else if(u=='f'){
+  //   double c = ftoc(v);
+  //   std::cout << "Conv: " << c << " ˚C\n";
+  // }
+  // else{
+  //   error("Bad input");
+  // }
 }
