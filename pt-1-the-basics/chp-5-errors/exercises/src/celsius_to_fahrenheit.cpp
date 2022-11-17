@@ -51,7 +51,9 @@ double ftoc(double f){
 
 void ui(){
   // presents gui
-  double v;
+  // pre-conditions: v is numberic(double), u is a character {c, f}
+  // post-conditions: Returns the appropriate conversion or an error
+  double v, f, c;
   char u;
 
   std::cout << "Enter temperature value and unit e.g. 32 c, 100 f\nTemp: ";
@@ -59,26 +61,15 @@ void ui(){
 
   switch(u){
     case('c'):
-      double f = ctof(v);
+      f = ctof(v);
       std::cout << "Conv: " << f << " F\n";
       break;
     case('f'):
-      double f = ctof(v);
-      std::cout << "Conv: " << f << " F\n";
+      c = ftoc(v);
+      std::cout << "Conv: " << c << " ˚C\n";
       break;
     default:
-      std::cout << "\nError: Unrecognized unit";
+      error("Bad input");
       break;
   }
-  // if(u=='c'){
-  //   double f = ctof(v);
-  //   std::cout << "Conv: " << f << " F\n";
-  // }
-  // else if(u=='f'){
-  //   double c = ftoc(v);
-  //   std::cout << "Conv: " << c << " ˚C\n";
-  // }
-  // else{
-  //   error("Bad input");
-  // }
 }
