@@ -15,12 +15,12 @@ int main(){
   return 0;
 }
 
-// inline void error(const std::string& s){throw std::runtime_error(s);}
+inline void error(const std::string& s){throw std::runtime_error(s);}
 
 double ctof(double c){
   // converts celsius to fahrenheit
   // pre-conditions: c >= -273.15 (absolute zero)
   // post-conditions: returns value >= −459.67 F (absolute zero)
-  //if (c < -273.15){ error("Value entered is below absolute zero");}
+  if (c < -273.15){ error("Value entered is below absolute zero");}
   return (c*9)/5+32;
 }
