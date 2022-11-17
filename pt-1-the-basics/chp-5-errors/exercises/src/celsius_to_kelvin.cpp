@@ -1,7 +1,7 @@
 // This program does conversions between Celsius and Kelvin
 #include <iostream>
 
-// Function declarations
+// Function declaration(s)
 inline void keep_window_open();
 inline void error(const std::string& s);
 double ctok(double c);
@@ -25,7 +25,7 @@ catch(...){
   return 2; // indicates failure
 }
 
-// Function definitions
+// Function definition(s)
 inline void keep_window_open(){char ch; std::cin>>ch;}
 
 inline void error(const std::string& s){throw std::runtime_error(s);}
@@ -34,7 +34,7 @@ double ctok(double c){
   // converts Celsius to Kelvin
   // pre-conditions: cel >= -273.15
   // post-conditions: returns a +ve value. 0 Kelvin = absolute zero (-273.15c)
-  if (c < -273.15) { error("Value entered is below absolute zero"); }
+  if(c < -273.15){error("Value entered is below absolute zero");}
   return c+273.15;
 }
 
@@ -42,7 +42,7 @@ double ktoc(double k){
   // converts Kelvin to Celsius
   // pre-conditions: k >= 0
   // post-conditions: returns a value above absolute zero (-273.15c)
-  if (k < 0) { error("Value entered is below absolute zero"); }
+  if(k < 0){error("Value entered is below absolute zero");}
   return k-273.15;
 }
 
@@ -56,7 +56,7 @@ void ui(){
   std::cout << "+--------------------+\n\n";
   std::cout << "Enter temperature value and unit e.g. 32 c, 100 k\nTemp: ";
   std::cin >>v>>u;
-  if (u=='c'){
+  if(u=='c'){
     double k = ctok(v);
     std::cout << "Conv: " << k << " K\n";
   }
