@@ -16,21 +16,18 @@ Program execution:
 
 // function declarations
 inline void error(const std::string& s);
+void sum_first_n(const int n, const std::vector<int> i);
 
 int main()
 try{
   std::vector<int> integers;
-  int n, sum = 0;
+  int n;
 
   std::cout << "Please enter the number of integers you want to sum:\n";
   std::cin>>n;
   std::cout << "Please enter some integers (press '|' to stop):\n";
   for(int integer; std::cin>>integer;){integers.push_back(integer);}
-  // n, vector.size() comparison
-  if(!(n<=int(integers.size()))){error("Not enough integers provided");}
-  for(int i = 0; i<n; ++i){sum+=integers[i];}
-  std::cout << "The sum of the first " << n << " numbers is " << sum << '\n';
-
+  sum_first_n(n, integers);
   return 0;
 }
 catch(std::exception& e){
@@ -45,6 +42,17 @@ catch(...){
 // function definitions
 inline void error(const std::string& s){throw std::runtime_error(s);}
 
-// Test code:
-// std::cout << n << '\n';
-// for(int i: integers){std::cout << i << '\n';}
+void sum_first_n(const int n, const std::vector<int> v){
+  // sums the first n elements in a vector
+  // pre-conditions: n<=vector.size()
+  // post-condtions: print "The sum of the first n numbers ( numbers ) is sum"
+  int sum = 0;
+  // pre-condition check
+  if(!(n<=int(v.size()))){error("Not enough integers provided");}
+  // compute sum
+  for(int i = 0; i<n; ++i){sum+=v[i];}
+  // output
+  std::cout << "The sum of the first " << n << " numbers ( ";
+  for(int i = 0; i<n; ++i){std::cout << v[i] << ' ';} // a better way to do this?
+  std::cout << ") is " << sum << '\n';
+}
