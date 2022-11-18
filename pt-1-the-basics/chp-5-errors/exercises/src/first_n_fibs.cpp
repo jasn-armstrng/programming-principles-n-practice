@@ -6,9 +6,18 @@
 inline void error(const std::string& s);
 void fibonacci(const int n);
 
-int main(){
+int main()
+try{
   fibonacci(-1);
   return 0;
+}
+catch(std::exception& e){
+  std::cerr << "\nError: " << e.what() << '\n';
+  return 1;
+}
+catch(...){
+  std::cerr << "\nError: Unknown exception" << '\n';
+  return 2;
 }
 
 // function definitions
@@ -18,7 +27,7 @@ void fibonacci(const int n){
   // prints up to n numbers of the fibonacci series
   // pre-conditions: n must be a positive integer
   // post-conditions:
-  if(n<0){error("Invalid value for n");} // +ve integer check for n
+  if(n<0){error("Bad input for n");} // +ve integer check for n
 
   std::vector<int> series = {0, 1}; // initialize with first 2 fibs - f0, f1
 
