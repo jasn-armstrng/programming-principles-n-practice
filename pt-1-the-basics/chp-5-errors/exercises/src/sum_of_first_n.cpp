@@ -17,7 +17,8 @@ Program execution:
 // function declarations
 inline void error(const std::string& s);
 
-int main(){
+int main()
+try{
   std::vector<int> integers;
   int n, sum = 0;
 
@@ -25,18 +26,24 @@ int main(){
   std::cin>>n;
   std::cout << "Please enter some integers (press '|' to stop):\n";
   for(int integer; std::cin>>integer;){integers.push_back(integer);}
-  // n, vector length comparison
+  // n, vector.size() comparison
   if(!(n<=int(integers.size()))){error("Not enough integers provided");}
   for(int i = 0; i<n; ++i){sum+=integers[i];}
   std::cout << "The sum of the first " << n << " numbers is " << sum << '\n';
 
   return 0;
 }
+catch(std::exception& e){
+  std::cerr << "\nError: " << e.what() << '\n';
+  return 1;
+}
+catch(...){
+  std::cerr << "\nError: Unknown exception";
+  return 2;
+}
 
 // function definitions
 inline void error(const std::string& s){throw std::runtime_error(s);}
-
-
 
 // Test code:
 // std::cout << n << '\n';
