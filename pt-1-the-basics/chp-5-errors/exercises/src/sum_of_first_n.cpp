@@ -17,17 +17,11 @@ Program execution:
 // function declarations
 inline void error(const std::string& s);
 void sum_first_n(const int n, const std::vector<int> i);
+void ui();
 
 int main()
 try{
-  std::vector<int> integers;
-  int n;
-
-  std::cout << "Please enter the number of integers you want to sum:\n";
-  std::cin>>n;
-  std::cout << "Please enter some integers (press '|' to stop):\n";
-  for(int integer; std::cin>>integer;){integers.push_back(integer);}
-  sum_first_n(n, integers);
+  ui();
   return 0;
 }
 catch(std::exception& e){
@@ -55,4 +49,16 @@ void sum_first_n(const int n, const std::vector<int> v){
   std::cout << "The sum of the first " << n << " numbers ( ";
   for(int i = 0; i<n; ++i){std::cout << v[i] << ' ';} // a better way to do this?
   std::cout << ") is " << sum << '\n';
+}
+
+void ui(){
+  // present UI
+  std::vector<int> integers;
+  int n;
+
+  std::cout << "Please enter the number of integers you want to sum:\n";
+  std::cin>>n;
+  std::cout << "Please enter some integers (press '|' to stop):\n";
+  for(int integer; std::cin>>integer;){integers.push_back(integer);}
+  sum_first_n(n, integers);
 }
