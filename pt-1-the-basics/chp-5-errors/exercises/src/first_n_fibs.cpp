@@ -35,9 +35,9 @@ void fibonacci(const int n){
   // post-conditions:
   if(n<0){error("Bad input for n");} // +ve integer check for n
 
-  std::vector<int> series = {0, 1}; // initialize with first 2 fibs - f0, f1
+  std::vector<double> series = {0, 1}; // initialize with first 2 fibs - f0, f1
   for(int i = 2; i<n; ++i){
-    int fn = series[i-1]+series[i-2];
+    double fn = series[i-1]+series[i-2];
     series.push_back(fn);
   }
   for(int i = 0; i<int(series.size()); ++i){
