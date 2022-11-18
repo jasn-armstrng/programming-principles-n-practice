@@ -2,13 +2,17 @@
 #include <iostream>
 #include <vector>
 
-// function declarations
+// --------------------- function declarations ---------------------------------
 inline void error(const std::string& s);
 void fibonacci(const int n);
+void ui();
 
 int main()
 try{
-  fibonacci(-1);
+  std::cout << "+---------------------------+\n";
+  std::cout << "| First N Fibonacci Numbers |\n";
+  std::cout << "+---------------------------+\n\n";
+  ui();
   return 0;
 }
 catch(std::exception& e){
@@ -20,8 +24,10 @@ catch(...){
   return 2;
 }
 
-// function definitions
-inline void error(const std::string& s){throw std::runtime_error(s);}
+// --------------------- function definitions ----------------------------------
+inline void error(const std::string& s){
+  throw std::runtime_error(s);
+}
 
 void fibonacci(const int n){
   // prints up to n numbers of the fibonacci series
@@ -30,13 +36,19 @@ void fibonacci(const int n){
   if(n<0){error("Bad input for n");} // +ve integer check for n
 
   std::vector<int> series = {0, 1}; // initialize with first 2 fibs - f0, f1
-
   for(int i = 2; i<n; ++i){
     int fn = series[i-1]+series[i-2];
     series.push_back(fn);
   }
-
   for(int i = 0; i<int(series.size()); ++i){
-    std::cout << i+1 << ". " << series[i] << '\n';
+    std::cout << i << "\t" << series[i] << '\n';
   }
+}
+
+void ui(){
+  int n;
+  std::cout << "Please enter a positive integer value for N: ";
+  std::cin>>n;
+  std::cout << "\nFn\tNumber\n";
+  fibonacci(n);
 }
