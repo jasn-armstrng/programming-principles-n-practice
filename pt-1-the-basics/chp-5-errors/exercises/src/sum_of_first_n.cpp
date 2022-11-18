@@ -16,7 +16,7 @@ Program execution:
 
 // function declarations
 inline void error(const std::string& s);
-void sum_first_n(const int n, const std::vector<int> i);
+void sum_first_n(const int n, const std::vector<double> i);
 void ui();
 
 int main()
@@ -36,11 +36,11 @@ catch(...){
 // function definitions
 inline void error(const std::string& s){throw std::runtime_error(s);}
 
-void sum_first_n(const int n, const std::vector<int> v){
+void sum_first_n(const int n, const std::vector<double> v){
   // sums the first n elements in a vector
   // pre-conditions: n<=vector.size()
   // post-condtions: print "The sum of the first n numbers ( numbers ) is sum"
-  int sum = 0;
+  double sum = 0;
   if(!(n<=int(v.size()))){error("Not enough integers provided");} // pre-condition check
   for(int i = 0; i<n; ++i){sum+=v[i];} // compute sum
   std::cout << "The sum of the first " << n << " numbers ( "; // build output string "The sum of the first n numbers ( numbers ) is sum"
@@ -51,11 +51,11 @@ void sum_first_n(const int n, const std::vector<int> v){
 void ui(){
   // present UI
   // Note: Program does not validate user input types
-  std::vector<int> integers;
+  std::vector<double> integers;
   int n;
   std::cout << "Please enter the number of integers you want to sum:\n";
   std::cin>>n;
   std::cout << "Please enter some integers (press '|' to stop):\n";
-  for(int integer; std::cin>>integer;){integers.push_back(integer);}
+  for(double integer; std::cin>>integer;){integers.push_back(integer);}
   sum_first_n(n, integers);
 }
