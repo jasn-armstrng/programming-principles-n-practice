@@ -40,15 +40,17 @@ void fibonacci(const int n){
     double fn = series[i-1]+series[i-2];
     series.push_back(fn);
   }
+
+  std::cout << "\nFn\tNumber\n"; // header for output
   for(int i = 0; i<int(series.size()); ++i){
     std::cout << i << "\t" << series[i] << '\n';
   }
 }
 
 void ui(){
-  int n;
+  // present UI and program output
+  double n;
   std::cout << "Please enter a positive integer value for N: ";
   std::cin>>n;
-  std::cout << "\nFn\tNumber\n";
   fibonacci(n);
 }
