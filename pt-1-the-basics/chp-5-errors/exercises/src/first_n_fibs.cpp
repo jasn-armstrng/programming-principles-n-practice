@@ -49,6 +49,7 @@ void fibonacci(const int n){
 
 void ui(){
   // present UI and program output
+  // Note: No user input validation beyond n>=0 check in fibonacci function
   double n;
   std::cout << "Please enter a positive integer value for N: ";
   std::cin>>n;
