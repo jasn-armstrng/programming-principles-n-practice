@@ -46,7 +46,7 @@ void sum_first_n(const int n, const std::vector<double> v){
   double sum = 0;
   if(!(n<=int(v.size()))){error("Not enough values provided");} // pre-condition check
   for(int i = 0; i<n; ++i){sum+=v[i];} // compute sum
-  std::cout << "The sum of the first " << n << " values ( "; // build output string "The sum of the first n numbers ( numbers ) is sum"
+  std::cout << "\nThe sum of the first " << n << " values ( "; // build output string "The sum of the first n numbers ( numbers ) is sum"
   for(int i = 0; i<n; ++i){std::cout << v[i] << ' ';} // a better way to do this?
   std::cout << ") is " << sum << '\n';
 }
