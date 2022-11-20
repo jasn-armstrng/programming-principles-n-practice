@@ -16,41 +16,25 @@ How the guess and hints work:
 
 // ------------------------- function declarations -----------------------------
 std::vector<int> random_integers(const int n);
+void hint(const std::vector<int> s, const std::vector<int> g);
 
 int main(){
   // in progress
-  std::vector<int> secret = {3, 1, 2, 2}; //random_integers(4);
+  std::vector<int> secret = random_integers(4);
   std::vector<int> guess;
-  std::vector<std::string> v_hint(4);
-  std::string s_hint = "";
-  bool four_bulls = false;
+
+  std::cout << "Secret: ";
+  for(int i: secret){ std::cout << i; }
+  std::cout <<'\n';
 
   std::cout << "Guess: ";
   for(int g; std::cin>>g;){guess.push_back(g);}
 
-  for(int i: secret){std::cout << i;}
-  std::cout << '\n';
+  // for trouble shooting
   for(int i: guess){std::cout << i;}
   std::cout << '\n';
+  hint(secret, guess);
 
-  for(int i = 0; i<int(secret.size()); ++i){
-    if(guess[i]==secret[i]){
-      v_hint[i] = "B";
-    }else{
-      v_hint[i] = "_";
-    }
-  }
-
-  for(int i = 0; i<int(guess.size()); ++i){
-    for(int j = 0; j<int(secret.size()); ++j){
-      if(guess[i] == secret[j]){
-        v_hint[i] = "C";
-      }
-    }
-  }
-
-  for(std::string s: v_hint){s_hint+=s;}
-  std::cout << s_hint << '\n';
   return 0;
 }
 
@@ -62,8 +46,40 @@ std::vector<int> random_integers(const int n){
   std::vector<int> random_ints;
   std::random_device ran_dev; // see more in ref below
   std::uniform_int_distribution<int> dist(0,9); // see more in ref below
-  for(int i = 0; i<n; ++i){random_ints.push_back(dist(ran_dev));}
+  for(int i = 0; i<n; ++i){ random_ints.push_back(dist(ran_dev)); }
   return random_ints;
+}
+
+void hint(const std::vector<int> s, const std::vector<int> g){
+  // compare value/position in secret with guess
+  // pre-conditions: s.size() == g.size()
+  // post-conditions: print hint with (B)ulls, (C)ows or (_)
+  std::vector<std::string> hint(4);
+
+  // highlight bulls and non-bulls
+  for(int i = 0; i<int(s.size()); ++i){
+    if(g[i]==s[i]){
+      hint[i] = "B";
+    }else{
+      hint[i] = "_";
+    }
+  }
+
+  // highlight cows
+  for(int i = 0; i<int(s.size()); ++i){
+    for(int j = 0; j<int(s.size()); ++j){
+      /*
+        For debug:
+        bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
+        std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
+      */
+      if (s[i]==g[j] && (hint[i]!="B" && hint[j]!="B")){ hint[j]="C"; }
+    }
+  }
+
+  // print hint
+  for(std::string s: hint){ std::cout << s; }
+  std::cout <<'\n';
 }
 
 /*
