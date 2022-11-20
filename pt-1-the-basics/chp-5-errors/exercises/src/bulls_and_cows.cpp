@@ -21,36 +21,38 @@ int main(){
   // in progress
   std::vector<int> secret = {3, 1, 2, 2}; //random_integers(4);
   std::vector<int> guess;
-  std::vector<std::string> v_hint(4);
-  std::string s_hint = "";
-  bool four_bulls = false;
+  std::vector<std::string> hint(4);
 
   std::cout << "Guess: ";
   for(int g; std::cin>>g;){guess.push_back(g);}
 
+  // for trouble shooting
   for(int i: secret){std::cout << i;}
   std::cout << '\n';
   for(int i: guess){std::cout << i;}
   std::cout << '\n';
 
+  // working
   for(int i = 0; i<int(secret.size()); ++i){
     if(guess[i]==secret[i]){
-      v_hint[i] = "B";
+      hint[i] = "B";
     }else{
-      v_hint[i] = "_";
+      hint[i] = "_";
     }
   }
 
-  for(int i = 0; i<int(guess.size()); ++i){
+  // working
+  for(int i = 0; i<int(secret.size()); ++i){
     for(int j = 0; j<int(secret.size()); ++j){
-      if(guess[i] == secret[j]){
-        v_hint[i] = "C";
+
+      std::cout << secret[i] << ", " << guess[j] << ", " << hint[i] << " => " << (secret[i]==guess[j] && (hint[i]!="B" && hint[j]!="B")) << '\n';
+      if (secret[i]==guess[j] && (hint[i]!="B" && hint[j]!="B")){
+        hint[j]="C";
       }
     }
   }
-
-  for(std::string s: v_hint){s_hint+=s;}
-  std::cout << s_hint << '\n';
+  for(std::string s: hint){std::cout << s;}
+  std::cout <<'\n';
   return 0;
 }
 
