@@ -25,7 +25,7 @@ int main(){
   std::cout << "+----------------+\n\n";
 
   const char *instructions =
-    "A random 4 digit number has been generated. You have to guess what the\n"
+    "A secret 4 digit number has been generated. You have to guess what the\n"
     "number is. With each guess, a hint is provided with the following info:\n\n"
     "* The B(ulls), are digits in the guess that are in the correct position.\n"
     "* The C(ows), are digits in the guess that are in the secret number but\n"
@@ -45,7 +45,6 @@ void ui(){
   std::vector<int> guess, secret = random_integers(4);
   int a, b, c, d;
   std::string hint;
-  bool four_bulls = false;
 
   std::cout << "Guess: ";
   while(std::cin>>a>>b>>c>>d){
