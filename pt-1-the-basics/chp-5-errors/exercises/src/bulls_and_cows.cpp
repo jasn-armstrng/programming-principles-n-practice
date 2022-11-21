@@ -22,7 +22,6 @@ std::string get_hint(const std::vector<int> s, const std::vector<int> g);
 int main(){
   // in progress
   ui();
-
   return 0;
 }
 
@@ -42,12 +41,12 @@ void ui(){
     guess.push_back(d);
 
     hint = get_hint(secret, guess);
+    std::cout << "Hint:  " << hint << '\n'; // show hint
 
-    if(hint=="BBBB"){
-      std::cout << "Congrats! You got four bulls.\n"; // Winning message
+    if(hint=="B B B B"){
+      std::cout << "\nCongrats! You got four bulls.\n"; // Winning message
       break;
     }else{
-      std::cout << "Hint: " << hint << '\n'; // show hint
       hint = ""; // reset the hint
       guess.clear(); // empty the vector
       std::cout << "\nGuess: "; // prompt for new guess
@@ -82,11 +81,17 @@ std::string get_hint(const std::vector<int> s, const std::vector<int> g){
       if (s[i]==g[j] && (v[i]!="B" && v[j]!="B")){ v[j]="C"; }
     }
   }
+  // format output
+  for(unsigned i = 0; i<v.size(); ++i){
+    if(i==v.size()-1){
+      hint+=v[i];
+    }else{
+      hint+=(v[i]+" ");
+    }
+  }
 
-  for(std::string s: v){ hint+=s; }
   return hint;
 }
-
 
 /*
 Reference
@@ -101,9 +106,8 @@ Produces random integer values i, uniformly distributed on the closed interval
 P(i|a, b)=1/(b-a+1)
 */
 
-
 /*
-  Truth table for debug:
+  Truth table for debugging get_hint function:
   bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
   std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
 */
