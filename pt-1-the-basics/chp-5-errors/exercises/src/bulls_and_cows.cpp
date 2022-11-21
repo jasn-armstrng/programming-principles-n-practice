@@ -43,7 +43,7 @@ void ui(){
 
   std::cout << "Guess: ";
   while(std::cin>>a>>b>>c>>d){
-    // refactor this is future when I know more about input streams
+    // refactor this in future when I know more about input streams
     guess.push_back(a);
     guess.push_back(b);
     guess.push_back(c);
