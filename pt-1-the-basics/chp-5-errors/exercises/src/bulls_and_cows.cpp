@@ -2,14 +2,8 @@
 This program implements the guessing game 'Bulls and Cows'.
 A sequence of n integers in the range 0-9 are selected. Through guesses and
 hints a user has to discover the integers in the correct order.
-
-How the guess and hints work:
-- If the number is 1234 and the guess is 1359 the hint should be '1 bull, 1 cow'
-  because the got one digit (1) right and in the right position - the bull. The
-  user also got another digit (3) but in the wrong position - the cow.
-- Guessing/hints continue until the user gets all 4 numbers in right orider - 4
-  bulls.
 */
+
 #include <iostream>
 #include <random>
 #include <vector>
@@ -42,27 +36,30 @@ int main(){
 // ------------------------- function definitions ------------------------------
 void ui(){
   // present user input prompt and program output until player wins
+  // pre-condtions: player enters single space separated, integers between 0-9
   std::vector<int> guess, secret = random_integers(4);
   int a, b, c, d;
   std::string hint;
 
   std::cout << "Guess: ";
   while(std::cin>>a>>b>>c>>d){
+    // refactor this is future when I know more about input streams
     guess.push_back(a);
     guess.push_back(b);
     guess.push_back(c);
     guess.push_back(d);
 
     hint = get_hint(secret, guess);
-    std::cout << "Hint:  " << hint << '\n'; // show hint
+    std::cout << "Hint:  " << hint << '\n';
 
     if(hint=="B B B B"){
-      std::cout << "\nCongrats! You got four bulls.\n"; // Winning message
+      std::cout << "\nCongrats! You got four bulls.\n";
       break;
     }else{
-      hint = ""; // reset the hint
-      guess.clear(); // empty the vector
-      std::cout << "\nGuess: "; // prompt for new guess
+      // reset hint, vector, prompt new guess
+      hint = "";
+      guess.clear();
+      std::cout << "\nGuess: ";
     }
   }
 }
@@ -74,7 +71,10 @@ std::vector<int> random_integers(const int n){
   std::vector<int> random_ints;
   std::random_device ran_dev; // see more in ref below
   std::uniform_int_distribution<int> dist(0,9); // see more in ref below
-  for(int i = 0; i<n; ++i){ random_ints.push_back(dist(ran_dev)); }
+
+  for(int i = 0; i<n; ++i)
+    random_ints.push_back(dist(ran_dev));
+
   return random_ints;
 }
 
@@ -84,25 +84,28 @@ std::string get_hint(const std::vector<int> s, const std::vector<int> g){
   // post-conditions: print hint with B(ulls), C(ows) or (_)
   std::vector<std::string> v = {"_", "_", "_", "_"};
   std::string hint = "";
+
   // hint bulls
   for (unsigned i = 0; i<s.size(); ++i){
-    if (g[i]==s[i]){ v[i]="B"; }
+    if (g[i]==s[i])
+      v[i]="B";
   }
+
   // hint cows
   for(unsigned i = 0; i<s.size(); ++i){
     for(unsigned j = 0; j<s.size(); ++j){
-      if (s[i]==g[j] && (v[i]!="B" && v[j]!="B")){ v[j]="C"; }
-    }
-  }
-  // format output
-  for(unsigned i = 0; i<v.size(); ++i){
-    if(i==v.size()-1){
-      hint+=v[i];
-    }else{
-      hint+=(v[i]+" ");
+      if (s[i]==g[j] && (v[i]!="B" && v[j]!="B"))
+        v[j]="C";
     }
   }
 
+  // format output
+  for(unsigned i = 0; i<v.size(); ++i){
+    if(i==v.size()-1)
+      hint+=v[i];
+    else
+      hint+=(v[i]+" ");
+  }
   return hint;
 }
 
