@@ -16,24 +16,26 @@ How the guess and hints work:
 
 // ------------------------- function declarations -----------------------------
 std::vector<int> random_integers(const int n);
-void hint(const std::vector<int> s, const std::vector<int> g);
+std::string hint(const std::vector<int> s, const std::vector<int> g);
 
 int main(){
   // in progress
   std::vector<int> secret = random_integers(4);
   std::vector<int> guess;
+  bool four_bulls = false;
 
   std::cout << "Secret: ";
   for(int i: secret){ std::cout << i; }
   std::cout <<'\n';
 
-  std::cout << "Guess: ";
+  std::cout << "Enter your 4 digit guess (press | to end): ";
   for(int g; std::cin>>g;){guess.push_back(g);}
 
   // for trouble shooting
+  std::cout << "Guess:";
   for(int i: guess){std::cout << i;}
   std::cout << '\n';
-  hint(secret, guess);
+  std::cout << "Hint: " << hint(secret, guess) << '\n';
 
   return 0;
 }
@@ -50,36 +52,25 @@ std::vector<int> random_integers(const int n){
   return random_ints;
 }
 
-void hint(const std::vector<int> s, const std::vector<int> g){
+std::string hint(const std::vector<int> s, const std::vector<int> g){
   // compare value/position in secret with guess
   // pre-conditions: s.size() == g.size()
-  // post-conditions: print hint with (B)ulls, (C)ows or (_)
-  std::vector<std::string> hint(4);
-
-  // highlight bulls and non-bulls
-  for(int i = 0; i<int(s.size()); ++i){
-    if(g[i]==s[i]){
-      hint[i] = "B";
-    }else{
-      hint[i] = "_";
-    }
+  // post-conditions: print hint with B(ulls), C(ows) or (_)
+  std::vector<std::string> v = {"_", "_", "_", "_"};
+  std::string hint;
+  // hint bulls
+  for (int i = 0; i<int(s.size()); ++i){
+    if (g[i]==s[i]){ v[i]="B"; }
   }
-
-  // highlight cows
+  // hint cows
   for(int i = 0; i<int(s.size()); ++i){
     for(int j = 0; j<int(s.size()); ++j){
-      /*
-        For debug:
-        bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
-        std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
-      */
-      if (s[i]==g[j] && (hint[i]!="B" && hint[j]!="B")){ hint[j]="C"; }
+      if (s[i]==g[j] && (v[i]!="B" && v[j]!="B")){ v[j]="C"; }
     }
   }
 
-  // print hint
-  for(std::string s: hint){ std::cout << s; }
-  std::cout <<'\n';
+  for(std::string s: v){ hint+=s; }
+  return hint;
 }
 
 /*
@@ -93,4 +84,11 @@ std::uniform_int_distribution:
 Produces random integer values i, uniformly distributed on the closed interval
 [a, b] that is, distributed according to the discrete probability function,
 P(i|a, b)=1/(b-a+1)
+*/
+
+
+/*
+  Truth table for debug:
+  bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
+  std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
 */
