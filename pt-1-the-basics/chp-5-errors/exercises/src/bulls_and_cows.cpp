@@ -123,7 +123,7 @@ P(i|a, b)=1/(b-a+1)
 */
 
 /*
-  Truth table for debugging get_hint function:
-  bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
-  std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
+Truth table for debugging get_hint function:
+bool cow = s[i]==g[j] && (hint[i]!="B" && hint[j]!="B");
+std::cout << g[i] << ", " << g[j] << ", " << hint[i] << " => " << cow << '\n';
 */
