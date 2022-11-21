@@ -20,7 +20,21 @@ std::vector<int> random_integers(const int n);
 std::string get_hint(const std::vector<int> s, const std::vector<int> g);
 
 int main(){
-  // in progress
+  std::cout << "+----------------+\n";
+  std::cout << "| Bulls and Cows |\n";
+  std::cout << "+----------------+\n\n";
+
+  const char *instructions =
+    "A random 4 digit number has been generated. You have to guess what the\n"
+    "number is. With each guess, a hint is provided with the following info:\n\n"
+    "* The B(ulls), are digits in the guess that are in the correct position.\n"
+    "* The C(ows), are digits in the guess that are in the secret number but\n"
+    "  are located in the wrong position. Specifically, the non-bull digits in\n"
+    "  the guess that could be rearranged such that they become bulls.\n"
+    "* The '_', indicates digits not in secret.\n"
+    "\nPlease separate your each digit of your guess with a space e.g. 1 2 3 4\n";
+
+  std::cout << instructions << "\n";
   ui();
   return 0;
 }
