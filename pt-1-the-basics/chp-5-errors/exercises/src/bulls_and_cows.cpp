@@ -15,32 +15,46 @@ How the guess and hints work:
 #include <vector>
 
 // ------------------------- function declarations -----------------------------
+void ui();
 std::vector<int> random_integers(const int n);
-std::string hint(const std::vector<int> s, const std::vector<int> g);
+std::string get_hint(const std::vector<int> s, const std::vector<int> g);
 
 int main(){
   // in progress
-  std::vector<int> secret = random_integers(4);
-  std::vector<int> guess;
-  bool four_bulls = false;
-
-  std::cout << "Secret: ";
-  for(int i: secret){ std::cout << i; }
-  std::cout <<'\n';
-
-  std::cout << "Enter your 4 digit guess (press | to end): ";
-  for(int g; std::cin>>g;){guess.push_back(g);}
-
-  // for trouble shooting
-  std::cout << "Guess:";
-  for(int i: guess){std::cout << i;}
-  std::cout << '\n';
-  std::cout << "Hint: " << hint(secret, guess) << '\n';
+  ui();
 
   return 0;
 }
 
 // ------------------------- function definitions ------------------------------
+void ui(){
+  // present user input prompt and program output until player wins
+  std::vector<int> guess, secret = random_integers(4);
+  int a, b, c, d;
+  std::string hint;
+  bool four_bulls = false;
+
+  std::cout << "Guess: ";
+  while(std::cin>>a>>b>>c>>d){
+    guess.push_back(a);
+    guess.push_back(b);
+    guess.push_back(c);
+    guess.push_back(d);
+
+    hint = get_hint(secret, guess);
+
+    if(hint=="BBBB"){
+      std::cout << "Congrats! You got four bulls.\n"; // Winning message
+      break;
+    }else{
+      std::cout << "Hint: " << hint << '\n'; // show hint
+      hint = ""; // reset the hint
+      guess.clear(); // empty the vector
+      std::cout << "\nGuess: "; // prompt for new guess
+    }
+  }
+}
+
 std::vector<int> random_integers(const int n){
   // generate n random (non-repeating) integers in range 0-9
   // pre-conditions: n>1, s is any number.
@@ -52,19 +66,19 @@ std::vector<int> random_integers(const int n){
   return random_ints;
 }
 
-std::string hint(const std::vector<int> s, const std::vector<int> g){
+std::string get_hint(const std::vector<int> s, const std::vector<int> g){
   // compare value/position in secret with guess
   // pre-conditions: s.size() == g.size()
   // post-conditions: print hint with B(ulls), C(ows) or (_)
   std::vector<std::string> v = {"_", "_", "_", "_"};
-  std::string hint;
+  std::string hint = "";
   // hint bulls
-  for (int i = 0; i<int(s.size()); ++i){
+  for (unsigned i = 0; i<s.size(); ++i){
     if (g[i]==s[i]){ v[i]="B"; }
   }
   // hint cows
-  for(int i = 0; i<int(s.size()); ++i){
-    for(int j = 0; j<int(s.size()); ++j){
+  for(unsigned i = 0; i<s.size(); ++i){
+    for(unsigned j = 0; j<s.size(); ++j){
       if (s[i]==g[j] && (v[i]!="B" && v[j]!="B")){ v[j]="C"; }
     }
   }
@@ -72,6 +86,7 @@ std::string hint(const std::vector<int> s, const std::vector<int> g){
   for(std::string s: v){ hint+=s; }
   return hint;
 }
+
 
 /*
 Reference
