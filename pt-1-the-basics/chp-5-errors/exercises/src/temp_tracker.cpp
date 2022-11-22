@@ -4,9 +4,24 @@
 #include <vector>
 
 inline void error(const std::string& s);
+void ui();
 
 int main()
 try {
+  ui();
+  return 0;
+
+} catch (std::exception& e) {
+  std::cerr << "Error: " << e.what() << '\n';
+  return 1;
+} catch (...) {
+  std::cerr << "Error: Unknown exception\n";
+  return 2;
+}
+
+inline void error(const std::string& s) { throw std::runtime_error(s); }
+
+void ui(){
   int weeks = 52, days = 7;
   std::vector<std::vector<int>> temperatures; // temperatures is a 2D vector
   temperatures.resize(weeks, std::vector<int>(days, 0)); // initialize as 52*7
@@ -44,7 +59,7 @@ try {
     error("Invalid input for day");
   }
 
-  // this goes in a function that
+  // this goes in a function
   for (unsigned i = 0; i < temperatures.size(); ++i) {
     // add a function that takes a vector and compute the average
     std::cout << "Week: " << i+1 << " - "
@@ -56,14 +71,4 @@ try {
               << temperatures[i][5] << ", "
               << temperatures[i][6] << '\n';
   }
-  return 0;
-} catch (std::exception& e) {
-  std::cerr << "Error: " << e.what() << '\n';
-  return 1;
-} catch (...) {
-  std::cerr << "Error: Unknown exception\n";
-  return 2;
 }
-
-
-inline void error(const std::string& s) { throw std::runtime_error(s); }
