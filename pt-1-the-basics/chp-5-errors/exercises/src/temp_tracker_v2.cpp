@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 
+// ------------------------------ function decs --------------------------------
 bool valid_day(const std::string s);
 void ui();
 
@@ -23,6 +24,7 @@ int main() {
   return 0;
 }
 
+// ------------------------------ function defs --------------------------------
 bool valid_day(std::string d) {
   // validate day input
   // pre-condition: d must be a string
@@ -37,6 +39,7 @@ bool valid_day(std::string d) {
 }
 
 void ui() {
+  // present user instructions, input prompt, and output temp entries, rejections
   std::vector<std::string> days;
   std::vector<int> temps;
   std::string day;
@@ -72,6 +75,6 @@ void ui() {
   std::cout << "\n\nRejected entries: " << rejected_entries << '\n';
 }
 
-// Test stream
+// Test stream:
 // Mon 23 Tues 24 Thur 23 Funday 23 Sat 24 Subway 23 Monday 22 Chuesday 21
 // Should reject 3
