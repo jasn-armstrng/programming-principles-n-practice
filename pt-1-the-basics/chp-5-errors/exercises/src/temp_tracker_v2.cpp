@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 
+inline void error(const std::string& s);
+bool valid_day(const std::string s);
+
 int main() {
   std::vector<std::string> days;
   std::vector<int> temps;
@@ -11,13 +14,12 @@ int main() {
   std::string day;
   int temp;
 
-  // use to validate day input
-  std::vector<std::string> valid_days = { "Mon", "monday", "Tues", "tuesday", "Wed",
-  "wednesday", "Thur", "thursday", "Fri", "friday", "Sat", "Saturday", "Sun",
-  "sunday" };
-
   std::cout << "Enter day/temp pairs e.g. Tues 23 (press ctrl+D to stop)\nPairs: ";
-  while(std::cin >> day >> temp) {
+  while (std::cin >> day >> temp) {
+    if(!valid_day(day)) {
+      error("Not a valid day");
+    }
+
     days.push_back(day);
     temps.push_back(temp);
   }
@@ -29,4 +31,20 @@ int main() {
   std::cout << '\n';
 
   return 0;
+}
+
+inline void error(const std::string& s) { throw std::runtime_error(s); }
+
+bool valid_day(std::string d) {
+   // use to validate day input
+  std::vector<std::string> valid_days = { "Mon", "monday", "Tues", "tuesday", "Wed",
+  "wednesday", "Thur", "thursday", "Fri", "friday", "Sat", "Saturday", "Sun",
+  "sunday" };
+
+  for (std::string s: valid_days) {
+    if (d == s) {
+      return true;
+    }
+  }
+  return false;
 }
