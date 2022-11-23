@@ -50,14 +50,14 @@ void ui() {
   "- Enter day/temperature pairs e.g. Mon 23 Tuesday 24 ...\n"
   "- A valid day can take the forms Monday, monday, or Mon.\n"
   "- Invalid days will be rejected and total rejected displayed at the end.\n";
-
   std::cout << instructions;
-
+  
   // prompt user input
   std::cout << "\nPlease enter day/temp pairs (press ctrl+D to stop)\nPairs: ";
   while (std::cin >> day >> temp) {
     // input validation for day
-    if(!valid_day(day)) {
+    if (!valid_day(day)) {
+      // increment for each bad day entered
       ++rejected_entries;
     } else {
       // read in user input
