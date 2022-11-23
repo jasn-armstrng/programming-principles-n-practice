@@ -3,35 +3,47 @@
 #include <iostream>
 #include <vector>
 
-inline void error(const std::string& s);
-double average(const std::vector<int> v);
+// ------------------------- function decs -------------------------------------
 void ui();
+inline void error(const std::string& s);
+std::vector<std::vector<std::string> > update(const int week, const std::string day,
+                       const int temp, std::vector<std::vector<std::string> > temps);
+void index(const std::vector<std::vector<std::string> > temps);
 
 int main()
 try {
   ui();
   return 0;
-
-} catch (std::exception& e) {
+}
+catch (std::exception& e) {
   std::cerr << "Error: " << e.what() << '\n';
   return 1;
-} catch (...) {
+}
+catch (...) {
   std::cerr << "Error: Unknown exception\n";
   return 2;
 }
 
+// ------------------------- function defs -------------------------------------
 inline void error(const std::string& s) { throw std::runtime_error(s); }
 
 void ui(){
+  // create a 2D vector for temps
+  std::vector<std::vector<std::string> > temperatures;
+  // initialize with number of weeks(lvl-1) and days(lvl-2)
   int weeks = 3, days = 7;
-  std::vector<std::vector<std::string>> temperatures; // temperatures is a 2D vector
-  temperatures.resize(weeks, std::vector<std::string>(days, "-")); // initialize as 3*7
+  // 3 out 52 weeks used here for demo. Each day has the default value '-'
+  temperatures.resize(weeks, std::vector<std::string>(days, "-"));
 
-  int week_number; // corresponds to a lvl-1 index of the temp vector
-  std::string day; // mapped to a lvl-2 index of the temp vector
-  int temp; // value at a lvl-2 index of the temp vector
+  // week_number corresponds to a lvl-1 index of the temp vector
+  int week_number;
+  // day mapped to a lvl-2 index of the 2D vector in the update function
+  std::string day;
+  // value at a lvl-2 index of the 2D vector in the update function
+  int temp;
 
-  char more_entries;
+  // used to continue or break from record entry loop
+  char more_records;
   bool data = true;
 
   while(data){
@@ -43,49 +55,72 @@ void ui(){
     std::cout << "Enter the avg. temperature: ";
     std::cin >> temp;
 
-    if (week_number < 1 || week_number > 52) { error("Invalid input for week#"); }
+    // update temp record for week/day in 2D vector
+    temperatures = update(week_number, day, temp, temperatures);
+
+    // show all recorded temps
+    index(temperatures);
+
+    // record more temperatures or quit the program
+    std::cout << "\nEnter another week/day/temp [y/n]: ";
+    std::cin >> more_records;
+    if (more_records == 'n' || more_records == 'N') {
+      data = false;
+    }
+    std::cout << '\n';
+  }
+}
+
+std::vector<std::vector<std::string> > update(const int week, const std::string day,
+                       const int temp, std::vector<std::vector<std::string> > temps) {
+    // update the temperature vector week/day elements with valid entries
+    // pre-conditions: 1 <= week <= 52, day like Mon or monday, -90 >=temp <= 58
+    //                 , temps is a 2D vector
+    // post-condtions: returns updated week and day in 2D vector temps
+
+    // convert temp to string to store
+    std::string t = std::to_string(temp);
+
+    // throw error if week, day inputs are invalid
+    if (week < 1 || week > 52) { error("Invalid input for week#"); }
     if (temp < -90 || temp > 58) { error("Temperature input outside normals"); }
 
-    std::string str_temp = std::to_string(temp); // convert temp to store
-
+    // update temp values if valid day synonym entered, throw error if not
     if (day == "Mon" || day == "monday") {
-      temperatures[week_number-1][0] = str_temp;
+      temps[week-1][0] = t;
     } else if (day == "Tues" || day == "tuesday") {
-      temperatures[week_number-1][1] = str_temp;
+      temps[week-1][1] = t;
     } else if (day == "Wed" || day == "wednesday") {
-      temperatures[week_number-1][2] = str_temp;
+      temps[week-1][2] = t;
     } else if (day == "Thur" || day == "thursday") {
-      temperatures[week_number-1][3] = str_temp;
+      temps[week-1][3] = t;
     } else if (day == "Fri" || day == "friday") {
-      temperatures[week_number-1][4] = str_temp;
+      temps[week-1][4] = t;
     } else if (day == "Sat" || day == "saturday") {
-      temperatures[week_number-1][5] = str_temp;
+      temps[week-1][5] = t;
     } else if (day == "Sun" || day == "sunday") {
-      temperatures[week_number-1][6] = str_temp;
+      temps[week-1][6] = t;
     } else {
       error("Invalid input for day");
     }
+    return temps;
+}
 
-    // this goes in a function
-    std::cout << "\n";
-    std::cout << "Week\t" << "Mon\t" << "Tues\t" << "Wed\t"
-              << "Thur\t" << "Fri\t" << "Sat\t" << "Sun\t\n";
-    for (unsigned i = 0; i < temperatures.size(); ++i) {
-      std::cout << i+1 << "\t"
-                << temperatures[i][0] << "\t"
-                << temperatures[i][1] << "\t"
-                << temperatures[i][2] << "\t"
-                << temperatures[i][3] << "\t"
-                << temperatures[i][4] << "\t"
-                << temperatures[i][5] << "\t"
-                << temperatures[i][6] << '\n';
-    }
-    std::cout << "...";
+void index(const std::vector<std::vector<std::string> > temps) {
+  // show table of all temps recorded for week/days
+  // pre-condtion: temps vector should not be empty
 
-    std::cout << "\nEnter another week/day/temp [y/n]: ";
-    std::cin >> more_entries;
-    if (more_entries == 'n' || more_entries == 'N') {
-      data = false;
+  // output table header
+  std::cout << "\nWeek\t" << "Mon\t" << "Tues\t" << "Wed\t" << "Thur\t" << "Fri\t"
+            << "Sat\t" << "Sun\t\n";
+  std::cout << "------------------------------------------------------------\n";
+
+  // print each week and its 7 days of temps on a new line
+  for (unsigned i = 0; i < temps.size(); ++i) {
+    std::cout << i+1 << "\t";
+    for (unsigned j = 0; j < temps[i].size(); ++j) {
+      std::cout << temps[i][j] << "\t";
     }
+    std::cout << '\n';
   }
 }
