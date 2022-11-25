@@ -1,6 +1,6 @@
 # 5. Errors
 
-### In this chapter, we discuss correctness of programs, errors, and error handling. 
+In this chapter, we discuss correctness of programs, errors, and error handling. 
 
 **Topics covered:**
 1. Source of errors
