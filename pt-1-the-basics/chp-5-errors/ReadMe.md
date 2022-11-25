@@ -1,4 +1,4 @@
-# Errors
+# Chp 5 Errors
 
 ### In this chapter, we discuss correctness of programs, errors, and error handling. 
 
