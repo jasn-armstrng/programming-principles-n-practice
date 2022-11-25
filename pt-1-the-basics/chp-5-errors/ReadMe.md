@@ -1,5 +1,7 @@
 # 5. Errors
 
+**_I realized that from now on a large part of my life would be spent finding and correcting my own mistakes." - Maurice Wilkes, 1949_**
+
 In this chapter, we discuss correctness of programs, errors, and error handling. 
 
 **Topics covered:**
