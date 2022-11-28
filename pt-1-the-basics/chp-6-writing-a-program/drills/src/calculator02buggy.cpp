@@ -95,12 +95,12 @@ Token Token_stream::get()
                                      // return Token(ch) for all above character input cases
         case '.':
         case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7': case '9':
+        case '5': case '6': case '7': case '8': case '9':
         {
             cin.putback(ch);         // put digit back into the input stream
             double val;
             cin >> val;              // read a floating-point number
-            return Token('8', val);   // let '8' represent "a number"
+            return Token('n', val);   // let 'n' represent "a number"
             // no break necessary after return as code wouldn't reach that line
         }
         default:
@@ -132,7 +132,7 @@ double primary()
         if (t.kind != ')') error("')' expected");
             return d;
     }
-    case '8':            // we use '8' to represent a number
+    case 'n':            // we use 'n' to represent a number
         return t.value;  // return the number's value
     default:
         error("primary expected");
