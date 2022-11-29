@@ -201,8 +201,16 @@ int main()
 try
 {
     double val;
-    cout << "Welcome to our simple calculator.\n";
-    cout << "Please enter expressions using floating point numbers.\n";
+
+    cout << "+-------------------+\n";
+    cout << "| Simple Calculator |\n";
+    cout << "+-------------------+\n\n";
+    cout << "Usage:\n";
+    cout << "  - Available operations: + - * /\n";
+    cout << "  - End each expression with =\n";
+    cout << "  - Sample expressions: (4+5)*2=, 8-3=, (6.2/1.3)*(5+2)=\n";
+    cout << "  - Press q to quit.\n\n";
+
     while (cin) {
         Token t = ts.get(); // inside get() is the cin>>variable
 
