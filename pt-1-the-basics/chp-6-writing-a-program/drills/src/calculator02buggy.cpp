@@ -201,7 +201,8 @@ int main()
 try
 {
     double val;
-
+    cout << "Welcome to our simple calculator.\n";
+    cout << "Please enter expressions using floating point numbers.\n";
     while (cin) {
         Token t = ts.get(); // inside get() is the cin>>variable
 
