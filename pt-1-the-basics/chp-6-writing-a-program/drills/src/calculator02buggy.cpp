@@ -88,11 +88,12 @@ Token Token_stream::get()
     cin >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
 
     switch (ch) {
-        case ';':    // for "print"
+        case '=':    // for "print"
         case 'q':    // for "quit"
         case '(': case ')': case '+': case '-': case '*': case '/':
             return Token(ch);        // let each character represent itself.
-                                     // return Token(ch) for all above character input cases
+                                     // return Token(ch) for all above character
+                                     // input cases
         case '.':
         case '0': case '1': case '2': case '3': case '4':
         case '5': case '6': case '7': case '8': case '9':
@@ -201,12 +202,21 @@ try
 {
     double val;
 
+    cout << "+-------------------+\n";
+    cout << "| Simple Calculator |\n";
+    cout << "+-------------------+\n\n";
+    cout << "Usage:\n";
+    cout << "  - Available operations: + - * /\n";
+    cout << "  - End each expression with =\n";
+    cout << "  - Sample expressions: (4+5)*2=, 8-3=, (6.2/1.3)*(5+2)=\n";
+    cout << "  - Press q to quit.\n\n";
+
     while (cin) {
         Token t = ts.get(); // inside get() is the cin>>variable
 
         if (t.kind == 'q') break; // 'q' for quit
-        if (t.kind == ';')        // ';' for "print now"
-            cout << "=" << val << '\n';
+        if (t.kind == '=')        // ';' for "print now"
+            cout << val << '\n';
         else
             ts.putback(t);
         val = expression();
