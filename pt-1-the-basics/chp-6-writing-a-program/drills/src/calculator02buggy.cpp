@@ -90,7 +90,7 @@ Token Token_stream::get()
     switch (ch) {
         case '=':    // for "print"
         case 'q':    // for "quit"
-        case '(': case ')': case '+': case '-': case '*': case '/':
+        case '{': case '}': case '(': case ')': case '+': case '-': case '*': case '/':
             return Token(ch);        // let each character represent itself.
                                      // return Token(ch) for all above character
                                      // input cases
@@ -131,6 +131,13 @@ double primary()
         double d = expression();
         t = ts.get();
         if (t.kind != ')') error("')' expected");
+            return d;
+    }
+    case '{':    // handle '{' expression '}'
+    {
+        double d = expression();
+        t = ts.get();
+        if (t.kind != '}') error("'}' expected");
             return d;
     }
     case 'n':            // we use 'n' to represent a number
