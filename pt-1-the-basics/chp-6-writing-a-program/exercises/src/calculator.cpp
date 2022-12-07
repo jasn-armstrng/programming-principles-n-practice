@@ -122,6 +122,8 @@ double expression();    // declaration so that primary() can call expression().
 
 //------------------------------------------------------------------------------
 
+int factorial(const int f);
+
 // deal with numbers and parentheses
 double primary()
 {
@@ -159,6 +161,12 @@ double term()
 
     while (true) {
         switch (t.kind) {
+        case '!':
+        {
+            left = factorial(left);
+            t = ts.get();
+            break;
+        }
         case '*':
             left *= primary();
             t = ts.get();
@@ -201,6 +209,16 @@ double expression()
             return left;       // finally: no more + or -: return the answer
         }
     }
+}
+
+int factorial(const int f) {
+  if (f == 0) { return 1; }
+
+  int f_factorial = 1;
+  for (int i = f; i > 0; --i) {
+    f_factorial *= i;
+  }
+  return f_factorial;
 }
 
 //------------------------------------------------------------------------------
