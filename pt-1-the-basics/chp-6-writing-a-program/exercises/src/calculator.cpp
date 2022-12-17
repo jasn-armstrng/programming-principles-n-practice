@@ -161,12 +161,6 @@ double term()
 
     while (true) {
         switch (t.kind) {
-        case '!':
-        {
-            left = factorial(left);
-            t = ts.get();
-            break;
-        }
         case '*':
             left *= primary();
             t = ts.get();
@@ -204,6 +198,12 @@ double expression()
             left -= term();    // evaluate Term and subtract
             t = ts.get();
             break;
+        case '!':
+        {
+            left = factorial(left);
+            t = ts.get();
+            break;
+        }
         default:
             ts.putback(t);     // put t back into the token stream
             return left;       // finally: no more + or -: return the answer
