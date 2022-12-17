@@ -122,6 +122,8 @@ double expression();    // declaration so that primary() can call expression().
 
 //------------------------------------------------------------------------------
 
+int factorial(const int f);
+
 // deal with numbers and parentheses
 double primary()
 {
@@ -196,11 +198,27 @@ double expression()
             left -= term();    // evaluate Term and subtract
             t = ts.get();
             break;
+        case '!':
+        {
+            left = factorial(left);
+            t = ts.get();
+            break;
+        }
         default:
             ts.putback(t);     // put t back into the token stream
             return left;       // finally: no more + or -: return the answer
         }
     }
+}
+
+int factorial(const int f) {
+  if (f == 0) { return 1; }
+
+  int f_factorial = 1;
+  for (int i = f; i > 0; --i) {
+    f_factorial *= i;
+  }
+  return f_factorial;
 }
 
 //------------------------------------------------------------------------------
