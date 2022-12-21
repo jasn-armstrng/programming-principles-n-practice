@@ -10,7 +10,8 @@ class Name_value {
 };
 
 // Function declarations
-void options(const std::vector<Name_value> nvv);
+bool duplicate_name_check(const std::string n, const std::vector<Name_value> nvv);
+void options(const std::vector<Name_value> nvv); // nnv - name value vector
 void show_all(const std::vector<Name_value> nvv);
 void find_player_score(const std::vector<Name_value> nvv);
 void find_score(const std::vector<Name_value> nvv);
@@ -36,9 +37,13 @@ int main()
     }
     else
     {
-      Name_value ps;
-      ps.name = player, ps.value = score;
-      players_score.push_back(ps);
+      if (duplicate_name_check(player, players_score)) {
+        std::cout << "Sorry, can't input duplicate player name.\n";
+      } else {
+        Name_value ps;
+        ps.name = player, ps.value = score;
+        players_score.push_back(ps);
+      }
     }
   }
   // List, search, and exit options
@@ -49,19 +54,18 @@ int main()
 // Function definitions
 void options(const std::vector<Name_value> nvv) {
   // presents user with a list of options to view stored data or exit
+  // pre-conditions:
+  // post-conditions:
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
   char option;
 
   std::cout << queries;
   while(std::cin>>option) {
-    if(option=='1')
-      show_all(nvv);
+    if(option=='1') { show_all(nvv); }
 
-    if(option=='2')
-      find_player_score(nvv);
+    if(option=='2') { find_player_score(nvv); }
 
-    if(option=='3')
-      find_score(nvv);
+    if(option=='3') { find_score(nvv); }
 
     if(option=='4')
     {
@@ -114,4 +118,14 @@ void show_all(const std::vector<Name_value> nvv) {
   for (Name_value nv: nvv) {
     std::cout << nv.name << ", " << nv.value << '\n';
   }
+}
+
+bool duplicate_name_check(const std::string n, const std::vector<Name_value> nvv) {
+  // check if name already exist in vector before insertion
+  // pre-condtions: input vector should not be empty
+  // post-conditions: return true/false
+  for (Name_value nv: nvv) {
+    if (nv.name == n) { return true; }
+  }
+  return false;
 }
