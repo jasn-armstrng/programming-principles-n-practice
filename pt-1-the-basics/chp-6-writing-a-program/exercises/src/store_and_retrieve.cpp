@@ -12,11 +12,12 @@ class Name_value {
 // Function declarations
 int mode(const std::vector<std::string> v);
 void options(const std::vector<std::string> p, const std::vector<std::string> s, const std::vector<Name_value> nvv);
-//void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
-void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s);
+// void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
+// void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s);
 void find_score(const std::vector<std::string> p, const std::vector<std::string> s);
 
 void show_all(const std::vector<Name_value> nvv);
+void find_player_score(const std::vector<Name_value> nvv);
 
 int main()
 {
@@ -75,7 +76,8 @@ void options(const std::vector<std::string> p, const std::vector<std::string> s,
       show_all(nvv);
 
     if(option=='2')
-      find_player_score(p, s);
+      // find_player_score(p, s);
+      find_player_score(nvv);
 
     if(option=='3')
       find_score(p, s);
@@ -109,18 +111,35 @@ void find_score(const std::vector<std::string> p, const std::vector<std::string>
     std::cout << "-, -\n";
 }
 
-void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s)
+// void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s)
+// {
+//   std::string player, score = "-1";
+//   std::cout << "\nPlayer: "; std::cin>>player;
+//   for(int i = 0; i<int(p.size()); ++i)
+//   {
+//     if(p[i]==player)
+//     {
+//       score = s[i];
+//       break;
+//     }
+//   }
+//   if(score!="-1")
+//     std::cout << "Score: " << score << '\n';
+//   else
+//     std::cout << "Error: Player not found.\n";
+// }
+
+void find_player_score(const std::vector<Name_value> nvv)
 {
   std::string player, score = "-1";
   std::cout << "\nPlayer: "; std::cin>>player;
-  for(int i = 0; i<int(p.size()); ++i)
-  {
-    if(p[i]==player)
-    {
-      score = s[i];
+  for (Name_value nv: nvv) {
+    if (nv.name == player) {
+      score = nv.value;
       break;
     }
   }
+
   if(score!="-1")
     std::cout << "Score: " << score << '\n';
   else
