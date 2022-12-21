@@ -2,6 +2,13 @@
 #include <iostream>
 #include <vector>
 
+// Class definition
+class Name_value {
+  public:
+    std::string player;
+    std::string score;
+};
+
 // Function declarations
 int mode(const std::vector<std::string> v);
 void options(const std::vector<std::string> p, const std::vector<std::string> s);
