@@ -5,19 +5,22 @@
 // Class definition
 class Name_value {
   public:
-    std::string player;
-    std::string score;
+    std::string name;
+    std::string value;
 };
 
 // Function declarations
 int mode(const std::vector<std::string> v);
-void options(const std::vector<std::string> p, const std::vector<std::string> s);
-void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
+void options(const std::vector<std::string> p, const std::vector<std::string> s, const std::vector<Name_value> nvv);
+//void show_all(const std::vector<std::string> p, const std::vector<std::string> s);
 void find_player_score(const std::vector<std::string> p, const std::vector<std::string> s);
 void find_score(const std::vector<std::string> p, const std::vector<std::string> s);
 
+void show_all(const std::vector<Name_value> nvv);
+
 int main()
 {
+  std::vector<Name_value> players_score;
   std::vector<std::string> players;
   std::vector<std::string> scores;
   std::string player, score;
@@ -38,6 +41,10 @@ int main()
     }
     else
     {
+      Name_value ps;
+      ps.name = player, ps.value = score;
+      players_score.push_back(ps);
+
       players.push_back(player);
       scores.push_back(score);
     }
@@ -50,12 +57,12 @@ int main()
     }
   }
   // List, search, and exit options
-  options(players, scores);
+  options(players, scores, players_score);
   return 0;
 }
 
 // Function definitions
-void options(const std::vector<std::string> p, const std::vector<std::string> s)
+void options(const std::vector<std::string> p, const std::vector<std::string> s, const std::vector<Name_value> nvv)
 {
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
   char option;
@@ -64,7 +71,8 @@ void options(const std::vector<std::string> p, const std::vector<std::string> s)
   while(std::cin>>option)
   {
     if(option=='1')
-      show_all(p, s);
+      // show_all(p, s);
+      show_all(nvv);
 
     if(option=='2')
       find_player_score(p, s);
@@ -119,13 +127,21 @@ void find_player_score(const std::vector<std::string> p, const std::vector<std::
     std::cout << "Error: Player not found.\n";
 }
 
-void show_all(const std::vector<std::string> p, const std::vector<std::string> s)
-{
+// void show_all(const std::vector<std::string> p, const std::vector<std::string> s)
+// {
+//   std::cout << "\nScores:\n";
+//   std::cout << "-------\n";
+//   for(int i = 0; i<int(p.size()); ++i)
+//   {
+//     std::cout << p[i] << ", " << s[i] << '\n';
+//   }
+// }
+
+void show_all(const std::vector<Name_value> nvv) {
   std::cout << "\nScores:\n";
   std::cout << "-------\n";
-  for(int i = 0; i<int(p.size()); ++i)
-  {
-    std::cout << p[i] << ", " << s[i] << '\n';
+  for (Name_value nv: nvv) {
+    std::cout << nv.name << ", " << nv.value << '\n';
   }
 }
 
