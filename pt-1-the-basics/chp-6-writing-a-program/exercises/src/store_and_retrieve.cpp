@@ -10,6 +10,7 @@ class Name_value {
 };
 
 // Function declarations
+void ui();
 bool duplicate_name_check(const std::string n, const std::vector<Name_value> nvv);
 void options(const std::vector<Name_value> nvv); // nnv - name value vector
 void show_all(const std::vector<Name_value> nvv);
@@ -18,6 +19,12 @@ void find_score(const std::vector<Name_value> nvv);
 
 int main()
 {
+  ui();
+  return 0;
+}
+
+// Function definitions
+void ui() {
   std::vector<Name_value> players_score;
   std::string player, score;
 
@@ -48,10 +55,8 @@ int main()
   }
   // List, search, and exit options
   options(players_score);
-  return 0;
 }
 
-// Function definitions
 void options(const std::vector<Name_value> nvv) {
   // presents user with a list of options to view stored data or exit
   // pre-conditions:
@@ -67,8 +72,7 @@ void options(const std::vector<Name_value> nvv) {
 
     if(option=='3') { find_score(nvv); }
 
-    if(option=='4')
-    {
+    if(option=='4') {
       std::cout << '\n';
       break;
     }
