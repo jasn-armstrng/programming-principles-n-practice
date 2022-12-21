@@ -10,7 +10,6 @@ class Name_value {
 };
 
 // Function declarations
-int mode(const std::vector<std::string> v);
 void options(const std::vector<Name_value> nvv);
 void show_all(const std::vector<Name_value> nvv);
 void find_player_score(const std::vector<Name_value> nvv);
@@ -19,8 +18,6 @@ void find_score(const std::vector<Name_value> nvv);
 int main()
 {
   std::vector<Name_value> players_score;
-  std::vector<std::string> players;
-  std::vector<std::string> scores;
   std::string player, score;
 
   std::cout << "+--------------------+\n";
@@ -42,16 +39,6 @@ int main()
       Name_value ps;
       ps.name = player, ps.value = score;
       players_score.push_back(ps);
-
-      players.push_back(player);
-      scores.push_back(score);
-    }
-    // Notify of and remove duplicate name entry
-    if(mode(players)>1)
-    {
-      std::cout << "\nERROR: Duplicate name entry.\n";
-      players.pop_back(), scores.pop_back();
-      break;
     }
   }
   // List, search, and exit options
@@ -60,14 +47,13 @@ int main()
 }
 
 // Function definitions
-void options(const std::vector<Name_value> nvv)
-{
+void options(const std::vector<Name_value> nvv) {
+  // presents user with a list of options to view stored data or exit
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
   char option;
 
   std::cout << queries;
-  while(std::cin>>option)
-  {
+  while(std::cin>>option) {
     if(option=='1')
       show_all(nvv);
 
@@ -87,6 +73,9 @@ void options(const std::vector<Name_value> nvv)
 }
 
 void find_score(const std::vector<Name_value> nvv) {
+  // finds the player(s) with score from user input
+  // pre-conditions: input vector should not be empty
+  // post-conditions: return results in a table format or a not found message
   std::string score;
   int count = 0;
   std::cout << "\nScore: "; std::cin >> score;
@@ -100,6 +89,9 @@ void find_score(const std::vector<Name_value> nvv) {
 }
 
 void find_player_score(const std::vector<Name_value> nvv) {
+  // finds the score of player from user input
+  // pre-conditions: input vector should not be empty
+  // post-conditions: return player score or a not found message
   std::string player, score = "-1";
   std::cout << "\nPlayer: "; std::cin>>player;
   for (Name_value nv: nvv) {
@@ -115,28 +107,11 @@ void find_player_score(const std::vector<Name_value> nvv) {
 }
 
 void show_all(const std::vector<Name_value> nvv) {
+  // print all players and their scores
+  // pre-conditions: input vector should not be empty
   std::cout << "\nScores:\n";
   std::cout << "-------\n";
   for (Name_value nv: nvv) {
     std::cout << nv.name << ", " << nv.value << '\n';
   }
-}
-
-int mode(const std::vector<std::string> v)
-{
-  int max_count = 0;
-  for(std::string i: v)
-  {
-    int count = 0;
-    for(std::string j: v)
-    {
-      if(i==j)
-        ++count;
-    }
-    if(count>max_count)
-    {
-      max_count = count;
-    }
-  }
-  return max_count;
 }
