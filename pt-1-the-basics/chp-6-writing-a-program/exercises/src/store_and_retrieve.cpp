@@ -25,6 +25,7 @@ int main()
 
 // Function definitions
 void ui() {
+  // present main interaction elements to user
   std::vector<Name_value> players_score;
   std::string player, score;
 
@@ -59,8 +60,6 @@ void ui() {
 
 void options(const std::vector<Name_value> nvv) {
   // presents user with a list of options to view stored data or exit
-  // pre-conditions:
-  // post-conditions:
   std::string queries = "\n[1] Show all scores\n[2] Find player's score\n[3] Find score\n[4] Exit\nOption: ";
   char option;
 
