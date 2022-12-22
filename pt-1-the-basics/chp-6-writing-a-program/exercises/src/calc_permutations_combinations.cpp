@@ -16,11 +16,34 @@
   - Check for input errors
   - All erroneous inputs will generate good error messages
 
-  Analysis:
-
-  Design:
-
-  Implementation:
-
-  Testing:
+  Simple sketch of program:
+    display program instructions
+    prompt calculation type - permutation/combination
+    prompt for input - 2 numbers
+    perform calculation
+    print result to screen
 */
+
+#include <iostream>
+
+int factorial(const int a);
+
+int main(){
+  // test factorial function
+  std::cout << factorial(2) << '\n';
+  std::cout << factorial(3) << '\n';
+  std::cout << factorial(4) << '\n';
+  std::cout << factorial(5) << '\n';
+  return 0;
+}
+
+int factorial(const int a) {
+  // calculate a!
+  // pre-conditions: input is a +ve integer
+  // post-conditions: result fits into an int
+  int f = 1;
+  for (int i = a; i > 0; --i) {
+    f *= i;
+  }
+  return f;
+}
