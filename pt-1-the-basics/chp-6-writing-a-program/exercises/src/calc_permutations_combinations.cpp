@@ -27,23 +27,34 @@
 #include <iostream>
 
 int factorial(const int a);
+int permutations(const int a, const int b);
 
 int main(){
-  // test factorial function
+  // test factorial
   std::cout << factorial(2) << '\n';
   std::cout << factorial(3) << '\n';
   std::cout << factorial(4) << '\n';
   std::cout << factorial(5) << '\n';
+
+  // test permutation
+  std::cout << permutations(5, 3) << '\n';
+  std::cout << permutations(10, 3) << '\n';
+  std::cout << permutations(3, 3) << '\n';
   return 0;
 }
 
 int factorial(const int a) {
   // calculate a!
   // pre-conditions: input is a +ve integer
-  // post-conditions: result fits into an int
+  // post-conditions: result fits into an double
   int f = 1;
-  for (int i = a; i > 0; --i) {
-    f *= i;
-  }
+  for (int i = a; i > 0; --i) { f *= i; }
   return f;
+}
+
+int permutations(const int a, const int b) {
+  // calculates permutations using the formula P(a, b) = a!/(a-b)!
+  // pre-conditions: a, b are +ve integers, a >= b
+  // post-conditions: returns +ve integer result
+  return factorial(a)/factorial(a-b);
 }
