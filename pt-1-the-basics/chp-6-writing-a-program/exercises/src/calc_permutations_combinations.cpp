@@ -28,18 +28,25 @@
 
 int factorial(const int a);
 int permutations(const int a, const int b);
+int combinations(const int a, const int b);
 
 int main(){
   // test factorial
+  std::cout << "\nfactorial tests:\n";
   std::cout << factorial(2) << '\n';
   std::cout << factorial(3) << '\n';
   std::cout << factorial(4) << '\n';
   std::cout << factorial(5) << '\n';
 
   // test permutation
+  std::cout << "\npermutation tests:\n";
   std::cout << permutations(5, 3) << '\n';
   std::cout << permutations(10, 3) << '\n';
   std::cout << permutations(3, 3) << '\n';
+
+  // test combination
+  std::cout << "\ncombination tests:\n";
+  std::cout << combinations(6, 4) << '\n';
   return 0;
 }
 
@@ -57,4 +64,11 @@ int permutations(const int a, const int b) {
   // pre-conditions: a, b are +ve integers, a >= b
   // post-conditions: returns +ve integer result
   return factorial(a)/factorial(a-b);
+}
+
+int combinations(const int a, const int b) {
+  // calculates combinations using the formula C(a, b) = P(a, b)/b!
+  // pre-conditions: a, b are +ve integers, a >= b
+  // post-conditions: returns +ve integer result
+  return permutations(a, b)/factorial(b);
 }
