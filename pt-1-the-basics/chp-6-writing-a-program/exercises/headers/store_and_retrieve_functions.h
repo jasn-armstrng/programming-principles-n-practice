@@ -91,18 +91,17 @@ void find_player_score(const std::vector<Name_value> nvv) {
   // finds the score of player from user input
   // pre-conditions: input vector should not be empty
   // post-conditions: return player score or a not found message
-  std::string player, score = "-1";
+  std::string player;
+  bool player_found = false;
   std::cout << "\nPlayer: "; std::cin>>player;
   for (Name_value nv: nvv) {
     if (nv.name == player) {
-      score = nv.value;
+      std::cout << "Score: " << nv.value << '\n';
+      player_found = true;
       break;
     }
   }
-  if(score!="-1")
-    std::cout << "Score: " << score << '\n';
-  else
-    std::cout << "Sorry, player not found.\n";
+  if(!player_found) { std::cout << "Sorry, player not found.\n"; }
 }
 
 void show_all(const std::vector<Name_value> nvv) {
