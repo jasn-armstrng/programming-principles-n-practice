@@ -76,15 +76,15 @@ void find_score(const std::vector<Name_value> nvv) {
   // pre-conditions: input vector should not be empty
   // post-conditions: return results in a table format or a not found message
   std::string score;
-  int count = 0;
+  bool score_found = false;
   std::cout << "\nScore: "; std::cin >> score;
   for (Name_value nv: nvv) {
     if (nv.value == score) {
-      ++count;
+      score_found = true;
       std::cout << nv.name << ", " << nv.value << '\n';
     }
   }
-  if (count == 0) { std::cout << "Sorry, score not found.\n"; }
+  if (!score_found) { std::cout << "Sorry, score not found.\n"; }
 }
 
 void find_player_score(const std::vector<Name_value> nvv) {
