@@ -33,7 +33,6 @@
     - Letting the function handle input validation with the main catching the
       errors.
 */
-
 #include <iostream>
 
 int factorial(const int n);
@@ -41,43 +40,63 @@ int permutations();
 int combinations();
 
 int main(){
-  // prompt for calculation type and inputs
-  std::string prompt_calculation_type = "Enter 1 for PERMUTATIONS or 2 for COMBINATIONS: ";
-  int option;
-  int result;
+  const char *options =
+    "\nEnter 1 for PERMUTATIONS\n"
+    "      2 for COMBINATIONS\n"
+    "      3 to EXIT\n"
+    "\nOption: ";
 
-  std::cout << prompt_calculation_type;
+  std::cout << options;
+
+  int option;
   while(std::cin >> option){
     if (option == 1) {
-      result = permutations();
-      std::cout << "\nPermutations: " << result << '\n';
+      int result = permutations();
+      std::cout << "nPr: " << result << '\n';
     } else
     if (option == 2) {
-      result = combinations();
-      std::cout << "\nCombinations: " << result << '\n';
+      int result = combinations();
+      std::cout << "nCr: " << result << '\n';
+    } else
+    if (option == 3) {
+      break;
     } else {
       std::cout << "Sorry, " << option << " is not an option\n";
     }
-
-    std::cout << prompt_calculation_type;
-
-    // switch (option) {
-    //   case '1':
-    //     result = permutations();
-    //     std::cout << "\nPermutations: " << result << '\n';
-    //     break;
-    //   case '2':
-    //     result = combinations();
-    //     std::cout << "\nCombinations: " << result << '\n';
-    //     break;
-    //   default:
-    //     std::cout << "Sorry, " << option << " is not an option\n"; // should validate option at user input
-    //     std::cout << prompt_calculation_type;
-    //     break;
-    // }
+    std::cout << options; // Repeat options till user exits
   }
+}
 
+int factorial(const int n) {
+  // calculate n!
+  // pre-conditions: input is a +ve integer
+  // post-conditions: result fits into an int
+  int f = 1;
+  for (int i = n; i > 0; --i) { f *= i; }
+  return f;
+}
 
+int permutations() {
+  // calculates permutations using the formula P(n, r) = n!/(n-r)!
+  // pre-conditions: n, r are +ve integers, n >= r
+  // post-conditions: returns +ve integer result
+  int n, r;
+  std::cout << "\nCalculating permutations:\n";
+  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
+  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  return factorial(n)/factorial(n-r);
+}
+
+int combinations() {
+  // calculates combinations using the formula C(a, b) = P(a, b)/b!
+  // pre-conditions: a, b are +ve integers, a >= b
+  // post-conditions: returns +ve integer result
+  int n, r;
+  std::cout << "\nCalculating combinations:\n";
+  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
+  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  return factorial(n)/(factorial(r)*factorial(n-r));
+}
 
   // test factorial
   // std::cout << "\nfactorial tests:\n";
@@ -96,33 +115,3 @@ int main(){
   // std::cout << "\ncombination tests:\n";
   // std::cout << combinations(6, 4) << '\n'; // = 15
   // return 0;
-}
-
-int factorial(const int n) {
-  // calculate n!
-  // pre-conditions: input is a +ve integer
-  // post-conditions: result fits into an int
-  int f = 1;
-  for (int i = n; i > 0; --i) { f *= i; }
-  return f;
-}
-
-int permutations() {
-  // calculates permutations using the formula P(n, r) = n!/(n-r)!
-  // pre-conditions: n, r are +ve integers, n >= r
-  // post-conditions: returns +ve integer result
-  int n, r;
-  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
-  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
-  return factorial(n)/factorial(n-r);
-}
-
-int combinations() {
-  // calculates combinations using the formula C(a, b) = P(a, b)/b!
-  // pre-conditions: a, b are +ve integers, a >= b
-  // post-conditions: returns +ve integer result
-  int n, r;
-  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
-  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
-  return factorial(n)/(factorial(r)*factorial(n-r));
-}
