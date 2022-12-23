@@ -8,7 +8,7 @@
 
   Combinations are similar to permutations except the order of the of the objects
   does not matter. The formula for combinations is,
-              C(a, b) = P(a, b)/b!
+              C(n, r) = n!/(r!(n-r)!)
   where n is the size of the set and r is the size of the UN-ordered subset of n
 
   Program requirements:
@@ -26,12 +26,19 @@
     - print result to screen
 
   Considerations:
-    - What are reasonable inputs for a and b in P(a, b) and C(a, b). Update the
+    - What are reasonable inputs for a and b in P(n, r) and C(n, r). Update the
       program instructions and the function pre-conditions.
-    - What data type is a appropriate for the results of P(a, b) and C(a, b),
+    - What data type is a appropriate for the results of P(n, r) and C(n, r),
       where a and b are reasonable inputs
     - Letting the function handle input validation with the main catching the
       errors.
+
+  To do:
+    - Research reasonable inputs for n and r in P(n, r) and C(n, r)
+    - Error checking/throwing for function inputs
+    - Error catching in main
+    - Create UI function
+    - Move functions to header file
 */
 #include <iostream>
 
@@ -106,23 +113,26 @@ int combinations() {
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
 
-  // test factorial
-  // std::cout << "\nfactorial tests:\n";
-  // std::cout << factorial(2) << '\n';
-  // std::cout << factorial(3) << '\n';
-  // std::cout << factorial(4) << '\n';
-  // std::cout << factorial(5) << '\n';
+/*
+Tests:
+  test factorial
+  std::cout << "\nfactorial tests:\n";
+  std::cout << factorial(2) << '\n';
+  std::cout << factorial(3) << '\n';
+  std::cout << factorial(4) << '\n';
+  std::cout << factorial(5) << '\n';
 
-  // test permutation
-  // std::cout << "\npermutation tests:\n";
-  // std::cout << permutations(5, 3) << '\n'; // = 60
-  // std::cout << permutations(10, 3) << '\n'; // = 720
-  // std::cout << permutations(3, 3) << '\n'; // = 6
+  test permutation
+  std::cout << "\npermutation tests:\n";
+  std::cout << permutations(5, 3) << '\n'; // = 60
+  std::cout << permutations(10, 3) << '\n'; // = 720
+  std::cout << permutations(3, 3) << '\n'; // = 6
 
-  // test combination
-  // std::cout << "\ncombination tests:\n";
-  // std::cout << combinations(6, 4) << '\n'; // = 15
-  // return 0;
+  test combination
+  std::cout << "\ncombination tests:\n";
+  std::cout << combinations(6, 4) << '\n'; // = 15
+  return 0;
+*/
 
 /*
 Execution with sample use cases:
