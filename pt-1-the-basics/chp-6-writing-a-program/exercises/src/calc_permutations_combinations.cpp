@@ -43,24 +43,41 @@ int combinations();
 int main(){
   // prompt for calculation type and inputs
   std::string prompt_calculation_type = "Enter 1 for PERMUTATIONS or 2 for COMBINATIONS: ";
-  char option;
+  int option;
   int result;
 
-  std::cout << prompt_calculation_type; std::cin >> option;
-
-  switch (option) {
-    case '1':
+  std::cout << prompt_calculation_type;
+  while(std::cin >> option){
+    if (option == 1) {
       result = permutations();
       std::cout << "\nPermutations: " << result << '\n';
-      break;
-    case '2':
+    } else
+    if (option == 2) {
       result = combinations();
       std::cout << "\nCombinations: " << result << '\n';
-      break;
-    default:
-      std::cout << "Sorry, " << option << " is not an option\n"; // should validate option at user input
-      break;
+    } else {
+      std::cout << "Sorry, " << option << " is not an option\n";
+    }
+
+    std::cout << prompt_calculation_type;
+
+    // switch (option) {
+    //   case '1':
+    //     result = permutations();
+    //     std::cout << "\nPermutations: " << result << '\n';
+    //     break;
+    //   case '2':
+    //     result = combinations();
+    //     std::cout << "\nCombinations: " << result << '\n';
+    //     break;
+    //   default:
+    //     std::cout << "Sorry, " << option << " is not an option\n"; // should validate option at user input
+    //     std::cout << prompt_calculation_type;
+    //     break;
+    // }
   }
+
+
 
   // test factorial
   // std::cout << "\nfactorial tests:\n";
