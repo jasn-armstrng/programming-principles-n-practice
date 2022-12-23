@@ -40,30 +40,38 @@ int permutations();
 int combinations();
 
 int main(){
+  const char *intro =
+    "This program calculates,\n"
+    " 1. Permutations using the formula nPr = n!/(n-r)! where,\n"
+    "    n is the size of the set, and r is the size of the ordered subset of n\n"
+    " 2. Combinations using the formula nCr = n!/(r!(n-r)!) where,\n"
+    "    n is the size of the set, and r is the size of the un-ordered subset of n\n";
+
   const char *options =
-    "\nEnter 1 for PERMUTATIONS\n"
-    "      2 for COMBINATIONS\n"
-    "      3 to EXIT\n"
+    "\nEnter,\n"
+    " 1 for Permutations\n"
+    " 2 for Combinations\n"
+    " 3 to EXIT\n"
     "\nOption: ";
 
-  std::cout << options;
+  std::cout << intro << options;
 
   int option;
   while(std::cin >> option){
     if (option == 1) {
       int result = permutations();
-      std::cout << "nPr: " << result << '\n';
+      std::cout << " nPr: " << result << '\n';
     } else
     if (option == 2) {
       int result = combinations();
-      std::cout << "nCr: " << result << '\n';
+      std::cout << " nCr: " << result << '\n';
     } else
     if (option == 3) {
       break;
     } else {
       std::cout << "Sorry, " << option << " is not an option\n";
     }
-    std::cout << options; // Repeat options till user exits
+    std::cout << "\nOption: "; // Repeat options till user exits
   }
 }
 
@@ -82,8 +90,8 @@ int permutations() {
   // post-conditions: returns +ve integer result
   int n, r;
   std::cout << "\nCalculating permutations:\n";
-  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
-  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  std::cout << " Enter the size of the set (n): "; std::cin >> n;
+  std::cout << " Enter the size of the subset (r): "; std::cin >> r;
   return factorial(n)/factorial(n-r);
 }
 
@@ -93,8 +101,8 @@ int combinations() {
   // post-conditions: returns +ve integer result
   int n, r;
   std::cout << "\nCalculating combinations:\n";
-  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
-  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  std::cout << " Enter the size of the set (n): "; std::cin >> n;
+  std::cout << " Enter the size of the subset (r): "; std::cin >> r;
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
 
@@ -115,3 +123,34 @@ int combinations() {
   // std::cout << "\ncombination tests:\n";
   // std::cout << combinations(6, 4) << '\n'; // = 15
   // return 0;
+
+/*
+Execution with sample use cases:
+
+This program calculates,
+ 1. Permutations using the formula nPr = n!/(n-r)! where,
+    n is the size of the set, and r is the size of the ordered subset of n
+ 2. Combinations using the formula nCr = n!/(r!(n-r)!) where,
+    n is the size of the set, and r is the size of the un-ordered subset of n
+
+Enter,
+ 1 for Permutations
+ 2 for Combinations
+ 3 to EXIT
+
+Option: 1
+
+Calculating permutations:
+ Enter the size of the set (n): 10
+ Enter the size of the subset (r): 3
+ nPr: 720
+
+Option: 2
+
+Calculating combinations:
+ Enter the size of the set (n): 6
+ Enter the size of the subset (r): 4
+ nCr: 15
+
+Option: 3
+*/
