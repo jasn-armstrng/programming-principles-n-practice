@@ -3,7 +3,8 @@
   pick a combination to a vault. There are 60 possible numbers, and you need
   three different numbers for the combination. There are P(60, 3) permutations
   for the combination, where P is defined by the formula,
-              P(a, b) = a!/(a-b)!
+              P(n, r) = n!/(n-r)!
+  where n is the size of the set and r is the size of the ordered subset
 
   Combinations are similar to permutations except the order of the of the objects
   does not matter. The formula for combinations is,
@@ -17,20 +18,35 @@
   - All erroneous inputs will generate good error messages
 
   Simple sketch of program:
-    display program instructions
-    prompt calculation type - permutation/combination
-    prompt for input - 2 numbers
-    perform calculation
-    print result to screen
+    - display program instructions
+    - prompt calculation type - permutation/combination
+    - prompt for input - 2 numbers
+    - perform calculation
+    - print result to screen
+
+  Considerations:
+    - What are reasonable inputs for a and b in P(a, b) and C(a, b). Update the
+      program instructions and the function pre-conditions.
+    - What data type is a appropriate for the results of P(a, b) and C(a, b),
+      where a and b are reasonable inputs
+    - Letting the function handle input validation with the main catching the
+      errors.
 */
 
 #include <iostream>
 
-int factorial(const int a);
-int permutations(const int a, const int b);
+int factorial(const int n);
+int permutations(const int n, const int r);
 int combinations(const int a, const int b);
 
 int main(){
+  // prompt for calculation type and inputs
+  char option;
+  int n, r;
+  std::cout << "Enter 1 for PERMUTATION or 2 for COMBINATION: "; std::cin >> option;
+  std::cout << "Enter the size of the set: "; std::cin >> n;
+  std::cout << "Enter the size of the subset: "; std::cin >> r;
+
   // test factorial
   std::cout << "\nfactorial tests:\n";
   std::cout << factorial(2) << '\n';
@@ -50,20 +66,20 @@ int main(){
   return 0;
 }
 
-int factorial(const int a) {
-  // calculate a!
+int factorial(const int n) {
+  // calculate n!
   // pre-conditions: input is a +ve integer
-  // post-conditions: result fits into an double
+  // post-conditions: result fits into an int
   int f = 1;
-  for (int i = a; i > 0; --i) { f *= i; }
+  for (int i = n; i > 0; --i) { f *= i; }
   return f;
 }
 
-int permutations(const int a, const int b) {
-  // calculates permutations using the formula P(a, b) = a!/(a-b)!
-  // pre-conditions: a, b are +ve integers, a >= b
+int permutations(const int n, const int r) {
+  // calculates permutations using the formula P(n, r) = n!/(n-r)!
+  // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
-  return factorial(a)/factorial(a-b);
+  return factorial(n)/factorial(n-r);
 }
 
 int combinations(const int a, const int b) {
