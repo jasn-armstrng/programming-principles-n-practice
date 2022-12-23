@@ -37,26 +37,28 @@
 #include <iostream>
 
 int factorial(const int n);
-int permutations(const int n, const int r);
-int combinations(const int a, const int b);
+int permutations();
+int combinations();
 
 int main(){
   // prompt for calculation type and inputs
+  std::string prompt_calculation_type = "Enter 1 for PERMUTATIONS or 2 for COMBINATIONS: ";
   char option;
-  int n, r;
-  std::cout << "Enter 1 for PERMUTATION or 2 for COMBINATION: "; std::cin >> option;
-  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
-  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  int result;
+
+  std::cout << prompt_calculation_type; std::cin >> option;
 
   switch (option) {
     case '1':
-      std::cout << "\nPermutations: " << permutations(n, r) << '\n';
+      result = permutations();
+      std::cout << "\nPermutations: " << result << '\n';
       break;
     case '2':
-      std::cout << combinations(n, r) << '\n';
+      result = combinations();
+      std::cout << "\nCombinations: " << result << '\n';
       break;
     default:
-      std::cout << "Sorry, " << option << " is not an option\n";
+      std::cout << "Sorry, " << option << " is not an option\n"; // should validate option at user input
       break;
   }
 
@@ -88,16 +90,22 @@ int factorial(const int n) {
   return f;
 }
 
-int permutations(const int n, const int r) {
+int permutations() {
   // calculates permutations using the formula P(n, r) = n!/(n-r)!
   // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
+  int n, r;
+  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
+  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
   return factorial(n)/factorial(n-r);
 }
 
-int combinations(const int n, const int r) {
+int combinations() {
   // calculates combinations using the formula C(a, b) = P(a, b)/b!
   // pre-conditions: a, b are +ve integers, a >= b
   // post-conditions: returns +ve integer result
-  return permutations(n, r)/factorial(r);
+  int n, r;
+  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
+  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+  return factorial(n)/(factorial(r)*factorial(n-r));
 }
