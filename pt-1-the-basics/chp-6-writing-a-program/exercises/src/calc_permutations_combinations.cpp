@@ -4,11 +4,12 @@
   three different numbers for the combination. There are P(60, 3) permutations
   for the combination, where P is defined by the formula,
               P(n, r) = n!/(n-r)!
-  where n is the size of the set and r is the size of the ordered subset
+  where n is the size of the set and r is the size of the ordered subset of n
 
   Combinations are similar to permutations except the order of the of the objects
   does not matter. The formula for combinations is,
               C(a, b) = P(a, b)/b!
+  where n is the size of the set and r is the size of the UN-ordered subset of n
 
   Program requirements:
   - Ask user for two integers
@@ -44,26 +45,38 @@ int main(){
   char option;
   int n, r;
   std::cout << "Enter 1 for PERMUTATION or 2 for COMBINATION: "; std::cin >> option;
-  std::cout << "Enter the size of the set: "; std::cin >> n;
-  std::cout << "Enter the size of the subset: "; std::cin >> r;
+  std::cout << "Enter the size of the SET (n): "; std::cin >> n;
+  std::cout << "Enter the size of the SUBSET (r): "; std::cin >> r;
+
+  switch (option) {
+    case '1':
+      std::cout << "\nPermutations: " << permutations(n, r) << '\n';
+      break;
+    case '2':
+      std::cout << combinations(n, r) << '\n';
+      break;
+    default:
+      std::cout << "Sorry, " << option << " is not an option\n";
+      break;
+  }
 
   // test factorial
-  std::cout << "\nfactorial tests:\n";
-  std::cout << factorial(2) << '\n';
-  std::cout << factorial(3) << '\n';
-  std::cout << factorial(4) << '\n';
-  std::cout << factorial(5) << '\n';
+  // std::cout << "\nfactorial tests:\n";
+  // std::cout << factorial(2) << '\n';
+  // std::cout << factorial(3) << '\n';
+  // std::cout << factorial(4) << '\n';
+  // std::cout << factorial(5) << '\n';
 
   // test permutation
-  std::cout << "\npermutation tests:\n";
-  std::cout << permutations(5, 3) << '\n';
-  std::cout << permutations(10, 3) << '\n';
-  std::cout << permutations(3, 3) << '\n';
+  // std::cout << "\npermutation tests:\n";
+  // std::cout << permutations(5, 3) << '\n'; // = 60
+  // std::cout << permutations(10, 3) << '\n'; // = 720
+  // std::cout << permutations(3, 3) << '\n'; // = 6
 
   // test combination
-  std::cout << "\ncombination tests:\n";
-  std::cout << combinations(6, 4) << '\n';
-  return 0;
+  // std::cout << "\ncombination tests:\n";
+  // std::cout << combinations(6, 4) << '\n'; // = 15
+  // return 0;
 }
 
 int factorial(const int n) {
@@ -82,9 +95,9 @@ int permutations(const int n, const int r) {
   return factorial(n)/factorial(n-r);
 }
 
-int combinations(const int a, const int b) {
+int combinations(const int n, const int r) {
   // calculates combinations using the formula C(a, b) = P(a, b)/b!
   // pre-conditions: a, b are +ve integers, a >= b
   // post-conditions: returns +ve integer result
-  return permutations(a, b)/factorial(b);
+  return permutations(n, r)/factorial(r);
 }
