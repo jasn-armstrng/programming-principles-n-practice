@@ -45,6 +45,7 @@
 int factorial(const int n);
 int permutations();
 int combinations();
+inline void error(std::string& s);
 
 int main(){
   const char *intro =
@@ -112,6 +113,8 @@ int combinations() {
   std::cout << " Enter the size of the subset (r): "; std::cin >> r;
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
+
+inline void error(std::string& s) { throw std::runtime_error(s); }
 
 /*
 Tests:
