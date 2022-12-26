@@ -64,17 +64,17 @@ int main(){
 
   std::cout << intro << options;
 
-  int option;
+  char option;
   while(std::cin >> option){
-    if (option == 1) {
+    if (option == '1') {
       int result = permutations();
       std::cout << " nPr: " << result << '\n';
     } else
-    if (option == 2) {
+    if (option == '2') {
       int result = combinations();
       std::cout << " nCr: " << result << '\n';
     } else
-    if (option == 3) {
+    if (option == '3') {
       break;
     } else {
       std::cout << "Sorry, " << option << " is not an option\n";
