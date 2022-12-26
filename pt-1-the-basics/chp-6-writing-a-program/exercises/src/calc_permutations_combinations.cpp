@@ -37,8 +37,11 @@
     - Research reasonable inputs for n and r in P(n, r) and C(n, r)
     - Error checking/throwing for function inputs
     - Error catching in main
-    - Create UI function
+    - Create UI function -- done
     - Move functions to header file
+    - consider a token stream to handle user input into the functions. Bad inputs
+      give an error message to the user, put back into the token stream and the
+      program continues until valid inputs are entered.
 */
 #include <iostream>
 
