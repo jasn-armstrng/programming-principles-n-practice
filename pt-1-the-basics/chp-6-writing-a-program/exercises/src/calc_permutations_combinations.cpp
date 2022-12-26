@@ -42,11 +42,17 @@
 */
 #include <iostream>
 
+void ui();
 int factorial(const int n);
 int permutations();
 int combinations();
 
 int main(){
+  ui();
+  return 0;
+}
+
+void ui() {
   const char *intro =
     "This program calculates,\n"
     " 1. Permutations using the formula nPr = n!/(n-r)! where,\n"
