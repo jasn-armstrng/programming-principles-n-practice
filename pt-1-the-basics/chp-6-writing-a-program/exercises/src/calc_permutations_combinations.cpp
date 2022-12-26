@@ -45,7 +45,6 @@
 int factorial(const int n);
 int permutations();
 int combinations();
-inline void error(std::string& s);
 
 int main(){
   const char *intro =
@@ -114,7 +113,6 @@ int combinations() {
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
 
-inline void error(std::string& s) { throw std::runtime_error(s); }
 
 /*
 Tests:
