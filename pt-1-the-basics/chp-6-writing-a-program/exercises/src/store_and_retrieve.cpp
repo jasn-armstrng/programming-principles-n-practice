@@ -13,7 +13,7 @@
     5.Exit program.
 */
 
-#include "../headers/store_and_retrieve_functions.h"
+#include "../headers/store_and_retrieve.h"
 
 int main()
 {
