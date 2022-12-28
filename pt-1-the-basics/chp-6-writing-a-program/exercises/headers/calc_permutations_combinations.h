@@ -54,15 +54,15 @@ int factorial(const int n) {
 }
 
 int permutations(const int n, const int r) {
-  // calculates permutations using the formula P(n, r) = n!/(n-r)!
+  // calculates permutations using the formula nPr = n!/(n-r)!
   // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
   return factorial(n)/factorial(n-r);
 }
 
 int combinations(const int n, const int r) {
-  // calculates combinations using the formula C(a, b) = P(a, b)/b!
-  // pre-conditions: a, b are +ve integers, a >= b
+  // calculates combinations using the formula nCr = n!/r!(n-r)!
+  // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
