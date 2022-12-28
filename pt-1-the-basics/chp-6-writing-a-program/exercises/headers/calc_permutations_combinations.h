@@ -1,8 +1,10 @@
 #include <iostream>
+#include <vector>
 
 int factorial(const int n);
-int permutations();
-int combinations();
+int permutations(const int n, const int r);
+int combinations(const int n, const int r);
+std::vector<int> get_set_and_subset();
 
 void ui() {
   const char *intro =
@@ -24,11 +26,13 @@ void ui() {
   char option;
   while(std::cin >> option){
     if (option == '1') {
-      int result = permutations();
+      std::vector<int> set_subset = get_set_and_subset();
+      int result = permutations(set_subset[0], set_subset[1]);
       std::cout << " nPr: " << result << '\n';
     } else
     if (option == '2') {
-      int result = combinations();
+      std::vector<int> set_subset = get_set_and_subset();
+      int result = combinations(set_subset[0], set_subset[1]);
       std::cout << " nCr: " << result << '\n';
     } else
     if (option == '3') {
@@ -49,27 +53,32 @@ int factorial(const int n) {
   return f;
 }
 
-int permutations() {
+int permutations(const int n, const int r) {
   // calculates permutations using the formula P(n, r) = n!/(n-r)!
   // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
-  int n, r;
   std::cout << "\nCalculating permutations:\n";
-  std::cout << " Enter the size of the set (n): "; std::cin >> n;
-  std::cout << " Enter the size of the subset (r): "; std::cin >> r;
   return factorial(n)/factorial(n-r);
 }
 
-int combinations() {
+int combinations(const int n, const int r) {
   // calculates combinations using the formula C(a, b) = P(a, b)/b!
   // pre-conditions: a, b are +ve integers, a >= b
   // post-conditions: returns +ve integer result
-  int n, r;
   std::cout << "\nCalculating combinations:\n";
-  std::cout << " Enter the size of the set (n): "; std::cin >> n;
-  std::cout << " Enter the size of the subset (r): "; std::cin >> r;
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
+
+std::vector<int> get_set_and_subset() {
+  std::vector<int> set_and_subset;
+  int set, subset;
+  std::cout << " Enter the size of the set (n): "; std::cin >> set;
+  set_and_subset.push_back(set);
+  std::cout << " Enter the size of the subset (r): "; std::cin >> subset;
+  set_and_subset.push_back(subset);
+  return set_and_subset;
+}
+
 
 /*
 Tests:
