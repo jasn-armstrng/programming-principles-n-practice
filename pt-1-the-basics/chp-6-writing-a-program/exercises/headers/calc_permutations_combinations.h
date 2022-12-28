@@ -68,6 +68,9 @@ int combinations(const int n, const int r) {
 }
 
 std::vector<int> get_set_and_subset() {
+  // prompt and validate user input for the n and r in nPr/nCr
+  // pre-conditions:
+  // post-conditions: returns a type int vector with n in [0], and r in [1]
   std::vector<int> set_and_subset;
   int set, subset;
   std::cout << " Enter the size of the set (n): "; std::cin >> set;
@@ -76,7 +79,6 @@ std::vector<int> get_set_and_subset() {
   set_and_subset.push_back(subset);
   return set_and_subset;
 }
-
 
 /*
 Tests:
