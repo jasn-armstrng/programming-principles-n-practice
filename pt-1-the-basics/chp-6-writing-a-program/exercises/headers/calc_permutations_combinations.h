@@ -28,12 +28,12 @@ void ui() {
     if (option == '1') {
       std::vector<int> set_subset = get_set_and_subset();
       int result = permutations(set_subset[0], set_subset[1]);
-      std::cout << " nPr: " << result << '\n';
+      std::cout << " Permutation (nPr): " << result << '\n';
     } else
     if (option == '2') {
       std::vector<int> set_subset = get_set_and_subset();
       int result = combinations(set_subset[0], set_subset[1]);
-      std::cout << " nCr: " << result << '\n';
+      std::cout << " Combination (nCr): " << result << '\n';
     } else
     if (option == '3') {
       break;
@@ -57,7 +57,6 @@ int permutations(const int n, const int r) {
   // calculates permutations using the formula P(n, r) = n!/(n-r)!
   // pre-conditions: n, r are +ve integers, n >= r
   // post-conditions: returns +ve integer result
-  std::cout << "\nCalculating permutations:\n";
   return factorial(n)/factorial(n-r);
 }
 
@@ -65,7 +64,6 @@ int combinations(const int n, const int r) {
   // calculates combinations using the formula C(a, b) = P(a, b)/b!
   // pre-conditions: a, b are +ve integers, a >= b
   // post-conditions: returns +ve integer result
-  std::cout << "\nCalculating combinations:\n";
   return factorial(n)/(factorial(r)*factorial(n-r));
 }
 
