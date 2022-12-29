@@ -2,7 +2,7 @@
 #include <vector>
 #include "combinatorics.h"
 
-Combinatorics combinatorics; // create a new instance of combinatorics
+Combinatorics combinatorics; // create a new instance of Combinatorics
 std::vector<int> get_set_and_subset();
 
 void ui() {
@@ -55,24 +55,3 @@ std::vector<int> get_set_and_subset() {
   set_and_subset.push_back(subset);
   return set_and_subset;
 }
-
-/*
-Tests:
-  test factorial
-  std::cout << "\nfactorial tests:\n";
-  std::cout << factorial(2) << '\n';
-  std::cout << factorial(3) << '\n';
-  std::cout << factorial(4) << '\n';
-  std::cout << factorial(5) << '\n';
-
-  test permutation
-  std::cout << "\npermutation tests:\n";
-  std::cout << permutations(5, 3) << '\n'; // = 60
-  std::cout << permutations(10, 3) << '\n'; // = 720
-  std::cout << permutations(3, 3) << '\n'; // = 6
-
-  test combination
-  std::cout << "\ncombination tests:\n";
-  std::cout << combinations(6, 4) << '\n'; // = 15
-  return 0;
-*/
