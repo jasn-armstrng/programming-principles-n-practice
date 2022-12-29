@@ -23,7 +23,14 @@
     - prompt calculation type - permutation/combination
     - prompt for input - 2 numbers
     - perform calculation
-    - print result to screen
+    - print result to screen'
+
+  Expected output examples:
+    permutations(5, 3) -> 60
+    permutations(10, 3) -> 720
+    permutations(3, 3) -> 6
+    combinations(6, 4) -> 15
+    combinations(10, 3) -> 120
 
   Considerations:
     - What are reasonable inputs for a and b in P(n, r) and C(n, r). Update the
