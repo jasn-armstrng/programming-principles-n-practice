@@ -1,4 +1,4 @@
-# 5. Writing a Program
+# 6. Writing a Program
 
 **_Programming is understanding." - Kristen Nygaard_**
 
