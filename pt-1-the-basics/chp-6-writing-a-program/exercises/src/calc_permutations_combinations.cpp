@@ -40,15 +40,18 @@
     - Letting the function handle input validation with the main catching the
       errors.
 
-  To do:
+  To do (revisit after reading chapter 7):
     - Research reasonable inputs for n and r in P(n, r) and C(n, r)
+      e.g if user enters P(20, 20) the result is 2432902008176640000 which C++
+      will output in scientific notation. How do I tell the user to limit n and
+      r to reasonable values?
     - Error checking/throwing for function inputs
     - Error catching in main
+    - Program accepts 1, 2 or 3 immediately followed by another number as an
+      input into option. The n and r size dialogs are messed up. Program should
+      reject any input other than 1, 2, or 3 and not crash
     - Create UI function -- done
-    - Move functions to header file
-    - Consider a token stream to handle user input into the functions. Bad inputs
-      give an error message to the user, put back into the token stream and the
-      program continues until valid inputs are entered.
+    - Move functions to header file - done
 */
 
 #include "../headers/calc_permutations_combinations.h"

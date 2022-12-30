@@ -48,10 +48,15 @@ std::vector<int> get_set_and_subset() {
   // pre-conditions:
   // post-conditions: returns a type int vector with n in [0], and r in [1]
   std::vector<int> set_and_subset;
+
   int set, subset;
-  std::cout << " Enter the size of the set (n): "; std::cin >> set; // to-validate
+  std::cout << " Enter the size of the set (n): ";
+  std::cin >> set; // to-validate
   set_and_subset.push_back(set);
-  std::cout << " Enter the size of the subset (r): "; std::cin >> subset; // to-validate
+
+  std::cout << " Enter the size of the subset (r): ";
+  std::cin >> subset; // to-validate
   set_and_subset.push_back(subset);
+
   return set_and_subset;
 }
