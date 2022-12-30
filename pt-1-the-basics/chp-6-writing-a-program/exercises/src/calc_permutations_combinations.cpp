@@ -44,6 +44,9 @@
     - Research reasonable inputs for n and r in P(n, r) and C(n, r)
     - Error checking/throwing for function inputs
     - Error catching in main
+    - Program accepts 1, 2 or 3 immediately followed by another number as an
+      input into option. The n and r size dialogs are messed up. Program should
+      reject any input other than 1, 2, or 3 and not crash
     - Create UI function -- done
     - Move functions to header file - done
 */
