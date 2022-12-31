@@ -48,13 +48,16 @@ std::vector<int> get_set_and_subset() {
   // pre-conditions:
   // post-conditions: returns a type int vector with n in [0], and r in [1]
   std::vector<int> set_and_subset;
+  const std::string prompt_n = " Enter the size of the set (n): ",
+                    prompt_r = " Enter the size of the subset (r): ";
 
   int set, subset;
-  std::cout << " Enter the size of the set (n): ";
+
+  std::cout << prompt_n;
   std::cin >> set; // to-validate
   set_and_subset.push_back(set);
 
-  std::cout << " Enter the size of the subset (r): ";
+  std::cout << prompt_r;
   std::cin >> subset; // to-validate
   set_and_subset.push_back(subset);
 
