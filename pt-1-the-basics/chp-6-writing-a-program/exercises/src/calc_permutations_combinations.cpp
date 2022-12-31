@@ -57,6 +57,9 @@
 #include "../headers/calc_permutations_combinations.h"
 
 int main(){
+  std::cout << "+-----------------------------------------+\n";
+  std::cout << "| Calculate Permutations and Combinations |\n";
+  std::cout << "+-----------------------------------------+\n\n";
   ui();
   return 0;
 }
