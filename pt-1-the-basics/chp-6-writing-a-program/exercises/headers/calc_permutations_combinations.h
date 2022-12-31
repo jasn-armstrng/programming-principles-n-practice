@@ -22,19 +22,24 @@ void ui() {
 
   std::cout << intro << options;
 
-  char option;
-  while(std::cin >> option){
-    if (option == '1') {
+  int option;
+  /*
+    To do:
+    Chapter 10 covers input error handling deeper. When that info is covered,
+    return to this and handle non-integer inputs
+  */
+  while(std::cin >> option) {
+    if (option == 1) {
       std::vector<int> set_subset = get_set_and_subset();
       int result = combinatorics.permutations(set_subset[0], set_subset[1]);
       std::cout << " Permutations (nPr): " << result << '\n';
     } else
-    if (option == '2') {
+    if (option == 2) {
       std::vector<int> set_subset = get_set_and_subset();
       int result = combinatorics.combinations(set_subset[0], set_subset[1]);
       std::cout << " Combinations (nCr): " << result << '\n';
     } else
-    if (option == '3') {
+    if (option == 3) {
       break;
     } else {
       std::cout << "Sorry, " << option << " is not an option\n";
