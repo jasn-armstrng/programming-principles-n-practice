@@ -1,7 +1,9 @@
 #include <iostream>
-#include "my.h"
+#include "./headers/my.h"
 
-void print_foo(){
+int foo;
+
+void print_foo() {
   std::cout << foo << '\n';
 }
 
