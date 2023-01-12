@@ -1,3 +1,6 @@
+// This program is for Chp 8, drill 3, pg 298
+// Note the use of fully qualified names, scoping with {}, and the using directive
+// Further comments below,
 #include <iostream>
 
 namespace X {
