@@ -4,6 +4,7 @@
 #include <vector>
 
 std::vector<int> fibonacci(const int, const int, std::vector<int>&, const int);
+void print(const std::vector<int> v);
 
 int main() {
 
@@ -22,3 +23,11 @@ std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const 
 
   return v;
 }
+
+void print(const std::string label, const std::vector<int>& v) {
+  // prints a label and the values it describes
+  std::cout << label << '\n';
+  for(int f: v) {
+    std::cout << f << '\n';
+  }
+};
