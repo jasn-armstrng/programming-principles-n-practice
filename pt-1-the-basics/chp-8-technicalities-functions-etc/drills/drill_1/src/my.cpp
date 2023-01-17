@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./headers/my.h"
+#include "../headers/my.h"
 
 int foo;
 
