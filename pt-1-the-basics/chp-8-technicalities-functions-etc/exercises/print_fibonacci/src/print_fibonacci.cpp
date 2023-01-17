@@ -7,7 +7,7 @@ std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const 
 void print(const std::string label, const std::vector<int>& v);
 
 int main() {
-  std::vector<int> t;
+  std::vector<int> t; // test vector
   fibonacci(0, 1, t, 10);
   print("First 10 Fibs", t);
   return 0;
