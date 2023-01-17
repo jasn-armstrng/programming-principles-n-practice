@@ -23,3 +23,27 @@ void print(const std::string label, const std::vector<int>& v) {
     std::cout << f << '\n';
   }
 };
+
+void gui() {
+  // present program title and simple instructions for use
+  std::string title {
+    "+-----------------+\n"
+    "| Print Fibonacci |\n"
+    "+-----------------+\n\n"
+  };
+
+  std::string how_to {
+    "x - first number in sequence\n"
+    "y - second number in sequence\n"
+    "n - number of elements in sequence to compute\n\n"
+  };
+
+  std::string input_prompt { "Enter x, y, and n: " };
+
+  int x, y, n;
+  std::cout << title << how_to << input_prompt;
+  std::cin >> x >> y >> n;
+  std::cout << '\n';
+  fibonacci(x, y, v, n);
+  print("Fibonacci Sequence", v);
+}

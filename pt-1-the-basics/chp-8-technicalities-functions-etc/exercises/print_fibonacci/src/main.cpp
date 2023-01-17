@@ -4,7 +4,6 @@
 #include "../headers/print_fibonacci.h"
 
 int main() {
-  fibonacci(3, 5, v, 10);
-  print("Fibonacci Sequence", v);
+  gui();
   return 0;
 }
