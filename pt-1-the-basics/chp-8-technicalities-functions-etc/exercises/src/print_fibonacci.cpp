@@ -3,11 +3,13 @@
 #include <iostream>
 #include <vector>
 
-std::vector<int> fibonacci(const int, const int, std::vector<int>&, const int);
-void print(const std::vector<int> v);
+std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const int n);
+void print(const std::string label, const std::vector<int>& v);
 
 int main() {
-
+  std::vector<int> t;
+  fibonacci(0, 1, t, 10);
+  print("First 10 Fibs", t);
   return 0;
 }
 
@@ -15,12 +17,12 @@ std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const 
   // computes a custom Fibonacci sequence
   // pre-conditions: x, y, n are +ve ints, v is vector<int> and empty
   // post-condtions: return vector with fibonacci sequence
-  std::vector<int> v = {x, y}; // initialize with first 2 fibs - f0, f1
+  v.push_back(x);
+  v.push_back(y);
   for(int i = 2; i<n; ++i) {
     int next_fib = v[i-1]+v[i-2];
     v.push_back(next_fib);
   }
-
   return v;
 }
 
