@@ -1,17 +1,9 @@
 // This program computes and prints a custom Fibonacci sequence; the first 2
 // elements and the length of the sequence are controlled.
 #include <iostream>
-#include <vector>
+#include "../headers/print_fibonacci.h"
 
-std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const int n);
-void print(const std::string label, const std::vector<int>& v);
-
-int main() {
-  std::vector<int> t; // test vector
-  fibonacci(0, 1, t, 10);
-  print("First 10 Fibs", t);
-  return 0;
-}
+std::vector<int> v;
 
 std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const int n) {
   // computes a custom Fibonacci sequence
