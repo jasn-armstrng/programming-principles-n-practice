@@ -24,5 +24,9 @@ int main() {
   // sort custom type vector on the element's class member variable using lambda function.
   std::sort(persons.begin(), persons.end(), [](const Person &a, const Person &b) {return (a.name < b.name);});
 
+  std::cout << "\nName\tAge\n";
+  for(Person p: persons) {
+    std::cout << p.name << '\t' << p.age << '\n';
+  }
   return 0;
 }
