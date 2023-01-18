@@ -13,7 +13,12 @@ int main() {
   std::string person_name;
   double person_age;
 
-  std::cout << "\nPlease enter name/age pairs. Each on a new line.\n(press ctrl+D to stop):\n";
+  std::string instructions {
+    "Please enter name/age pairs; each pair on a new line.\n"
+    "(press ctrl+D when finished):\n"
+  };
+
+  std::cout << instructions;
   while(std::cin >> person_name >> person_age) {
     Person p;
     p.name = person_name;
@@ -21,12 +26,15 @@ int main() {
     persons.push_back(p);
   }
 
-  // sort custom type vector on the element's class member variable using lambda function.
-  std::sort(persons.begin(), persons.end(), [](const Person &a, const Person &b) {return (a.name < b.name);});
+  // sort custom type vector on the element's class member variable using lambda
+  // function.
+  std::sort(persons.begin(), persons.end(),
+          [](const Person &a, const Person &b) {return (a.name < b.name);});
 
   std::cout << "\nName\tAge\n";
   for(Person p: persons) {
     std::cout << p.name << '\t' << p.age << '\n';
   }
+
   return 0;
 }
