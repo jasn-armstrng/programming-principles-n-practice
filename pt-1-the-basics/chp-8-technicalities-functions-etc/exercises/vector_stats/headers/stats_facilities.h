@@ -1,16 +1,28 @@
 #include <iostream>
 #include <vector>
 
+class Stats {
+  public:
+    double smallest;
+    double largest;
+    double mean;
+    double median;
+
+    void show_stats() {
+      std::cout << "Smallest element: " << smallest << '\n';
+      std::cout << "Largest element: " << largest << '\n';
+      std::cout << "Mean: " << mean << '\n';
+      std::cout << "Median: " << median << '\n';
+    }
+};
+
 struct stats {
-  double smallest;
-  double largest;
-  double mean;
-  double median;
+
 };
 
 inline void error(const std::string& s) { throw std::runtime_error(s); }
 
-stats compute_stats(std::vector<double> v, stats& s) {
+Stats compute_stats(std::vector<double> v) {
   // 1. find the smallest and largest element in input vector
   // 2. compute the mean and median of vector
   // pre-conditions: input vector is not empty
@@ -19,35 +31,35 @@ stats compute_stats(std::vector<double> v, stats& s) {
   // check pre-condition
   if (v.size() ==  0) { error("Input has no data!"); }
 
+  Stats vs; // vector stats
   // find smallest element in v
-  s.smallest = v[0];
+  vs.smallest = v[0];
   for(double i: v) {
-    if(i < s.smallest) { s.smallest = i; }
+    if(i < vs.smallest) { vs.smallest = i; }
   }
 
   // find largest element in v
-  s.largest = v[0];
+  vs.largest = v[0];
   for(double i: v) {
-    if(i > s.largest) { s.largest = i; }
+    if(i > vs.largest) { vs.largest = i; }
   }
 
   // find mean
-  s.mean = 0;
+  vs.mean = 0;
   for(unsigned i = 0; i < v.size(); ++i) {
-    s.mean += v[i];
+    vs.mean += v[i];
   }
-  s.mean = s.mean/v.size();
+  vs.mean = vs.mean/v.size();
 
   // find median
   std::sort(v.begin(), v.end());
   double mid = v.size()/2;
 
   if (v.size()%2 != 0) {
-    s.median = v[mid];
+    vs.median = v[mid];
   } else {
-    s.median = (v[mid]+v[mid-1])/2;
+    vs.median = (v[mid]+v[mid-1])/2;
   }
 
-
-  return s;
+  return vs;
 }

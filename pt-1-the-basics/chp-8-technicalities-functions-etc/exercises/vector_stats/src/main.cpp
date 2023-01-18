@@ -11,13 +11,9 @@ of a given vector
 #include "../headers/stats_facilities.h"
 
 int main() try {
-  std::vector<double> tv = {1, 3, 5, 7, 9};
-  stats ts;
-  compute_stats(tv, ts);
-  std::cout << "Smallest element: " << ts.smallest << '\n';
-  std::cout << "Largest element: " << ts.largest << '\n';
-  std::cout << "Mean: " << ts.mean << '\n';
-  std::cout << "Median: " << ts.median << '\n';
+  std::vector<double> t = {1, 3, 5, 7, 9};
+  compute_stats(t).show_stats();
+
   return 0;
 }
 catch(std::exception& e) {
