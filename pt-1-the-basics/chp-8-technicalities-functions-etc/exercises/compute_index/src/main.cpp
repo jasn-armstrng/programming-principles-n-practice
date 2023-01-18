@@ -1,3 +1,6 @@
+// This program computes a value (an "index") that is sum of all
+// price[i]*weight[i]
+// See chp 8 ex. 9
 #include <iostream>
 #include <vector>
 #include "../headers/compute_index.h"
