@@ -2,6 +2,12 @@
 #include <iostream>
 #include <vector>
 
+class Person {
+  public:
+    std::string name;
+    double age;
+};
+
 int main() {
   return 0;
 }
