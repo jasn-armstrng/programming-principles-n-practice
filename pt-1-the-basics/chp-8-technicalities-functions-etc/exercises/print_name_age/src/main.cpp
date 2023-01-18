@@ -21,5 +21,8 @@ int main() {
     persons.push_back(p);
   }
 
+  // sort custom type vector on the element's class member variable using lambda function.
+  std::sort(persons.begin(), persons.end(), [](const Person &a, const Person &b) {return (a.name < b.name);});
+
   return 0;
 }
