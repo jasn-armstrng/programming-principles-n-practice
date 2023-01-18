@@ -28,13 +28,11 @@ int main() {
 
   // sort custom type vector on the element's member variable - name - using a
   // lambda function.
-  auto lambda = [](const Person &a, const Person &b) {return a.name < b.name;};
+  auto lambda = [](const Person &a, const Person &b) { return a.name < b.name; };
   std::sort(persons.begin(), persons.end(), lambda);
 
   std::cout << "\nName\tAge\n";
-  for(Person p: persons) {
-    std::cout << p.name << '\t' << p.age << '\n';
-  }
+  for(Person p: persons) { std::cout << p.name << '\t' << p.age << '\n'; }
 
   return 0;
 }

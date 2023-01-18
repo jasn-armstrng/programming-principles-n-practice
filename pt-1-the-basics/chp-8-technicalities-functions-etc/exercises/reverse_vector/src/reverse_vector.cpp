@@ -29,9 +29,7 @@ std::vector<int> reverse_by_reference(std::vector<int>& v) {
 void print(const std::vector<int> v) {
   // print the contents of a vector
   for(unsigned i = 0; i < v.size(); ++i) {
-    if(i != 0) {
-      std::cout << ", ";
-    }
+    if(i != 0) { std::cout << ", "; }
     std::cout << v[i];
   }
   std::cout << '\n';
