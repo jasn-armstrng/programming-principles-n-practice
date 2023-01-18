@@ -1,4 +1,4 @@
-// This program is the solution for Ex. 8 Ques. 7
+// This program stores a prints name/age pairs entered by a user.
 #include <iostream>
 #include <vector>
 
