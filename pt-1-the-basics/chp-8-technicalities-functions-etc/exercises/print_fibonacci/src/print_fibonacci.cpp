@@ -19,9 +19,7 @@ std::vector<int> fibonacci(const int x, const int y, std::vector<int>& v, const 
 void print(const std::string label, const std::vector<int>& v) {
   // prints a label and the values it describes
   std::cout << label << '\n';
-  for(int f: v) {
-    std::cout << f << '\n';
-  }
+  for(int f: v) { std::cout << f << '\n'; }
 };
 
 void gui() {
