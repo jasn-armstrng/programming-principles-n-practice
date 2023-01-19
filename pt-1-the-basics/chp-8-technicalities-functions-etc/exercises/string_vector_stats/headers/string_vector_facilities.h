@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+
 inline void error(const std::string& s) { throw std::runtime_error(s); }
 
 void print_int_vec(const std::string label, const std::vector<int> v) {
@@ -100,3 +101,14 @@ namespace string_vector_stats {
     return v_sorted[0];
   }
 };
+
+void stats(const std::vector<std::string> v) {
+  std::cout << "--- Input ---\n";
+  print_string_vec("Strings: ", v);
+  std::cout <<  "\n--- Stats ---\n";
+  print_int_vec("String sizes: ", string_vector_stats::string_sizes(v));
+  std::cout << "Smallest string: " << string_vector_stats::smallest_string(v) << '\n';
+  std::cout << "Largest string: " << string_vector_stats::largest_string(v) << '\n';
+  std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(v) << '\n';
+  std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(v) << '\n';
+}
