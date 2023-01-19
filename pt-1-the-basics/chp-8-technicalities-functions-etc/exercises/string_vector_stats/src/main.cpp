@@ -13,6 +13,7 @@ int main() try {
   print(string_vector_stats::string_sizes(excerpt));
   std::cout << string_vector_stats::smallest_string(excerpt) << '\n';
   std::cout << string_vector_stats::largest_string(excerpt) << '\n';
+  std::cout << string_vector_stats::lexico_smallest(excerpt) << '\n';
   return 0;
 }
 catch(std::exception& e) {

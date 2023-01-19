@@ -19,9 +19,9 @@ namespace string_vector_stats {
   std::vector<int> string_sizes(const std::vector<std::string> v) {
     // compute and store size of strings in v
     // pre-conditions: vector v.size() > 0
-    // post-conditions: returns a vector with string sizes
+    // post-conditions: returns vector
     if(v.size() == 0) { error("Input has no data!"); }
-    // store sizes of strings in v
+
     std::vector<int> string_sizes;
     for(std::string s: v) {
       string_sizes.push_back(s.size());
@@ -32,7 +32,9 @@ namespace string_vector_stats {
   std::string smallest_string(const std::vector<std::string> v) {
     // find the smallest string in input vector v
     // pre-conditions: input vector v.size() > 0
-    // post-conditions: return smallest string in input vector v
+    // post-conditions: return string
+    if(v.size() == 0) { error("Input has no data!"); }
+
     const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
 
     int smallest { sizes[0] };
@@ -47,9 +49,11 @@ namespace string_vector_stats {
   }
 
   std::string largest_string(const std::vector<std::string> v) {
-    // find the smallest string in input vector v
+    // find the largest string in input vector v
     // pre-conditions: input vector v.size() > 0
-    // post-conditions: return smallest string in input vector v
+    // post-conditions: return string
+    if(v.size() == 0) { error("Input has no data!"); }
+
     const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
 
     int largest { sizes[0] };
@@ -62,4 +66,28 @@ namespace string_vector_stats {
     }
     return v[largest_index];
   }
+
+  std::string lexico_smallest(const std::vector<std::string> v) {
+    // find the lexicographically smallest string in input vector v
+    // pre-conditions: input vector v.size() > 0
+    // post-conditions: return string
+    if(v.size() == 0) { error("Input has no data!"); }
+
+    std::vector<std::string> v_sorted = v;
+    auto lambda = [](std::string a, std::string b) { return a < b; };
+    std::sort(v_sorted.begin(), v_sorted.end(), lambda);
+    return v_sorted[0];
+  }
+
+  // std::string lexico_largest(const std::vector<std::string> v) {
+  //   // find the lexicographically largest string in input vector v
+  //   // pre-conditions: input vector v.size() > 0
+  //   // post-conditions: return string
+  //   if(v.size() == 0) { error("Input has no data!"); }
+
+  //   std::vector<std::string> v_sorted = v;
+  //   auto lambda = [](std::string a, std::string b) { return a > b; };
+  //   std::sort(v_sorted.begin(), v_sorted.end(), lambda);
+  //   return v_sorted[0];
+  // }
 };
