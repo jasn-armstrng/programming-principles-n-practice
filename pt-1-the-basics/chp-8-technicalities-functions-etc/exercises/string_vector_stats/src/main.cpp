@@ -14,6 +14,7 @@ int main() try {
   std::cout << string_vector_stats::smallest_string(excerpt) << '\n';
   std::cout << string_vector_stats::largest_string(excerpt) << '\n';
   std::cout << string_vector_stats::lexico_smallest(excerpt) << '\n';
+  std::cout << string_vector_stats::lexico_largest(excerpt) << '\n';
   return 0;
 }
 catch(std::exception& e) {

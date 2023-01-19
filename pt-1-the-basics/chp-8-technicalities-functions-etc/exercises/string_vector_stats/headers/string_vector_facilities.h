@@ -79,15 +79,15 @@ namespace string_vector_stats {
     return v_sorted[0];
   }
 
-  // std::string lexico_largest(const std::vector<std::string> v) {
-  //   // find the lexicographically largest string in input vector v
-  //   // pre-conditions: input vector v.size() > 0
-  //   // post-conditions: return string
-  //   if(v.size() == 0) { error("Input has no data!"); }
+  std::string lexico_largest(const std::vector<std::string> v) {
+    // find the lexicographically largest string in input vector v
+    // pre-conditions: input vector v.size() > 0
+    // post-conditions: return string
+    if(v.size() == 0) { error("Input has no data!"); }
 
-  //   std::vector<std::string> v_sorted = v;
-  //   auto lambda = [](std::string a, std::string b) { return a > b; };
-  //   std::sort(v_sorted.begin(), v_sorted.end(), lambda);
-  //   return v_sorted[0];
-  // }
+    std::vector<std::string> v_sorted = v;
+    auto lambda = [](std::string a, std::string b) { return a > b; };
+    std::sort(v_sorted.begin(), v_sorted.end(), lambda);
+    return v_sorted[0];
+  }
 };
