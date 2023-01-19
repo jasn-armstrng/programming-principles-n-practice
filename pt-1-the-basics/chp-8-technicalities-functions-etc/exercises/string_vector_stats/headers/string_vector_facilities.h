@@ -10,7 +10,7 @@ void print_int_vec(const std::string label, const std::vector<int> v) {
   // print the contents of vector
   // pre-conditions: vector is type int
   std::cout << label;
-  for(unsigned i = 0; i < v.size(); ++i) {
+  for(unsigned i {0}; i < v.size(); ++i) {
     if(i != 0) { std::cout << ", "; }
     std::cout << v[i];
   }
@@ -21,7 +21,7 @@ void print_string_vec(const std::string label, const std::vector<std::string> v)
   // print the contents of a string vector
   // pre-conditions: vector is type string
   std::cout << label;
-  for(unsigned i = 0; i < v.size(); ++i) {
+  for(unsigned i {0}; i < v.size(); ++i) {
     if(i != 0) { std::cout << ", "; }
     std::cout << v[i];
   }
@@ -42,23 +42,21 @@ namespace string_vector_stats {
     return string_sizes;
   }
 
-  std::string smallest_string(const std::vector<std::string> v) {
+  std::string smallest_string(std::vector<std::string> v) {
     // find the smallest string in input vector v
     // pre-conditions: input vector v.size() > 0
     // post-conditions: return string
     if(v.size() == 0) { error("Input has no data!"); }
 
-    const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
-
-    int smallest { sizes[0] };
-    int smallest_index { 0 };
-    for(unsigned i = 0; i < sizes.size(); ++i) {
-      if(sizes[i] < smallest) {
-        smallest = sizes[i];
-        smallest_index = i;
+    unsigned min {100};
+    std::string smallest;
+    for(std::string s: v) {
+      if (s.size() < min) {
+        min = s.size();
+        smallest = s;
       }
     }
-    return v[smallest_index];
+    return smallest;
   }
 
   std::string largest_string(const std::vector<std::string> v) {
@@ -67,17 +65,15 @@ namespace string_vector_stats {
     // post-conditions: return string
     if(v.size() == 0) { error("Input has no data!"); }
 
-    const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
-
-    int largest { sizes[0] };
-    int largest_index { 0 };
-    for(unsigned i = 0; i < sizes.size(); ++i) {
-      if(sizes[i] > largest) {
-        largest = sizes[i];
-        largest_index = i;
+    unsigned max {0};
+    std::string largest;
+    for(std::string s: v) {
+      if (s.size() > max) {
+        max = s.size();
+        largest = s;
       }
     }
-    return v[largest_index];
+    return largest;
   }
 
   std::string lexico_smallest(const std::vector<std::string> v) {
@@ -86,8 +82,8 @@ namespace string_vector_stats {
     // post-conditions: return string
     if(v.size() == 0) { error("Input has no data!"); }
 
-    std::vector<std::string> v_sorted = v;
-    auto lambda = [](std::string a, std::string b) { return a < b; };
+    std::vector<std::string> v_sorted {v};
+    auto lambda {[](std::string a, std::string b) { return a < b; }};
     std::sort(v_sorted.begin(), v_sorted.end(), lambda);
     return v_sorted[0];
   }
@@ -98,8 +94,8 @@ namespace string_vector_stats {
     // post-conditions: return string
     if(v.size() == 0) { error("Input has no data!"); }
 
-    std::vector<std::string> v_sorted = v;
-    auto lambda = [](std::string a, std::string b) { return a > b; };
+    std::vector<std::string> v_sorted {v};
+    auto lambda {[](std::string a, std::string b) { return a > b; }};
     std::sort(v_sorted.begin(), v_sorted.end(), lambda);
     return v_sorted[0];
   }
