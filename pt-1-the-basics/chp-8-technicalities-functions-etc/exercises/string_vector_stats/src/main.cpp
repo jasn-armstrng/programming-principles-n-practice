@@ -6,14 +6,18 @@ Given a vector of strings, this program conputes and returns,
 */
 #include <iostream>
 #include <vector>
-
-inline void error(const std::string& s);
-std::vector<int> get_string_sizes(std::vector<std::string> v);
-void print(const std::vector<int> v);
+#include "../headers/string_vector_facilities.h"
 
 int main() try {
   std::vector<std::string> excerpt = { "in", "the", "beginning", "god", "created", "heaven", "and", "earth" };
-  print(get_string_sizes(excerpt));
+  std::cout << "--- Input ---\n";
+  print_string_vec("Strings: ", excerpt);
+  std::cout <<  "\n--- Stats ---\n";
+  print_int_vec("String sizes: ", string_vector_stats::string_sizes(excerpt));
+  std::cout << "Smallest string: " << string_vector_stats::smallest_string(excerpt) << '\n';
+  std::cout << "Largest string: " << string_vector_stats::largest_string(excerpt) << '\n';
+  std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(excerpt) << '\n';
+  std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(excerpt) << '\n';
   return 0;
 }
 catch(std::exception& e) {
@@ -23,34 +27,4 @@ catch(std::exception& e) {
 catch(...) {
   std::cerr << "Error: Unknown exception\n";
   return 2;
-}
-
-inline void error(const std::string& s) { throw std::runtime_error(s); }
-
-std::vector<int> get_string_sizes(std::vector<std::string> v) {
-  // compute and store size of strings in v
-  // pre-conditions: vector v.size() > 0
-  // post-conditions: return vector of v's string sizes
-
-  // check pre-condition
-  if(v.size() == 0) { error("Input has no data!"); }
-
-  // store sizes of strings in v
-  std::vector<int> string_sizes;
-  for(std::string s: v) {
-    string_sizes.push_back(s.size());
-  }
-
-  return string_sizes;
-}
-
-void print(const std::vector<int> v) {
-  // print the contents of a vector
-  for(unsigned i = 0; i < v.size(); ++i) {
-    if(i != 0) {
-      std::cout << ", ";
-    }
-    std::cout << v[i];
-  }
-  std::cout << '\n';
 }
