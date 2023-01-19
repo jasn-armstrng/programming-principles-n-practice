@@ -29,16 +29,20 @@ namespace string_vector_stats {
     return string_sizes;
   }
 
-  // std::string smallest_string(const std::vector<std::string> v) {
-  //   // find the smallest string in input vector v
-  //   // pre-conditions: input vector v.size() > 0
-  //   // post-conditions: return smallest string in input vector v
-  //   std::vector<int> sizes = string_vector_stats::string_sizes(v);
+  std::string smallest_string(const std::vector<std::string> v) {
+    // find the smallest string in input vector v
+    // pre-conditions: input vector v.size() > 0
+    // post-conditions: return smallest string in input vector v
+    const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
 
-  //   int smallest = sizes[0];
-  //   for(int i: sizes) {
-  //     if(i < smallest) { smallest = i; }
-  //   }
-  //   return v[smallest];
-  // }
+    int smallest { sizes[0] };
+    int smallest_index { 0 };
+    for(unsigned i = 0; i < sizes.size(); ++i) {
+      if(sizes[i] < smallest) {
+        smallest = sizes[i];
+        smallest_index = i;
+      }
+    }
+    return v[smallest_index];
+  }
 };
