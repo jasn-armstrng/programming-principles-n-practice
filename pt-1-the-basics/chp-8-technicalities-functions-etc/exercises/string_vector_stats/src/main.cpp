@@ -9,8 +9,16 @@ Given a vector of strings, this program conputes and returns,
 #include "../headers/string_vector_facilities.h"
 
 int main() try {
-  std::vector<std::string> excerpt = { "in", "the", "beginning", "god", "created", "heaven", "and", "earth" };
-  stats(excerpt);
+  std::vector<std::string> l1 { "in", "the", "beginning", "god", "created", "heaven", "and", "earth" };
+  std::vector<std::string> l2 { "Quentin", "Jason", "Zebedee", "woke", "urgently", "one", "day", "keenly",
+                                "thinking", "he", "could", "go", "by", "Lindsay's", "Forester's", "Yard",
+                                "Inn", "near", "Vasey", "Street", "and", "play", "refined", "elegant",
+                                "xylophone", "music" };
+                                // ' = 2 characters, strings starting with caps are lexicographically first
+  std::vector<std::string> l3 {}; // Error: Input has no data!
+  stats(l1);
+  stats(l2);
+  stats(l3);
   return 0;
 }
 catch(std::exception& e) {

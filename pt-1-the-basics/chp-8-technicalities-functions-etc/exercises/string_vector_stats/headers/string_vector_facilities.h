@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 
-
 inline void error(const std::string& s) { throw std::runtime_error(s); }
 
 void print_int_vec(const std::string label, const std::vector<int> v) {
@@ -34,8 +33,6 @@ namespace string_vector_stats {
     // compute and store size of strings in v
     // pre-conditions: vector v.size() > 0
     // post-conditions: returns vector
-    if(v.size() == 0) { error("Input has no data!"); }
-
     std::vector<int> string_sizes;
     for(auto s: v) {
       string_sizes.push_back(s.size());
@@ -47,8 +44,6 @@ namespace string_vector_stats {
     // find the smallest string in input vector v
     // pre-conditions: input vector v.size() > 0
     // post-conditions: return string
-    if(v.size() == 0) { error("Input has no data!"); }
-
     unsigned min {100};
     std::string smallest;
     for(auto s: v) {
@@ -64,8 +59,6 @@ namespace string_vector_stats {
     // find the largest string in input vector v
     // pre-conditions: input vector v.size() > 0
     // post-conditions: return string
-    if(v.size() == 0) { error("Input has no data!"); }
-
     unsigned max {0};
     std::string largest;
     for(auto s: v) {
@@ -81,8 +74,6 @@ namespace string_vector_stats {
     // find the lexicographically smallest string in input vector v
     // pre-conditions: input vector v.size() > 0
     // post-conditions: return string
-    if(v.size() == 0) { error("Input has no data!"); }
-
     std::vector<std::string> v_sorted {v};
     auto lambda {[](std::string a, std::string b) { return a < b; }};
     std::sort(v_sorted.begin(), v_sorted.end(), lambda);
@@ -93,8 +84,6 @@ namespace string_vector_stats {
     // find the lexicographically largest string in input vector v
     // pre-conditions: input vector v.size() > 0
     // post-conditions: return string
-    if(v.size() == 0) { error("Input has no data!"); }
-
     std::vector<std::string> v_sorted {v};
     auto lambda {[](std::string a, std::string b) { return a > b; }};
     std::sort(v_sorted.begin(), v_sorted.end(), lambda);
@@ -103,6 +92,10 @@ namespace string_vector_stats {
 };
 
 void stats(const std::vector<std::string> v) {
+  // print string vector stats
+  // pre-conditions: input vector v.size() > 0
+  if(v.size() == 0) { error("Input has no data!"); }
+
   std::cout << "--- Input ---\n";
   print_string_vec("Strings: ", v);
   std::cout <<  "\n--- Stats ---\n";
@@ -111,4 +104,5 @@ void stats(const std::vector<std::string> v) {
   std::cout << "Largest string: " << string_vector_stats::largest_string(v) << '\n';
   std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(v) << '\n';
   std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(v) << '\n';
+  std::cout << '\n';
 }
