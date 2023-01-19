@@ -7,6 +7,29 @@ Given a vector of strings, this program conputes and returns,
 #include <iostream>
 #include <vector>
 
-int main() {
+inline void error(const std::string& s);
+void compute_stats(std::vector<std::string> v);
+
+int main() try {
+  std::vector<std::string> excerpt = { "in", "the", "beginning", "God", "created", "the", "heavens", "and", "the", "Earth" };
   return 0;
+}
+catch(std::exception& e) {
+  std::cerr << "Error: " << e.what() << '\n';
+  return 1;
+}
+catch(...) {
+  std::cerr << "Error: Unknown exception\n";
+  return 2;
+}
+
+inline void error(const std::string& s) { throw std::runtime_error(s); }
+
+void compute_stats(std::vector<std::string>& v) {
+  //
+  // pre-conditions: vector v.size() > 0
+  // post-conditions:
+
+  // check pre-condition
+  if(v.size() == 0) { error("Input has no data!"); }
 }
