@@ -94,6 +94,8 @@ namespace string_vector_stats {
 void stats(const std::vector<std::string> v) {
   // print string vector stats
   // pre-conditions: input vector v.size() > 0
+
+  // handle empty vector input before entry  into string_vector_stats functions
   if(v.size() == 0) { error("Input has no data!"); }
 
   std::cout << "--- Input ---\n";
