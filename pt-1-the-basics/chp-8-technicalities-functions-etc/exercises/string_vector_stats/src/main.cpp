@@ -12,6 +12,7 @@ int main() try {
   std::vector<std::string> excerpt = { "in", "the", "beginning", "god", "created", "heaven", "and", "earth" };
   print(string_vector_stats::string_sizes(excerpt));
   std::cout << string_vector_stats::smallest_string(excerpt) << '\n';
+  std::cout << string_vector_stats::largest_string(excerpt) << '\n';
   return 0;
 }
 catch(std::exception& e) {

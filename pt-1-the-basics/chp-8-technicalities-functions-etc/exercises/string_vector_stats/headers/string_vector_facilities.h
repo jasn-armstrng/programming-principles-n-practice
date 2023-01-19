@@ -45,4 +45,21 @@ namespace string_vector_stats {
     }
     return v[smallest_index];
   }
+
+  std::string largest_string(const std::vector<std::string> v) {
+    // find the smallest string in input vector v
+    // pre-conditions: input vector v.size() > 0
+    // post-conditions: return smallest string in input vector v
+    const std::vector<int>& sizes = string_vector_stats::string_sizes(v);
+
+    int largest { sizes[0] };
+    int largest_index { 0 };
+    for(unsigned i = 0; i < sizes.size(); ++i) {
+      if(sizes[i] > largest) {
+        largest = sizes[i];
+        largest_index = i;
+      }
+    }
+    return v[largest_index];
+  }
 };
