@@ -36,7 +36,7 @@ namespace string_vector_stats {
     if(v.size() == 0) { error("Input has no data!"); }
 
     std::vector<int> string_sizes;
-    for(std::string s: v) {
+    for(auto s: v) {
       string_sizes.push_back(s.size());
     }
     return string_sizes;
@@ -50,7 +50,7 @@ namespace string_vector_stats {
 
     unsigned min {100};
     std::string smallest;
-    for(std::string s: v) {
+    for(auto s: v) {
       if (s.size() < min) {
         min = s.size();
         smallest = s;
@@ -67,7 +67,7 @@ namespace string_vector_stats {
 
     unsigned max {0};
     std::string largest;
-    for(std::string s: v) {
+    for(auto s: v) {
       if (s.size() > max) {
         max = s.size();
         largest = s;
