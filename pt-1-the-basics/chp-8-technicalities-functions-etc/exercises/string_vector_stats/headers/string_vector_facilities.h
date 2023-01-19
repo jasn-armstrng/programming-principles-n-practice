@@ -6,8 +6,21 @@
 
 inline void error(const std::string& s) { throw std::runtime_error(s); }
 
-void print(const std::vector<int> v) {
-  // print the contents of a vector
+void print_int_vec(const std::string label, const std::vector<int> v) {
+  // print the contents of vector
+  // pre-conditions: vector is type int
+  std::cout << label;
+  for(unsigned i = 0; i < v.size(); ++i) {
+    if(i != 0) { std::cout << ", "; }
+    std::cout << v[i];
+  }
+  std::cout << '\n';
+}
+
+void print_string_vec(const std::string label, const std::vector<std::string> v) {
+  // print the contents of a string vector
+  // pre-conditions: vector is type string
+  std::cout << label;
   for(unsigned i = 0; i < v.size(); ++i) {
     if(i != 0) { std::cout << ", "; }
     std::cout << v[i];

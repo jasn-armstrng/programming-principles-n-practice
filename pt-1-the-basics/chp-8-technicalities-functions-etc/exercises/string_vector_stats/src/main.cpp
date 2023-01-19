@@ -10,11 +10,14 @@ Given a vector of strings, this program conputes and returns,
 
 int main() try {
   std::vector<std::string> excerpt = { "in", "the", "beginning", "god", "created", "heaven", "and", "earth" };
-  print(string_vector_stats::string_sizes(excerpt));
-  std::cout << string_vector_stats::smallest_string(excerpt) << '\n';
-  std::cout << string_vector_stats::largest_string(excerpt) << '\n';
-  std::cout << string_vector_stats::lexico_smallest(excerpt) << '\n';
-  std::cout << string_vector_stats::lexico_largest(excerpt) << '\n';
+  std::cout << "--- Input ---\n";
+  print_string_vec("Strings: ", excerpt);
+  std::cout <<  "\n--- Stats ---\n";
+  print_int_vec("String sizes: ", string_vector_stats::string_sizes(excerpt));
+  std::cout << "Smallest string: " << string_vector_stats::smallest_string(excerpt) << '\n';
+  std::cout << "Largest string: " << string_vector_stats::largest_string(excerpt) << '\n';
+  std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(excerpt) << '\n';
+  std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(excerpt) << '\n';
   return 0;
 }
 catch(std::exception& e) {
