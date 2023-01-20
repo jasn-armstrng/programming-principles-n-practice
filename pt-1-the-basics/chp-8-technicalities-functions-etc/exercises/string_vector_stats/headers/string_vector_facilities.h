@@ -1,6 +1,8 @@
-// Introducing a namespace: A language mechanism to organize classes, functions,
-// data, and types into an identifiable and named part of a program without
-// defining a type
+/*
+  Introducing a namespace: A language mechanism to organize classes, functions,
+  data, and types into an identifiable and named part of a program without
+  defining a type.
+*/
 #include <iostream>
 #include <vector>
 
@@ -9,6 +11,7 @@ inline void error(const std::string& s) { throw std::runtime_error(s); }
 void print_int_vec(const std::string label, const std::vector<int> v) {
   // print the contents of vector
   // pre-conditions: vector is type int
+  // post-conditions: return csv
   std::cout << label;
   for(unsigned i {0}; i < v.size(); ++i) {
     if(i != 0) { std::cout << ", "; }
@@ -20,6 +23,7 @@ void print_int_vec(const std::string label, const std::vector<int> v) {
 void print_string_vec(const std::string label, const std::vector<std::string> v) {
   // print the contents of a string vector
   // pre-conditions: vector is type string
+  // post-conditions: return csv
   std::cout << label;
   for(unsigned i {0}; i < v.size(); ++i) {
     if(i != 0) { std::cout << ", "; }
@@ -29,6 +33,15 @@ void print_string_vec(const std::string label, const std::vector<std::string> v)
 }
 
 namespace string_vector_stats {
+  /*
+    Provides the following,
+      - string_sizes(...);
+      - smallest_string(...);
+      - largest_string(...);
+      - lexico_smallest(...);
+      - lexico_largest(...);
+      - stats(); 
+   */
   std::vector<int> string_sizes(const std::vector<std::string> v) {
     // compute and store size of strings in v
     // pre-conditions: vector v.size() > 0
@@ -89,22 +102,23 @@ namespace string_vector_stats {
     std::sort(v_sorted.begin(), v_sorted.end(), lambda);
     return v_sorted[0];
   }
+  
+  void stats(const std::vector<std::string> v) {
+    // print string vector stats
+    // pre-conditions: input vector v.size() > 0
+    // post-condtions: print formatted stats to console
+    
+    // handle empty vector input before entry  into string_vector_stats functions
+    if(v.size() == 0) { error("Input has no data!"); }
+    // formatted stats
+    std::cout << "--- Input ---\n";
+    print_string_vec("Strings: ", v);
+    std::cout <<  "\n--- Stats ---\n";
+    print_int_vec("String sizes: ", string_vector_stats::string_sizes(v));
+    std::cout << "Smallest string: " << string_vector_stats::smallest_string(v) << '\n';
+    std::cout << "Largest string: " << string_vector_stats::largest_string(v) << '\n';
+    std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(v) << '\n';
+    std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(v) << '\n';
+    std::cout << '\n';
+  }
 };
-
-void stats(const std::vector<std::string> v) {
-  // print string vector stats
-  // pre-conditions: input vector v.size() > 0
-
-  // handle empty vector input before entry  into string_vector_stats functions
-  if(v.size() == 0) { error("Input has no data!"); }
-
-  std::cout << "--- Input ---\n";
-  print_string_vec("Strings: ", v);
-  std::cout <<  "\n--- Stats ---\n";
-  print_int_vec("String sizes: ", string_vector_stats::string_sizes(v));
-  std::cout << "Smallest string: " << string_vector_stats::smallest_string(v) << '\n';
-  std::cout << "Largest string: " << string_vector_stats::largest_string(v) << '\n';
-  std::cout << "Lexicographically smallest: " << string_vector_stats::lexico_smallest(v) << '\n';
-  std::cout << "Lexicographically largest: " << string_vector_stats::lexico_largest(v) << '\n';
-  std::cout << '\n';
-}
