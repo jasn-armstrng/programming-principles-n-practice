@@ -16,9 +16,9 @@ int main() try {
                                 "xylophone", "music" };
                                 // ' = 2 characters, strings starting with caps are lexicographically first
   std::vector<std::string> l3 {}; // Error: Input has no data!
-  stats(l1);
-  stats(l2);
-  stats(l3);
+  string_vector_stats::stats(l1);
+  string_vector_stats::stats(l2);
+  string_vector_stats::stats(l3);
   return 0;
 }
 catch(std::exception& e) {
