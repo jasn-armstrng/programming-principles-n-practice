@@ -32,10 +32,14 @@ namespace Chrono {
   }
 
   void Date::add_day(int n) {
+    // increase date by n days
+    // pre-conditions: n must be a +ve integer
     // ...
   }
 
   void Date::add_month(int n) {
+    // increase date by n months
+    // pre-conditions: n must be a +ve integer
     // ...
   }
 
