@@ -95,12 +95,14 @@ namespace Chrono {
     return !(a == b);
   }
 
+  // << operator overloading. Allows the output of a data object to the console
   std::ostream& operator<<(std::ostream& os, const Date& d) {
     return os << '(' << d.year()
               << ',' << int(d.month()) // error: invalid operands to binary expression
               << ',' << d.day() << ')';
   }
 
+  // >> operator overloading. Allows the input of a data object from the console
   std::istream& operator>>(std::istream& is, Date& dd) {
     int y, m, d;
     char ch1, ch2, ch3, ch4;

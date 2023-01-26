@@ -19,7 +19,7 @@ namespace Chrono { // Namespaces organizes classes, functions, data, and types
 
   class Date {
     public: // interface details
-      class Invalid{};            // to throw as exception
+      class Invalid{};            // to be used as exception
 
       // Date, is a member function definition
       Date(int y, Month m, int d); // Check for valid date and initialize.
