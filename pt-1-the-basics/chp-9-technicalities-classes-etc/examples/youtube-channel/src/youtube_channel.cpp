@@ -44,6 +44,14 @@ class YouTubeChannel {
       owner_name = new_owner;
     }
 
+    void get_name() {
+      std::cout << name << '\n';
+    }
+
+    void get_owner() {
+      std::cout << owner_name << '\n';
+    }
+
   private: // implementation
     // encapsulation: These properties should be updated using a methods via
     // the class' public interface
@@ -77,6 +85,12 @@ int main() {
 
   // view object's new state
   yt_channel.get_info();
+
+  // view channel name
+  yt_channel.get_name();
+
+  // view channel owner
+  yt_channel.get_owner();
 
   return 0;
 }
