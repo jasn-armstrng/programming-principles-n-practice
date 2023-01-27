@@ -2,9 +2,7 @@
 #include <list>
 
 class YouTubeChannel {
-  public:
-    // member attributes
-    std::list<std::string> published_video_titles;
+  public: // interface
 
     // YouTubeChannel class object constructor
     YouTubeChannel(std::string name_, std::string owner_name_) {
@@ -24,27 +22,36 @@ class YouTubeChannel {
       }
     }
 
-  private:
+    void subscribe() {
+      ++subscriber_count;
+    }
+
+    void unsubscribe() {
+      --subscriber_count;
+    }
+
+  private: // implementation
+    // encapsulation: These properties should be updated using a methods via
+    // the class's public interface
     std::string name;
     std::string owner_name;
     int subscriber_count;
+    std::list<std::string> published_video_titles;
 };
 
 int main() {
   // channel instance 1
   YouTubeChannel yt_channel("CodeBeauty", "Saldina");
-  yt_channel.published_video_titles.push_back("C++ for beginners");
-  yt_channel.published_video_titles.push_back("HTML & CSS Video 1");
-  yt_channel.published_video_titles.push_back("C++ OOP Video 1");
+  // yt_channel.published_video_titles.push_back("C++ for beginners");
+  // yt_channel.published_video_titles.push_back("HTML & CSS Video 1");
+  // yt_channel.published_video_titles.push_back("C++ OOP Video 1");
+
+  yt_channel.subscribe();
+  yt_channel.subscribe();
+  yt_channel.subscribe();
+  yt_channel.unsubscribe(); // subscribers should be 2 after this call
 
   yt_channel.get_info();
-
-  // channel instance 2
-  YouTubeChannel yt_channel2("AmySings", "Amy");
-  yt_channel2.published_video_titles.push_back("Johnny B - Cover");
-  yt_channel2.published_video_titles.push_back("Lorelei - Cover");
-
-  yt_channel2.get_info();
 
   return 0;
 }
