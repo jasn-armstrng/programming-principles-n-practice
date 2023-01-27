@@ -36,6 +36,14 @@ class YouTubeChannel {
       published_video_titles.push_back(title);
     }
 
+    void set_name(const std::string& new_name) {
+      name = new_name;
+    }
+
+    void set_owner(const std::string& new_owner) {
+      owner_name = new_owner;
+    }
+
   private: // implementation
     // encapsulation: These properties should be updated using a methods via
     // the class' public interface
@@ -61,6 +69,13 @@ int main() {
   yt_channel.unsubscribe(); // subscribers should be 2 after this call
 
   // view object state
+  yt_channel.get_info();
+
+  // change name and owner
+  yt_channel.set_name("CodingBeauty++");
+  yt_channel.set_owner("Saldina Nuvak");
+
+  // view object's new state
   yt_channel.get_info();
 
   return 0;
