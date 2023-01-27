@@ -67,11 +67,22 @@ class YouTubeChannel {
 // here CookingYouTubeChannel (a derived class) inherits everything from
 // YouTubeChannel (the base class)
 class CookingYouTubeChannel:public YouTubeChannel {
-  public:
-    CookingYouTubeChannel(std::string name_, std::string owner_name_)
-      :YouTubeChannel(name_, owner_name_) { // inherit the constructor from base
+  public:                                                            // inherit the constructor from base
+    CookingYouTubeChannel(std::string name_, std::string owner_name_):YouTubeChannel(name_, owner_name_) {
       // ...
     }
+
+    // this will only be available for instances of CookingYouTubeChannel
+    void set_about(const std::string about_) {
+      about = about_;
+    }
+
+    void get_about() {
+      std::cout << about << '\n';
+    }
+
+  private:
+    std::string about;
 };
 
 int main() {
@@ -111,7 +122,7 @@ int main() {
 
   // new cooking channel
   CookingYouTubeChannel cyt_channel("Amy's Kitchen", "Amy");
-
+  cyt_channel.set_about("Practicing cooking, learning new recipes, experimenting with spices, ...");
   cyt_channel.publish_video("Apple Pie");
   cyt_channel.publish_video("Chocolate cake");
 
@@ -119,6 +130,7 @@ int main() {
   cyt_channel.subscribe();
 
   cyt_channel.get_info();
+  cyt_channel.get_about(); // ideally this should be inherited from the base
 
   return 0;
 }
