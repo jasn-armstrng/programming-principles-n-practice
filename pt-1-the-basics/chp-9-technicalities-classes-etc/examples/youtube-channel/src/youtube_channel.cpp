@@ -4,9 +4,6 @@
 class YouTubeChannel {
   public:
     // member attributes
-    std::string name;
-    std::string owner_name;
-    int subscriber_count;
     std::list<std::string> published_video_titles;
 
     // YouTubeChannel class object constructor
@@ -26,6 +23,11 @@ class YouTubeChannel {
         std::cout << " - " << video << '\n';
       }
     }
+
+  private:
+    std::string name;
+    std::string owner_name;
+    int subscriber_count;
 };
 
 int main() {
