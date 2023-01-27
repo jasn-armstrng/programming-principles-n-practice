@@ -58,10 +58,13 @@ class YouTubeChannel {
   // implementation details
     // encapsulation: These properties should be updated using a methods via
     // the class' public interface
-    std::string name;
     std::string owner_name;
     int subscriber_count;
     std::list<std::string> published_video_titles;
+
+  protected:
+    // make member accessible to derived classes
+    std::string name;
 };
 
 // here CookingYouTubeChannel (a derived class) inherits everything from
@@ -78,7 +81,7 @@ class CookingYouTubeChannel:public YouTubeChannel {
     }
 
     void get_about() {
-      std::cout << about << '\n';
+      std::cout << name << ": " << about << '\n';
     }
 
   private:
