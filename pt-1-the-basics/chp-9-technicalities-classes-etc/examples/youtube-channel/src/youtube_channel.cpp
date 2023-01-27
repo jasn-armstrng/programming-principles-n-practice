@@ -23,16 +23,22 @@ class YouTubeChannel {
     }
 
     void subscribe() {
+      // increment subscriber_count
       ++subscriber_count;
     }
-
     void unsubscribe() {
-      --subscriber_count;
+      // decrements subscriber_count
+      // pre-conditions: subscriber_count > 0
+      if(subscriber_count > 0) { --subscriber_count; }
+    }
+
+    void publish_video(const std::string& title) {
+      published_video_titles.push_back(title);
     }
 
   private: // implementation
     // encapsulation: These properties should be updated using a methods via
-    // the class's public interface
+    // the class' public interface
     std::string name;
     std::string owner_name;
     int subscriber_count;
@@ -40,17 +46,21 @@ class YouTubeChannel {
 };
 
 int main() {
-  // channel instance 1
+  // test create new YouTube channel
   YouTubeChannel yt_channel("CodeBeauty", "Saldina");
-  // yt_channel.published_video_titles.push_back("C++ for beginners");
-  // yt_channel.published_video_titles.push_back("HTML & CSS Video 1");
-  // yt_channel.published_video_titles.push_back("C++ OOP Video 1");
 
+  // publish videos
+  yt_channel.publish_video("C++ for beginners");
+  yt_channel.publish_video("HTML & CSS Video 1");
+  yt_channel.publish_video("C++ OOP Video 1");
+
+  // test subscribe/unsubsribe
   yt_channel.subscribe();
   yt_channel.subscribe();
   yt_channel.subscribe();
   yt_channel.unsubscribe(); // subscribers should be 2 after this call
 
+  // view object state
   yt_channel.get_info();
 
   return 0;
