@@ -2,7 +2,8 @@
 #include <list>
 
 class YouTubeChannel {
-  public: // interface
+  public:
+  // interface
 
     // YouTubeChannel class object constructor
     YouTubeChannel(std::string name_, std::string owner_name_) {
@@ -26,6 +27,7 @@ class YouTubeChannel {
       // increment subscriber_count
       ++subscriber_count;
     }
+
     void unsubscribe() {
       // decrements subscriber_count
       // pre-conditions: subscriber_count > 0
@@ -52,7 +54,8 @@ class YouTubeChannel {
       std::cout << owner_name << '\n';
     }
 
-  private: // implementation
+  private:
+  // implementation details
     // encapsulation: These properties should be updated using a methods via
     // the class' public interface
     std::string name;
@@ -61,7 +64,19 @@ class YouTubeChannel {
     std::list<std::string> published_video_titles;
 };
 
+// here CookingYouTubeChannel (a derived class) inherits everything from
+// YouTubeChannel (the base class)
+class CookingYouTubeChannel:public YouTubeChannel {
+  public:
+    CookingYouTubeChannel(std::string name_, std::string owner_name_)
+      :YouTubeChannel(name_, owner_name_) { // inherit the constructor from base
+      // ...
+    }
+};
+
 int main() {
+  std::cout << "[Learning Channel]\n";
+
   // test create new YouTube channel
   YouTubeChannel yt_channel("CodeBeauty", "Saldina");
 
@@ -80,17 +95,30 @@ int main() {
   yt_channel.get_info();
 
   // change name and owner
-  yt_channel.set_name("CodingBeauty++");
-  yt_channel.set_owner("Saldina Nuvak");
+  // yt_channel.set_name("CodingBeauty++");
+  // yt_channel.set_owner("Saldina Nuvak");
 
   // view object's new state
-  yt_channel.get_info();
+  // yt_channel.get_info();
 
   // view channel name
-  yt_channel.get_name();
+  // yt_channel.get_name();
 
   // view channel owner
-  yt_channel.get_owner();
+  // yt_channel.get_owner();
+
+  std::cout << "\n[Cooking Channel]\n";
+
+  // new cooking channel
+  CookingYouTubeChannel cyt_channel("Amy's Kitchen", "Amy");
+
+  cyt_channel.publish_video("Apple Pie");
+  cyt_channel.publish_video("Chocolate cake");
+
+  cyt_channel.subscribe();
+  cyt_channel.subscribe();
+
+  cyt_channel.get_info();
 
   return 0;
 }
