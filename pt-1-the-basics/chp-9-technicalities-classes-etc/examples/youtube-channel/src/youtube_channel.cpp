@@ -46,12 +46,20 @@ class YouTubeChannel {
       owner_name = new_owner;
     }
 
+    void set_about(const std::string new_about) {
+      about = new_about;
+    }
+
     void get_name() {
       std::cout << name << '\n';
     }
 
     void get_owner() {
       std::cout << owner_name << '\n';
+    }
+
+    void get_about() {
+      std::cout << name << ":" << about << '\n';
     }
 
   private:
@@ -65,6 +73,7 @@ class YouTubeChannel {
   protected:
     // make member accessible to derived classes
     std::string name;
+    std::string about;
 };
 
 // here CookingYouTubeChannel (a derived class) inherits everything from
@@ -74,18 +83,6 @@ class CookingYouTubeChannel:public YouTubeChannel {
     CookingYouTubeChannel(std::string name_, std::string owner_name_):YouTubeChannel(name_, owner_name_) {
       // ...
     }
-
-    // this will only be available for instances of CookingYouTubeChannel
-    void set_about(const std::string about_) {
-      about = about_;
-    }
-
-    void get_about() {
-      std::cout << name << ": " << about << '\n';
-    }
-
-  private:
-    std::string about;
 };
 
 int main() {
