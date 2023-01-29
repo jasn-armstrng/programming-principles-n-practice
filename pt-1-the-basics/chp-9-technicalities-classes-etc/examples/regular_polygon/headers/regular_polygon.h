@@ -19,4 +19,11 @@ namespace Shape {
 
       double area() { return (width * height) * 0.5; } // Compute triangle area
   };
+
+  class Square:public RegularPolygon {
+    public:
+      Square(const double w, const double h):RegularPolygon(w, h) { }
+
+      double area() { return (width * height); } // Compute square area
+  };
 };
