@@ -1,15 +1,22 @@
 // This program written to implement and understand polymorphism
 
 #include <iostream>
+#include <vector>
 #include "../headers/regular_polygon.h"
 using namespace Shape;
 
 int main() try {
-  Triangle tri(7, 4);
-  Square sqr(14, 14);
+  // Use polymorphism to link Base class to instances of derived classes
+  RegularPolygon* tri = new Triangle(7, 4);
+  RegularPolygon* sqr = new Square(13, 13);
 
-  std::cout << tri.type() << " area: " << tri.area() << '\n';
-  std::cout << sqr.type() << " area: " << sqr.area() << '\n';
+  // Store and retrieve derived classes of polygon under their base class.
+  std::vector<RegularPolygon*> polygons;
+  polygons.push_back(tri); // Store
+  polygons.push_back(sqr);
+  for(RegularPolygon* p: polygons) { // Retrieve
+    std::cout << p->type() << " area: " << p->area() << '\n';
+  }
   return 0;
 }
 catch(RegularPolygon::Invalid) {

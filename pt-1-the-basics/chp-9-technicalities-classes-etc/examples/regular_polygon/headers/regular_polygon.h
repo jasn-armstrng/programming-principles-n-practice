@@ -17,6 +17,9 @@ namespace Shape {
         height = h;
       }
 
+      virtual double area() { return 0; } // 'placeholder' to access area() defined in the derived classes when implementing polymorphism
+      virtual std::string type() { return ""; } // Same as with area()
+
     protected:
       double width;
       double height;
