@@ -1,4 +1,7 @@
 // This program written to implement and understand polymorphism
+// More on polymorphism here,
+//  - https://cplusplus.com/doc/tutorial/polymorphism/, and
+//  - https://www.youtube.com/watch?v=wK93q-JQUvw&t=52s
 
 #include <iostream>
 #include <vector>
@@ -12,11 +15,13 @@ int main() try {
 
   // Store and retrieve derived classes of polygon under their base class.
   std::vector<RegularPolygon*> polygons;
-  polygons.push_back(tri); // Store
+  polygons.push_back(tri);
   polygons.push_back(sqr);
-  for(RegularPolygon* p: polygons) { // Retrieve
+  for(RegularPolygon* p: polygons) {
+    // Sample output: Triangle area: 14
     std::cout << p->type() << " area: " << p->area() << '\n';
   }
+
   return 0;
 }
 catch(RegularPolygon::Invalid) {
