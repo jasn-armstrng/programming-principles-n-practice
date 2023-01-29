@@ -8,7 +8,7 @@ namespace Shape {
         height = h;
       }
 
-    private:
+    protected:
       double width;
       double height;
   };
@@ -17,5 +17,6 @@ namespace Shape {
     public:
       Triangle(const double w, const double h):RegularPolygon(w, h) { }
 
+      double area() { return (width * height) * 0.5; } // Compute triangle area
   };
 };
