@@ -12,4 +12,10 @@ namespace Shape {
       double width;
       double height;
   };
+
+  class Triangle:public RegularPolygon {
+    public:
+      Triangle(const double w, const double h):RegularPolygon(w, h) { }
+
+  };
 };
