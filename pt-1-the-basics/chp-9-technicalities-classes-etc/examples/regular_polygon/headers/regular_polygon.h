@@ -6,17 +6,7 @@ namespace Shape {
     // Polygon base class
     public:
       class Invalid {}; // Used to throw exception
-
-      RegularPolygon(const double w, const double h) { // w: width, h: height
-        // Base class constructor
-        // pre-conditions: Both width and height should be > 0
-
-        if(w < 1 || h < 1) { throw Invalid {}; } // check width/height validity
-
-        width = w;
-        height = h;
-      }
-
+      RegularPolygon(const double w, const double h); // Constructor defined in ../src/regular_polygon.cpp
       virtual double area() { return 0; } // 'placeholder' to access area() defined in the derived classes when implementing polymorphism
       virtual std::string type() { return ""; } // Same as with area()
 
@@ -38,4 +28,4 @@ namespace Shape {
       std::string type() { return "Square"; }
       double area() { return (width * height); } // Compute square area
   };
-};
+} // namespace Shape
