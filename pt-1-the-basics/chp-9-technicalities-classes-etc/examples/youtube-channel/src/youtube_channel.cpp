@@ -145,9 +145,7 @@ int main() {
   // yt_channel.get_owner();
 
   std::cout << "\n[Cooking Channel]\n";
-
-  // new cooking channel
-  CookingYouTubeChannel cyt_channel("Amy's Kitchen", "Amy");
+  CookingYouTubeChannel cyt_channel("Amy's Kitchen", "Amy"); // new cooking channel
   cyt_channel.set_about("Practicing cooking, learning new recipes, experimenting with spices, ...");
   cyt_channel.publish_video("Apple Pie");
   cyt_channel.publish_video("Chocolate cake");
@@ -166,8 +164,7 @@ int main() {
   cyt_channel.get_about(); // ideally this should be inherited from the base
 
   std::cout << "\n[Singing Channel]\n";
-  // new singing channel
-  CookingYouTubeChannel syt_channel("John Sings", "John");
+  CookingYouTubeChannel syt_channel("John Sings", "John"); // new singing channel
   syt_channel.set_about("Taking singing classes, learning new songs, learning how to dance ...");
   syt_channel.publish_video("Esc Sequence - Cover");
   syt_channel.like();
@@ -179,14 +176,9 @@ int main() {
   syt_channel.get_info();
   syt_channel.get_about(); // ideally this should be inherited from the base
 
-
-  YouTubeChannel * yt1 {&cyt_channel};
-  YouTubeChannel * yt2 {&syt_channel};
-
   std::cout << "\n[Channel Analytics]\n";
-
-  yt1->check_analytics();
-  yt2->check_analytics();
+  cyt_channel.check_analytics();
+  syt_channel.check_analytics();
 
   return 0;
 }
