@@ -14,11 +14,9 @@ int main() try {
   RegularPolygon* sqr = new Square(13, 13);
 
   // Store and retrieve derived classes of polygon under their base class.
-  std::vector<RegularPolygon*> polygons;
-  polygons.push_back(tri);
-  polygons.push_back(sqr);
+  std::vector<RegularPolygon*> polygons = { tri, sqr };
   for(RegularPolygon* p: polygons) {
-    // Sample output: Triangle area: 14
+    // Sample output -> Triangle area: 14
     std::cout << p->type() << " area: " << p->area() << '\n';
   }
 
