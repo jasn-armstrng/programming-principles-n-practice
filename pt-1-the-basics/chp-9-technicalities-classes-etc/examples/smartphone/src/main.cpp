@@ -1,4 +1,4 @@
-// This program is used to understand abstraction
+// This program is used to understand abstraction. See notes in header file.
 #include "../headers/Smartphone.h"
 
 int main() {
