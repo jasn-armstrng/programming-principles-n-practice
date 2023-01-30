@@ -18,7 +18,7 @@ int main() try {
   polygons.push_back(tri);
   polygons.push_back(sqr);
   for(RegularPolygon* p: polygons) {
-    // Sample output: Triangle area: 14
+    // Sample output -> Triangle area: 14
     std::cout << p->type() << " area: " << p->area() << '\n';
   }
 
