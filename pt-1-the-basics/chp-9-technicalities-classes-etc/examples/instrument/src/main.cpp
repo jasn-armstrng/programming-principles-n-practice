@@ -16,9 +16,19 @@ class Accordion:public Instrument {
   }
 };
 
+class Piano:public Instrument {
+  // As a derived class of an abstract class it must have its own definition of make_sound()
+  void make_sound() {
+    std::cout << "Piano playing ...\n";
+  }
+};
+
 int main() {
-  Instrument* i1 = new Accordion;
+  Instrument* i1 = new Accordion();
   i1->make_sound();
+
+  Instrument* i2 = new Piano();
+  i2->make_sound();
 
   return 0;
 }
