@@ -12,8 +12,8 @@ class Smartphone {
 
 class Android:public Smartphone {
   // Android and any other sub-class of Smartphone inherits core functionality
-  // from Smartphone but is allowed to implement that core functionality in its
-  // own way
+  // from Smartphone but their developers are allowed to implement that core
+  // functionality in their own way
   public:
     void take_selfie() { std::cout << "Android takes selfie\n"; }
     void make_call() { std::cout << "Android makes call\n"; }
@@ -35,6 +35,11 @@ class Iphone:public Smartphone {
 // https://www.youtube.com/watch?v=Ui7Dca5Kbvw&list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN&index=7
 
 int main() {
+  // An application developer need not know how either function is implemented on
+  // the backend.
+  Smartphone* s1 = new Iphone();
+  s1->take_selfie();
+  s1->make_call();
 
   return 0;
 }
