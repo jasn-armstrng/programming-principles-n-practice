@@ -5,7 +5,7 @@
 
 class Instrument {
   public:
-    void make_sound() {
+    virtual void make_sound() {
       std::cout << "Instrument playing ...\n";
     }
 };
@@ -17,6 +17,8 @@ class Accordion:public Instrument {
 };
 
 int main() {
+  Instrument* i1 = new Accordion;
+  i1->make_sound();
 
   return 0;
 }
