@@ -5,12 +5,12 @@
 
 class Instrument {
   public:
-    virtual void make_sound() {
-      std::cout << "Instrument playing ...\n";
-    }
+    virtual void make_sound() = 0; // Pure virtual function. This makes Instrument
+                                   // an abstract class.
 };
 
 class Accordion:public Instrument {
+  // As a derived class of an abstract class it must have its own definition of make_sound()
   void make_sound() {
     std::cout << "Acordion playing ...\n";
   }
