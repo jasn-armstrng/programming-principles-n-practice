@@ -10,6 +10,12 @@ class Instrument {
     }
 };
 
+class Accordion:public Instrument {
+  void make_sound() {
+    std::cout << "Acordion playing ...\n";
+  }
+};
+
 int main() {
 
   return 0;
