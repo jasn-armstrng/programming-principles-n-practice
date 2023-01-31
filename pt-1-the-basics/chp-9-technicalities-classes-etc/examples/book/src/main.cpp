@@ -14,7 +14,15 @@ struct Book {
   }
 }; // namespace Book
 
+std::ostream& operator<<(std::ostream& os, Book& book) {
+  // overload the << operator to print a Book object's state
+  return os << "Name: " << book.name << '\n'
+            << "Author: " << book.author << '\n'
+            << "Genre: " << book.genre << '\n';
+}
+
 int main() {
   Book b1 { "Far from the madding crowd", "Thomas Hardy", "English classic" };
+  std::cout << b1;
   return 0;
 }
