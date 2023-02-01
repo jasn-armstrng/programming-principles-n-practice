@@ -5,9 +5,7 @@
 int main() {
   Name_pairs name_pairs;
   name_pairs.read_name_age();
-  // name_pairs.read_names();
-  // name_pairs.read_ages();
-  // name_pairs.print();
+  std::cout << name_pairs;
 
   return 0;
 }
