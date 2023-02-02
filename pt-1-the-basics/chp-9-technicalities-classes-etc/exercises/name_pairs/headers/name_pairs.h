@@ -1,13 +1,19 @@
-/*******************************************************************************
-Name_pairs.h
+/**
+ * @file name_pairs.h
+ * @author Jason Armstrong
+ * @brief Provides the class and function definitions to read and store Name/Age
+ *        pairs from user input. Prints pairs to console.
+ * @version 0.1
+ * @date 2023-02-01
+ *
+ */
 
-Provides the class and function definitions to read and store <Name Age> pairs
-from user input. Prints pairs to console.
-*******************************************************************************/
 #include <iostream>
 #include <vector>
 
-/*                        Class/member definitions                            */
+/**
+ * Class/member definitions
+ */
 class Person
 {
 public:
@@ -46,7 +52,9 @@ void Name_pairs::read_name_age()
   std::sort(person.begin(), person.end(), lambda); // Sort entries on name
 }
 
-/*                            Helper functions                                */
+/**
+ * Helper functions
+ */
 void operator<<(std::ostream& os, Name_pairs& np)
 {
   for(Person p: np.person)

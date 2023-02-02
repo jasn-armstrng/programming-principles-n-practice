@@ -1,8 +1,12 @@
-/*******************************************************************************
-Description: Solution for Chp 9 Ex 2-3.
-Created:     Feb 1, 2023
-To do:       Handle bad <Name Age> inputs
-*******************************************************************************/
+/**
+ * @file main.cpp
+ * @author Jason Armstrong
+ * @brief Solution for Chp 9 Ex 2-3
+ * @version 0.1
+ * @date 2023-02-01
+ * @todo Handle bad <Name Age> inputs
+ *
+ */
 #include <iostream>
 #include "../headers/name_pairs.h"
 
