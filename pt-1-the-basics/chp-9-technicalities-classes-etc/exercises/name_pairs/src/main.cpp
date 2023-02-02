@@ -1,6 +1,5 @@
 /*******************************************************************************
-Description: Reads and stores <Name Age> pairs from user input. Prints pairs to
-             console.
+Description: Solution for Chp 9 Ex 2-3.
 Created:     Feb 1, 2023
 To do:       Handle bad <Name Age> inputs
 *******************************************************************************/
