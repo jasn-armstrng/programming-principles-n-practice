@@ -11,33 +11,50 @@
 
 #include <iostream>
 
-class Invalid {};
-bool is_isbn(std::string& ISBN);
+class Invalid {}; // to be used as exception
+bool is_isbn(std::string& isbn);
 
 class Book
 {
 public:
-  Book(std::string ISBN, std::string Title, std::string Author, std::string Copyright_Date)
-    :isbn{ISBN}, title{Title}, author{Author}, copyright_date{Copyright_Date}
+  Book(std::string isbn, std::string title, std::string author, std::string copyright_date)
+    :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}
   {
-    if(!is_isbn(ISBN)) { throw Invalid {}; }
+    if(!is_isbn(isbn)) { throw Invalid {}; }
+    Checked_Out = false;
   };
 
+  std::string isbn() const { return ISBN; }
+  std::string title() const { return Title; }
+  std::string author() const { return Author; }
+  std::string copyright_date() const { return Copyright_Date; }
+  std::string checked_out() const { return Checked_Out ? "Yes" : "No"; }
+
 private:
-  std::string isbn, title, author, copyright_date;
-  bool checked_out;
+  std::string ISBN, Title, Author, Copyright_Date;
+  bool Checked_Out;
 };
 
-bool is_isbn(std::string& ISBN)
+bool is_isbn(std::string& isbn)
 {
   // a valid ISBN-13,
   // - starts with 978
-  // - is 13 digits long
-  if(ISBN.size() != 14) { return false; }
-  if(ISBN.substr(0, 4) != "978-") { return false; }
-  for(unsigned i = 4; i < ISBN.size(); ++i)
+  // - is 14 digits long
+  // - has the form 978-n, where n is a 10-digit number
+  if(isbn.size() != 14) { return false; }
+  if(isbn.substr(0, 4) != "978-") { return false; }
+  for(unsigned i = 4; i < isbn.size(); ++i)
   {
-    if(!std::isdigit(ISBN[i])) { return false; }
+    if(!std::isdigit(isbn[i])) { return false; }
   }
   return true;
+}
+
+std::ostream& operator<<(std::ostream& os, Book& book)
+{
+  return os << "Title: " << book.title() << '\n'
+            << "Author: " << book.author() << '\n'
+            << "ISBN-13: " << book.isbn() << '\n'
+            << "Copyright Date: " << book.copyright_date() << '\n'
+            << "Checked Out: " << book.checked_out() << '\n';
 }

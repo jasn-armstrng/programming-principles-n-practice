@@ -14,14 +14,13 @@
 
 int main() try
 {
-  Book the_hobbit { "978-0618968636&", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973" };
-  // std::string isbn { "978-0618968636" };
-  // std::cout << is_isbn(isbn) << '\n';
+  Book the_hobbit { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973" };
+  std::cout << the_hobbit;
   return 0;
 }
 catch(Invalid)
 {
-  std::cerr << "Error: ISBN should be in the form 978-XXXXXXXXXX, where X is an integer.\n";
+  std::cerr << "Error: ISBN should be in the form 978-n, where n is a 10-digit number.\n";
   return 1;
 }
 catch(...)
