@@ -5,13 +5,11 @@
  * @version 0.1
  * @date 2023-02-01
  *
- * @copyright Copyright (c) 2023
- *
  */
 
 #include <iostream>
 
-class Invalid {}; // to be used as exception
+class Invalid {}; // To be used as exception
 bool is_isbn(std::string& isbn);
 
 class Book
@@ -28,16 +26,16 @@ public:
   std::string title() const { return Title; }
   std::string author() const { return Author; }
   std::string copyright_date() const { return Copyright_Date; }
-  std::string checked_out() const { return Checked_Out ? "Yes" : "No"; }
+  bool checked_out() const { return Checked_Out; }
 
 private:
-  std::string ISBN, Title, Author, Copyright_Date;
+  std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
   bool Checked_Out;
 };
 
 bool is_isbn(std::string& isbn)
 {
-  // a valid ISBN-13,
+  // A valid ISBN-13,
   // - starts with 978
   // - is 14 digits long
   // - has the form 978-n, where n is a 10-digit number
@@ -52,9 +50,10 @@ bool is_isbn(std::string& isbn)
 
 std::ostream& operator<<(std::ostream& os, Book& book)
 {
+  // Enables output of a Book object's state
   return os << "Title: " << book.title() << '\n'
             << "Author: " << book.author() << '\n'
             << "ISBN-13: " << book.isbn() << '\n'
             << "Copyright Date: " << book.copyright_date() << '\n'
-            << "Checked Out: " << book.checked_out() << '\n';
+            << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
 }
