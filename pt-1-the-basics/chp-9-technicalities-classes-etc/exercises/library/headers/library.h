@@ -62,3 +62,8 @@ bool operator==(Book& a, Book& b)
 {
   return (a.isbn() == b.isbn());
 }
+
+bool operator!=(Book& a, Book& b)
+{
+  return !(a.isbn() == b.isbn());
+}

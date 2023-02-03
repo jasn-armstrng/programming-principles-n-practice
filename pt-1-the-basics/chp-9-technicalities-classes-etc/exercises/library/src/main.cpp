@@ -22,7 +22,7 @@ int main() try
 
   std::cout << '\n';
 
-  std::cout << (the_hobbit == daughter_of_fortune) << '\n';
+  std::cout << (the_hobbit != daughter_of_fortune) << '\n';
   return 0;
 }
 catch(Invalid)
