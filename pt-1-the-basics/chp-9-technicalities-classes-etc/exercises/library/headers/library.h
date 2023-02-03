@@ -57,3 +57,13 @@ std::ostream& operator<<(std::ostream& os, Book& book)
             << "Copyright Date: " << book.copyright_date() << '\n'
             << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
 }
+
+bool operator==(Book& a, Book& b)
+{
+  return (a.isbn() == b.isbn());
+}
+
+bool operator!=(Book& a, Book& b)
+{
+  return !(a.isbn() == b.isbn());
+}
