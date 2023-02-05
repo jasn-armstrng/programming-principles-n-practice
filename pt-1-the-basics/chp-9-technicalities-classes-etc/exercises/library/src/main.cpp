@@ -12,16 +12,17 @@
 
 int main() try
 {
-  Book the_hobbit { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973" };
+  Book the_hobbit { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
   std::cout << the_hobbit;
 
   std::cout << '\n';
 
-  Book daughter_of_fortune { "978-0006552314", "Daughter of Fortune", "Isabel Allende", "April 1, 2008" };
+  Book daughter_of_fortune { "978-0006552314", "Daughter of Fortune", "Isabel Allende", "April 1, 2008", Genre::biography };
   std::cout << daughter_of_fortune;
 
   std::cout << '\n';
 
+  std::cout << (the_hobbit == daughter_of_fortune) << '\n';
   std::cout << (the_hobbit != daughter_of_fortune) << '\n';
   return 0;
 }

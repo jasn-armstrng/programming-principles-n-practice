@@ -12,11 +12,17 @@
 class Invalid {}; // To be used as exception
 bool is_isbn(std::string& isbn);
 
+enum class Genre {
+  fiction, nonfiction, periodical, biography, children
+};
+
 class Book
 {
 public:
-  Book(std::string isbn, std::string title, std::string author, std::string copyright_date)
-    :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}
+  Genre GENRE;
+
+  Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
+    :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre}
   {
     if(!is_isbn(isbn)) { throw Invalid {}; }
     Checked_Out = false;
@@ -25,7 +31,7 @@ public:
   std::string isbn() const { return ISBN; }
   std::string title() const { return Title; }
   std::string author() const { return Author; }
-  std::string copyright_date() const { return Copyright_Date; }
+  std::string copyright_date() const { return Copyright_Date; }\
   bool checked_out() const { return Checked_Out; }
 
 private:
@@ -48,16 +54,6 @@ bool is_isbn(std::string& isbn)
   return true;
 }
 
-std::ostream& operator<<(std::ostream& os, Book& book)
-{
-  // Enables output of a Book object's state
-  return os << "Title: " << book.title() << '\n'
-            << "Author: " << book.author() << '\n'
-            << "ISBN-13: " << book.isbn() << '\n'
-            << "Copyright Date: " << book.copyright_date() << '\n'
-            << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
-}
-
 bool operator==(Book& a, Book& b)
 {
   return (a.isbn() == b.isbn());
@@ -66,4 +62,38 @@ bool operator==(Book& a, Book& b)
 bool operator!=(Book& a, Book& b)
 {
   return !(a.isbn() == b.isbn());
+}
+
+std::ostream& operator<<(std::ostream& os, Genre& genre)
+{
+  switch(genre){
+    case Genre::fiction:
+      return os << "Fiction\n";
+      break;
+    case Genre::nonfiction:
+      return os << "Nonfiction\n";
+      break;
+    case Genre::biography:
+      return os << "Biography\n";
+      break;
+    case Genre::children:
+      return os << "Children\n";
+      break;
+    case Genre::periodical:
+      return os << "Periodical\n";
+      break;
+    default:
+      return os;
+  }
+};
+
+std::ostream& operator<<(std::ostream& os, Book& book)
+{
+  // Enables output of a Book object's state
+  return os << "Title: " << book.title() << '\n'
+            << "Author: " << book.author() << '\n'
+            << "ISBN-13: " << book.isbn() << '\n'
+            << "Copyright Date: " << book.copyright_date() << '\n'
+            << "Genre: " << book.GENRE << '\n'
+            << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
 }
