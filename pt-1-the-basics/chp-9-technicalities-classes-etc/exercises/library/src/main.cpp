@@ -11,26 +11,33 @@
 #include "../headers/library.h"
 
 int main() try {
-  Book the_hobbit { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
-  std::cout << the_hobbit;
+  Book b1 { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
+  std::cout << b1;
 
   std::cout << '\n';
 
-  Book daughter_of_fortune { "978-0006552314", "Daughter of Fortune", "Isabel Allende", "April 1, 2008", Genre::biography };
-  std::cout << daughter_of_fortune;
+  Book b2 { "978-0006552314", "Daughter of Fortune", "Isabel Allende", "April 1, 2008", Genre::biography };
+  std::cout << b2;
 
   std::cout << '\n';
 
-  std::cout << (the_hobbit == daughter_of_fortune) << '\n';
-  std::cout << (the_hobbit != daughter_of_fortune) << '\n';
+  std::cout << (b1 == b2) << '\n';
+  std::cout << (b1 != b2) << '\n';
 
 
-  Library alexandria;
-  alexandria.add_book(the_hobbit);
-  alexandria.add_book(daughter_of_fortune);
+  Library l1;
+  l1.add_book(b1);
+  l1.add_book(b2);
 
   std::cout << '\n';
-  alexandria.list_books();
+  l1.list_books();
+
+  Patron p1 { "jasonarmstrong" };
+  Patron p2 { "olgakalinksya" };
+
+  std::cout << '\n';
+  std::cout << p1.user_name() << " " << p1.library_card_number() << '\n';
+  std::cout << p2.user_name() << " " << p2.library_card_number() << '\n';
 
   return 0;
 }

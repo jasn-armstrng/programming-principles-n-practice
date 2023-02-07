@@ -36,8 +36,8 @@ class Book
   public:
     // Constructor
     Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
-      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre} {
-
+      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre}
+    {
       if(!is_isbn(isbn)) { throw Invalid {}; }
       Checked_Out = false;
     };
@@ -60,9 +60,18 @@ class Book
 };
 
 
+int sequence {0};
+
+
 class Patron
 {
   public:
+    Patron(std::string user_name):User_Name{user_name}
+    {
+      ++sequence;
+      Library_Card_Number = std::to_string(sequence);
+    }
+
     // Getters
     std::string user_name() const { return User_Name; }
     std::string library_card_number() const { return Library_Card_Number; }
@@ -77,7 +86,7 @@ class Patron
   private:
     std::string User_Name;
     std::string Library_Card_Number;
-    double Library_Fees {0};
+    double Library_Fees { 0 };
     bool owes_fee { false };
 };
 
@@ -87,15 +96,22 @@ class Library {
     // Getters
     void list_books() const { for(Book b: books) { std::cout << b.title() << '\n'; } }
 
-
-
     // Setters
     void add_book(const Book& book) { books.push_back(book); }
     void add_patron(const Patron& patron) { patrons.push_back(patron); }
 
-    void checkout_book(const Patron& patron, Book& book) {
+    void checkout_book(const Patron& patron, Book& book)
+    {
       // check if patron and book are in libary then check out
-      if(patron_exists(patron) && book_exists(book)) { book.checkout(book); }
+      if(patron_exists(patron) && book_exists(book))
+      {
+        book.checkout(book);
+      }
+      else
+      {
+        throw Invalid {};
+      }
+
     }
 
   private:
