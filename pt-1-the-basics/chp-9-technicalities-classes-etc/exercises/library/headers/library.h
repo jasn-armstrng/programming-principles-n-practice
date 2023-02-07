@@ -9,80 +9,74 @@
 
 #include <iostream>
 
-
 class Invalid {}; // To be used as exception
 bool is_isbn(std::string& isbn);
 
-enum class Genre
-{
-  fiction, nonfiction, periodical, biography, children
+class Patron {
+  public:
+    // getters
+    std::string user_name() const { return User_Name; }
+    std::string library_card_number() const { return Library_Card_Number; }
+    double library_fees() const { return Library_Fees; }
+
+    // setters
+    void set_library_fees(Patron& p, double fee) {
+      p.Library_Fees += fee;
+      owes_fee = true;
+    }
+
+  private:
+    std::string User_Name;
+    std::string Library_Card_Number;
+    double Library_Fees {0};
+    bool owes_fee { false };
 };
 
-class Patron
-{
-public:
-  // getters
-  std::string user_name() const { return User_Name; }
-  std::string library_card_number() const { return Library_Card_Number; }
-  double library_fees() const { return Library_Fees; }
-
-  // setters
-  void set_library_fees(Patron& p, double fee)
-  {
-    p.Library_Fees += fee;
-    owes_fee = true;
-  }
-
-private:
-  std::string User_Name;
-  std::string Library_Card_Number;
-  double Library_Fees {0};
-  bool owes_fee { false };
+enum class Genre {
+  fiction,
+  nonfiction,
+  periodical,
+  biography,
+  children
 };
 
-class Book
-{
-public:
-  Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
-    :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre}
-  {
-    if(!is_isbn(isbn)) { throw Invalid {}; }
-    Checked_Out = false;
-  };
+class Book {
+  public:
+    Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
+      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre} {
 
-  // getters
-  std::string isbn() const { return ISBN; }
-  std::string title() const { return Title; }
-  std::string author() const { return Author; }
-  std::string copyright_date() const { return Copyright_Date; }
-  Genre genre() const { return GENRE; }
-  bool checked_out() const { return Checked_Out; }
+      if(!is_isbn(isbn)) { throw Invalid {}; }
+      Checked_Out = false;
+    };
 
-private:
-  std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
-  bool Checked_Out;
-  Genre GENRE;
+    // getters
+    std::string isbn() const { return ISBN; }
+    std::string title() const { return Title; }
+    std::string author() const { return Author; }
+    std::string copyright_date() const { return Copyright_Date; }
+    Genre genre() const { return GENRE; }
+    bool checked_out() const { return Checked_Out; }
+
+  private:
+    std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
+    bool Checked_Out;
+    Genre GENRE;
 };
 
-bool is_isbn(std::string& isbn)
-{
-  // A valid ISBN-13,
-  // - starts with 978
-  // - is 14 digits long
-  // - has the form 978-n, where n is a 10-digit number
-  if(isbn.size() != 14) { return false; }
-  if(isbn.substr(0, 4) != "978-") { return false; }
-  for(unsigned i = 4; i < isbn.size(); ++i)
-  {
+bool is_isbn(std::string& isbn) {
+  // Checks if ISBN-13 is valid
+  if(isbn.size() != 14) { return false; } // is 14 digits long
+  if(isbn.substr(0, 4) != "978-") { return false; } // starts with 978
+  for(unsigned i = 4; i < isbn.size(); ++i) { // has the form 978-n, where n is a 10-digit number
     if(!std::isdigit(isbn[i])) { return false; }
   }
+
   return true;
 }
 
-std::ostream& operator<<(std::ostream& os, const Genre& genre)
-{
-  switch(genre)
-  {
+std::ostream& operator<<(std::ostream& os, const Genre& genre) {
+  // Enables descriptive form of book's genre
+  switch(genre) {
     case Genre::fiction:
       return os << "Fiction";
       break;
@@ -103,8 +97,7 @@ std::ostream& operator<<(std::ostream& os, const Genre& genre)
   }
 }
 
-std::ostream& operator<<(std::ostream& os, const Book& book)
-{
+std::ostream& operator<<(std::ostream& os, const Book& book) {
   // Enables output of a Book object's state
   return os << "Title: " << book.title() << '\n'
             << "Author: " << book.author() << '\n'
@@ -114,12 +107,10 @@ std::ostream& operator<<(std::ostream& os, const Book& book)
             << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
 }
 
-bool operator==(const Book& a, const Book& b)
-{
+bool operator==(const Book& a, const Book& b) {
   return (a.isbn() == b.isbn());
 }
 
-bool operator!=(const Book& a, const Book& b)
-{
+bool operator!=(const Book& a, const Book& b) {
   return !(a.isbn() == b.isbn());
 }
