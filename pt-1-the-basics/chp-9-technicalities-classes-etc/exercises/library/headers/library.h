@@ -11,20 +11,61 @@
 #include <vector>
 #include "./chrono.h"
 
-using namespace Chrono;
+using namespace Chrono; // for Date type in Transaction
+
 
 bool is_isbn(std::string& isbn);
 
-class Invalid {}; // To be used as exception
+
+class Invalid {}; // Used as an exception
+
+
+enum class Genre {
+  // Book genres
+  fiction,
+  nonfiction,
+  periodical,
+  biography,
+  children
+};
+
+
+class Book {
+  public:
+    // Constructor
+    Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
+      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre} {
+
+      if(!is_isbn(isbn)) { throw Invalid {}; }
+      Checked_Out = false;
+    };
+
+    // Getters
+    std::string isbn() const { return ISBN; }
+    std::string title() const { return Title; }
+    std::string author() const { return Author; }
+    std::string copyright_date() const { return Copyright_Date; }
+    Genre genre() const { return GENRE; }
+    bool checked_out() const { return Checked_Out; }
+
+    // Setters
+    void checkout(Book& b) { b.Checked_Out = true; }
+
+  private:
+    std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
+    bool Checked_Out;
+    Genre GENRE;
+};
+
 
 class Patron {
   public:
-    // getters
+    // Getters
     std::string user_name() const { return User_Name; }
     std::string library_card_number() const { return Library_Card_Number; }
     double library_fees() const { return Library_Fees; }
 
-    // setters
+    // Setters
     void set_library_fees(Patron& patron, double fee) {
       patron.Library_Fees += fee;
       owes_fee = true;
@@ -37,45 +78,19 @@ class Patron {
     bool owes_fee { false };
 };
 
-enum class Genre {
-  fiction,
-  nonfiction,
-  periodical,
-  biography,
-  children
-};
-
-class Book {
-  public:
-    Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
-      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre} {
-
-      if(!is_isbn(isbn)) { throw Invalid {}; }
-      Checked_Out = false;
-    };
-
-    // getters
-    std::string isbn() const { return ISBN; }
-    std::string title() const { return Title; }
-    std::string author() const { return Author; }
-    std::string copyright_date() const { return Copyright_Date; }
-    Genre genre() const { return GENRE; }
-    bool checked_out() const { return Checked_Out; }
-
-  private:
-    std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
-    bool Checked_Out;
-    Genre GENRE;
-};
 
 class Library {
   public:
-    void add_book(Library& library, const Book& book) {
-      library.books.push_back(book);
-    }
+    // Getters
+    void list_books() const { for(Book b: books) { std::cout << b.title() << '\n'; } }
 
-    void add_patron(Library& library, const Patron& patron) {
-      library.patrons.push_back(patron);
+    // Setters
+    void add_book(const Book& book) { books.push_back(book); }
+    void add_patron(const Patron& patron) { patrons.push_back(patron); }
+
+    void checkout_book(const Patron& patron, Book& book) {
+      // check if patron and book are in libary then check out
+      book.checkout(book);
     }
 
   private:
@@ -83,12 +98,14 @@ class Library {
     std::vector<Patron> patrons;
 };
 
+
 struct Transaction {
   Book book;
   Patron patron;
   Date date;
   std::vector<Transaction> transactions;
 };
+
 
 bool is_isbn(std::string& isbn) {
   // Checks if ISBN-13 is valid
@@ -100,6 +117,7 @@ bool is_isbn(std::string& isbn) {
 
   return true;
 }
+
 
 std::ostream& operator<<(std::ostream& os, const Genre& genre) {
   // Enables descriptive form of book's genre
@@ -124,6 +142,7 @@ std::ostream& operator<<(std::ostream& os, const Genre& genre) {
   }
 }
 
+
 std::ostream& operator<<(std::ostream& os, const Book& book) {
   // Enables output of a Book object's state
   return os << "Title: " << book.title() << '\n'
@@ -134,9 +153,11 @@ std::ostream& operator<<(std::ostream& os, const Book& book) {
             << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
 }
 
+
 bool operator==(const Book& a, const Book& b) {
   return (a.isbn() == b.isbn());
 }
+
 
 bool operator!=(const Book& a, const Book& b) {
   return !(a.isbn() == b.isbn());
