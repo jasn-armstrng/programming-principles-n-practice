@@ -12,6 +12,7 @@
 
 int main() try
 {
+  // Test creation of new book objects, view book state
   Book b1 { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
   std::cout << b1;
 
@@ -27,10 +28,11 @@ int main() try
 
   std::cout << '\n';
 
+  // Test book comparison
   std::cout << (b1 == b2) << '\n';
   std::cout << (b1 != b2) << '\n';
 
-
+  // Test library object creation and adding books
   Library l1;
   l1.add_book(b1);
   l1.add_book(b2);
@@ -38,23 +40,28 @@ int main() try
   std::cout << '\n';
   l1.list_books();
 
+  // Test creation of patron
   Patron p1 { "jasonarmstrong" };
   Patron p2 { "olgakalinksya" };
   Patron p3 { "sevenofnine" };
   Patron p4 { "cuahtemocblanco" };
 
+  // Check created patron attributes
   std::cout << '\n';
   std::cout << p1.user_name() << " " << p1.library_card_number() << '\n';
   std::cout << p2.user_name() << " " << p2.library_card_number() << '\n';
   std::cout << p3.user_name() << " " << p3.library_card_number() << '\n';
 
+  // Test adding patrons to library
   l1.add_patron(p1);
   l1.add_patron(p2);
   l1.add_patron(p3);
 
+  // List all patrons
   std::cout << '\n';
   for(Patron p: l1.patrons()) { std::cout << p.library_card_number() << '\n'; }
 
+  // Test checkout with valid user
   l1.checkout_book(p1, b1); // jason..., the hobbit
   std::cout << '\n';
   std::cout << b1;
