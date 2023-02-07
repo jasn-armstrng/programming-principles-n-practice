@@ -73,14 +73,12 @@ class Book {
 
 class Library {
   public:
-    void add_book(const Book& book) {
-      books.push_back(book);
-    }
+    // getters
+    void list_books() { for(Book b: books) { std::cout << b.title() << '\n'; } }
 
-    void add_patron(const Patron& patron) {
-      patrons.push_back(patron);
-    }
-
+    // Setters
+    void add_book(const Book& book) { books.push_back(book); }
+    void add_patron(const Patron& patron) { patrons.push_back(patron); }
     void checkout_book(const Patron& patron, Book& book) {
       // check if patron and book are in libary then check out
       book.checkout(book);
