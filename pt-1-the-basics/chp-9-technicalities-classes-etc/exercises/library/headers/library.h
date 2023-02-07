@@ -12,8 +12,54 @@
 class Invalid {}; // To be used as exception
 bool is_isbn(std::string& isbn);
 
-enum class Genre {
+enum class Genre
+{
   fiction, nonfiction, periodical, biography, children
+};
+
+class Patron
+{
+public:
+  // getters
+  std::string user_name() const { return User_Name; }
+  std::string library_card_number() const { return Library_Card_Number; }
+  double library_fees() const { return Library_Fees; }
+
+  // setters
+  void set_library_fees(Patron& p, double fee)
+  {
+    p.Library_Fees += fee;
+    owes_fee = true;
+  }
+
+private:
+  std::string User_Name;
+  std::string Library_Card_Number;
+  double Library_Fees {0};
+  bool owes_fee { false };
+};
+
+std::ostream& operator<<(std::ostream& os, Genre& genre)
+{
+  switch(genre){
+    case Genre::fiction:
+      return os << "Fiction";
+      break;
+    case Genre::nonfiction:
+      return os << "Nonfiction";
+      break;
+    case Genre::biography:
+      return os << "Biography";
+      break;
+    case Genre::children:
+      return os << "Children";
+      break;
+    case Genre::periodical:
+      return os << "Periodical";
+      break;
+    default:
+      return os;
+  }
 };
 
 class Book
@@ -54,39 +100,6 @@ bool is_isbn(std::string& isbn)
   return true;
 }
 
-bool operator==(Book& a, Book& b)
-{
-  return (a.isbn() == b.isbn());
-}
-
-bool operator!=(Book& a, Book& b)
-{
-  return !(a.isbn() == b.isbn());
-}
-
-std::ostream& operator<<(std::ostream& os, Genre& genre)
-{
-  switch(genre){
-    case Genre::fiction:
-      return os << "Fiction\n";
-      break;
-    case Genre::nonfiction:
-      return os << "Nonfiction\n";
-      break;
-    case Genre::biography:
-      return os << "Biography\n";
-      break;
-    case Genre::children:
-      return os << "Children\n";
-      break;
-    case Genre::periodical:
-      return os << "Periodical\n";
-      break;
-    default:
-      return os;
-  }
-};
-
 std::ostream& operator<<(std::ostream& os, Book& book)
 {
   // Enables output of a Book object's state
@@ -96,4 +109,14 @@ std::ostream& operator<<(std::ostream& os, Book& book)
             << "Copyright Date: " << book.copyright_date() << '\n'
             << "Genre: " << book.GENRE << '\n'
             << "Available: " << (book.checked_out() ? "No" : "Yes") << '\n';
+}
+
+bool operator==(Book& a, Book& b)
+{
+  return (a.isbn() == b.isbn());
+}
+
+bool operator!=(Book& a, Book& b)
+{
+  return !(a.isbn() == b.isbn());
 }
