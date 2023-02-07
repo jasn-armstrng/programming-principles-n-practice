@@ -20,6 +20,9 @@ bool is_isbn(std::string& isbn);
 class Invalid {}; // Used as an exception
 
 
+inline void error(const std::string& s) { throw std::runtime_error(s); }
+
+
 enum class Genre
 {
   // Book genres
@@ -38,7 +41,7 @@ class Book
     Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
       :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre}
     {
-      if(!is_isbn(isbn)) { throw Invalid {}; }
+      if(!is_isbn(isbn)) { error("ISBN(-13) should be in the form 978-n, where n is a 10-digit number.\n"); }
       Checked_Out = false;
     };
 
@@ -94,33 +97,27 @@ class Patron
 class Library {
   public:
     // Getters
-    void list_books() const { for(Book b: books) { std::cout << b.title() << '\n'; } }
+    void list_books() const { for(Book b: Books) { std::cout << b.title() << '\n'; } }
+    std::vector<Patron> patrons() const { return Patrons; }
 
     // Setters
-    void add_book(const Book& book) { books.push_back(book); }
-    void add_patron(const Patron& patron) { patrons.push_back(patron); }
+    void add_book(const Book& book) { Books.push_back(book); }
+    void add_patron(const Patron& patron) { Patrons.push_back(patron); }
 
     void checkout_book(const Patron& patron, Book& book)
     {
-      // check if patron and book are in libary then check out
-      if(patron_exists(patron) && book_exists(book))
-      {
-        book.checkout(book);
-      }
-      else
-      {
-        throw Invalid {};
-      }
-
+      if(!patron_exists(patron)) { error("Patron does not exists!"); }
+      if(!book_exists(book)) { error("Book does not exists!"); }
+      book.checkout(book);
     }
 
   private:
-    std::vector<Book> books;
-    std::vector<Patron> patrons;
+    std::vector<Book> Books;
+    std::vector<Patron> Patrons;
 
     bool book_exists(const Book& book) const
     {
-      for(Book b: books)
+      for(Book b: Books)
       {
         if(book.title() == b.title()) { return true; }
       }
@@ -129,7 +126,7 @@ class Library {
 
     bool patron_exists(const Patron& patron) const
     {
-      for(Patron p: patrons)
+      for(Patron p: Patrons)
       {
         if(patron.library_card_number() == p.library_card_number())
         {
