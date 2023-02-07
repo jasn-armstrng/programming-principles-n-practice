@@ -14,7 +14,18 @@ namespace Chrono { // Namespaces organizes classes, functions, data, and types
 
     // Here the jan initialized as 1 begins a sequence that continues with feb=2,
     // mar=3 ...
-    jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
+    jan=1,
+    feb,
+    mar,
+    apr,
+    may,
+    jun,
+    jul,
+    aug,
+    sep,
+    oct,
+    nov,
+    dec
   }; // end of class
 
   class Date {

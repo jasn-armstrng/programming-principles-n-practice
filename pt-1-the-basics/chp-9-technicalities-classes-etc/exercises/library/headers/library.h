@@ -25,8 +25,8 @@ class Patron {
     double library_fees() const { return Library_Fees; }
 
     // setters
-    void set_library_fees(Patron& p, double fee) {
-      p.Library_Fees += fee;
+    void set_library_fees(Patron& patron, double fee) {
+      patron.Library_Fees += fee;
       owes_fee = true;
     }
 
@@ -70,6 +70,10 @@ class Book {
 
 class Library {
   public:
+    void add_book(Library& library, const Book& book) {
+      library.books.push_back(book);
+    }
+
   private:
     std::vector<Book> books;
     std::vector<Patron> patrons;
@@ -79,6 +83,7 @@ struct Transaction {
   Book book;
   Patron patron;
   Date date;
+  std::vector<Transaction> transactions;
 };
 
 bool is_isbn(std::string& isbn) {

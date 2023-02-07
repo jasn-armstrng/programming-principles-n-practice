@@ -119,7 +119,13 @@ namespace Chrono {
   }
 
   enum class Day {
-    sunday, monday, tuesday, wednesday, thursday, friday, saturday
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday
   };
 
   Day day_of_week(const Date& d) {
