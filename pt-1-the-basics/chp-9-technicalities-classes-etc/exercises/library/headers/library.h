@@ -93,6 +93,16 @@ class Patron
     bool owes_fee { false };
 };
 
+bool operator==(const Book& a, const Book& b)
+{
+  return (a.title() == b.title());
+}
+
+bool operator==(const Patron& a, const Patron& b)
+{
+  return (a.library_card_number() == b.library_card_number());
+}
+
 
 class Library {
   public:
@@ -119,7 +129,7 @@ class Library {
     {
       for(Book b: Books)
       {
-        if(book.title() == b.title()) { return true; }
+        if(book == b) { return true; }
       }
       return false;
     }
@@ -128,10 +138,7 @@ class Library {
     {
       for(Patron p: Patrons)
       {
-        if(patron.library_card_number() == p.library_card_number())
-        {
-          return true;
-        }
+        if(patron == p) { return true; }
       }
       return false;
     }
@@ -197,19 +204,10 @@ std::ostream& operator<<(std::ostream& os, const Book& book)
 }
 
 
-bool operator==(const Book& a, const Book& b)
-{
-  return (a.title() == b.title());
-}
+
 
 
 bool operator!=(const Book& a, const Book& b)
 {
   return !(a.title() == b.title());
-}
-
-
-bool operator==(const Patron& a, const Patron& b)
-{
-  return (a.library_card_number() == b.library_card_number());
 }
