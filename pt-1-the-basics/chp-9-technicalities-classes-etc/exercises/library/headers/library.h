@@ -20,7 +20,8 @@ bool is_isbn(std::string& isbn);
 class Invalid {}; // Used as an exception
 
 
-enum class Genre {
+enum class Genre
+{
   // Book genres
   fiction,
   nonfiction,
@@ -30,7 +31,8 @@ enum class Genre {
 };
 
 
-class Book {
+class Book
+{
   public:
     // Constructor
     Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
@@ -58,7 +60,8 @@ class Book {
 };
 
 
-class Patron {
+class Patron
+{
   public:
     // Getters
     std::string user_name() const { return User_Name; }
@@ -84,18 +87,41 @@ class Library {
     // Getters
     void list_books() const { for(Book b: books) { std::cout << b.title() << '\n'; } }
 
+
+
     // Setters
     void add_book(const Book& book) { books.push_back(book); }
     void add_patron(const Patron& patron) { patrons.push_back(patron); }
 
     void checkout_book(const Patron& patron, Book& book) {
       // check if patron and book are in libary then check out
-      book.checkout(book);
+      if(patron_exists(patron) && book_exists(book)) { book.checkout(book); }
     }
 
   private:
     std::vector<Book> books;
     std::vector<Patron> patrons;
+
+    bool book_exists(const Book& book) const
+    {
+      for(Book b: books)
+      {
+        if(book.title() == b.title()) { return true; }
+      }
+      return false;
+    }
+
+    bool patron_exists(const Patron& patron) const
+    {
+      for(Patron p: patrons)
+      {
+        if(patron.library_card_number() == p.library_card_number())
+        {
+          return true;
+        }
+      }
+      return false;
+    }
 };
 
 
@@ -111,7 +137,8 @@ bool is_isbn(std::string& isbn) {
   // Checks if ISBN-13 is valid
   if(isbn.size() != 14) { return false; } // is 14 digits long
   if(isbn.substr(0, 4) != "978-") { return false; } // starts with 978
-  for(unsigned i = 4; i < isbn.size(); ++i) { // has the form 978-n, where n is a 10-digit number
+  for(unsigned i = 4; i < isbn.size(); ++i) // has the form 978-n, where n is a 10-digit number
+  {
     if(!std::isdigit(isbn[i])) { return false; }
   }
 
@@ -119,9 +146,11 @@ bool is_isbn(std::string& isbn) {
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Genre& genre) {
+std::ostream& operator<<(std::ostream& os, const Genre& genre)
+{
   // Enables descriptive form of book's genre
-  switch(genre) {
+  switch(genre)
+  {
     case Genre::fiction:
       return os << "Fiction";
       break;
@@ -143,7 +172,8 @@ std::ostream& operator<<(std::ostream& os, const Genre& genre) {
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Book& book) {
+std::ostream& operator<<(std::ostream& os, const Book& book)
+{
   // Enables output of a Book object's state
   return os << "Title: " << book.title() << '\n'
             << "Author: " << book.author() << '\n'
@@ -154,11 +184,19 @@ std::ostream& operator<<(std::ostream& os, const Book& book) {
 }
 
 
-bool operator==(const Book& a, const Book& b) {
-  return (a.isbn() == b.isbn());
+bool operator==(const Book& a, const Book& b)
+{
+  return (a.title() == b.title());
 }
 
 
-bool operator!=(const Book& a, const Book& b) {
-  return !(a.isbn() == b.isbn());
+bool operator!=(const Book& a, const Book& b)
+{
+  return !(a.title() == b.title());
+}
+
+
+bool operator==(const Patron& a, const Patron& b)
+{
+  return (a.library_card_number() == b.library_card_number());
 }
