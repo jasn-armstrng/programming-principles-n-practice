@@ -20,7 +20,11 @@ bool is_isbn(std::string& isbn);
 class Invalid {}; // Used as an exception
 
 
-enum class Genre {
+inline void error(const std::string& s) { throw std::runtime_error(s); }
+
+
+enum class Genre
+{
   // Book genres
   fiction,
   nonfiction,
@@ -30,13 +34,14 @@ enum class Genre {
 };
 
 
-class Book {
+class Book
+{
   public:
     // Constructor
     Book(std::string isbn, std::string title, std::string author, std::string copyright_date, Genre genre)
-      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre} {
-
-      if(!is_isbn(isbn)) { throw Invalid {}; }
+      :ISBN{isbn}, Title{title}, Author{author}, Copyright_Date{copyright_date}, GENRE{genre}
+    {
+      if(!is_isbn(isbn)) { error("ISBN(-13) should be in the form 978-n, where n is a 10-digit number.\n"); }
       Checked_Out = false;
     };
 
@@ -58,8 +63,18 @@ class Book {
 };
 
 
-class Patron {
+int sequence {0};
+
+
+class Patron
+{
   public:
+    Patron(std::string user_name):User_Name{user_name}
+    {
+      ++sequence;
+      Library_Card_Number = std::to_string(sequence);
+    }
+
     // Getters
     std::string user_name() const { return User_Name; }
     std::string library_card_number() const { return Library_Card_Number; }
@@ -74,28 +89,59 @@ class Patron {
   private:
     std::string User_Name;
     std::string Library_Card_Number;
-    double Library_Fees {0};
+    double Library_Fees { 0 };
     bool owes_fee { false };
 };
+
+bool operator==(const Book& a, const Book& b)
+{
+  return (a.title() == b.title());
+}
+
+bool operator==(const Patron& a, const Patron& b)
+{
+  return (a.library_card_number() == b.library_card_number());
+}
 
 
 class Library {
   public:
     // Getters
-    void list_books() const { for(Book b: books) { std::cout << b.title() << '\n'; } }
+    void list_books() const { for(Book b: Books) { std::cout << b.title() << '\n'; } }
+    std::vector<Patron> patrons() const { return Patrons; }
 
     // Setters
-    void add_book(const Book& book) { books.push_back(book); }
-    void add_patron(const Patron& patron) { patrons.push_back(patron); }
+    void add_book(const Book& book) { Books.push_back(book); }
+    void add_patron(const Patron& patron) { Patrons.push_back(patron); }
 
-    void checkout_book(const Patron& patron, Book& book) {
-      // check if patron and book are in libary then check out
+    void checkout_book(const Patron& patron, Book& book)
+    {
+      if(!patron_exists(patron)) { error("Patron does not exists!"); }
+      if(!book_exists(book)) { error("Book does not exists!"); }
       book.checkout(book);
     }
 
   private:
-    std::vector<Book> books;
-    std::vector<Patron> patrons;
+    std::vector<Book> Books;
+    std::vector<Patron> Patrons;
+
+    bool book_exists(const Book& book) const
+    {
+      for(Book b: Books)
+      {
+        if(book == b) { return true; }
+      }
+      return false;
+    }
+
+    bool patron_exists(const Patron& patron) const
+    {
+      for(Patron p: Patrons)
+      {
+        if(patron == p) { return true; }
+      }
+      return false;
+    }
 };
 
 
@@ -111,7 +157,8 @@ bool is_isbn(std::string& isbn) {
   // Checks if ISBN-13 is valid
   if(isbn.size() != 14) { return false; } // is 14 digits long
   if(isbn.substr(0, 4) != "978-") { return false; } // starts with 978
-  for(unsigned i = 4; i < isbn.size(); ++i) { // has the form 978-n, where n is a 10-digit number
+  for(unsigned i = 4; i < isbn.size(); ++i) // has the form 978-n, where n is a 10-digit number
+  {
     if(!std::isdigit(isbn[i])) { return false; }
   }
 
@@ -119,9 +166,11 @@ bool is_isbn(std::string& isbn) {
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Genre& genre) {
+std::ostream& operator<<(std::ostream& os, const Genre& genre)
+{
   // Enables descriptive form of book's genre
-  switch(genre) {
+  switch(genre)
+  {
     case Genre::fiction:
       return os << "Fiction";
       break;
@@ -143,7 +192,8 @@ std::ostream& operator<<(std::ostream& os, const Genre& genre) {
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Book& book) {
+std::ostream& operator<<(std::ostream& os, const Book& book)
+{
   // Enables output of a Book object's state
   return os << "Title: " << book.title() << '\n'
             << "Author: " << book.author() << '\n'
@@ -154,11 +204,10 @@ std::ostream& operator<<(std::ostream& os, const Book& book) {
 }
 
 
-bool operator==(const Book& a, const Book& b) {
-  return (a.isbn() == b.isbn());
-}
 
 
-bool operator!=(const Book& a, const Book& b) {
-  return !(a.isbn() == b.isbn());
+
+bool operator!=(const Book& a, const Book& b)
+{
+  return !(a.title() == b.title());
 }
