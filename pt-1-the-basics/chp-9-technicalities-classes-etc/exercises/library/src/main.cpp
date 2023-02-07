@@ -23,6 +23,11 @@ int main() try {
 
   std::cout << (the_hobbit == daughter_of_fortune) << '\n';
   std::cout << (the_hobbit != daughter_of_fortune) << '\n';
+
+  std::cout << '\n';
+  Library alexandria;
+  alexandria.add_book(the_hobbit);
+
   return 0;
 }
 catch(Invalid) {

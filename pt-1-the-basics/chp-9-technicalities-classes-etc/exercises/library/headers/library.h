@@ -62,6 +62,9 @@ class Book {
     Genre genre() const { return GENRE; }
     bool checked_out() const { return Checked_Out; }
 
+    // setters
+    void checkout(Book& b) { b.Checked_Out = true; }
+
   private:
     std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
     bool Checked_Out;
@@ -70,12 +73,17 @@ class Book {
 
 class Library {
   public:
-    void add_book(Library& library, const Book& book) {
-      library.books.push_back(book);
+    void add_book(const Book& book) {
+      books.push_back(book);
     }
 
-    void add_patron(Library& library, const Patron& patron) {
-      library.patrons.push_back(patron);
+    void add_patron(const Patron& patron) {
+      patrons.push_back(patron);
+    }
+
+    void checkout_book(const Patron& patron, Book& book) {
+      // check if patron and book are in libary then check out
+      book.checkout(book);
     }
 
   private:
