@@ -74,6 +74,10 @@ class Library {
       library.books.push_back(book);
     }
 
+    void add_patron(Library& library, const Patron& patron) {
+      library.patrons.push_back(patron);
+    }
+
   private:
     std::vector<Book> books;
     std::vector<Patron> patrons;
