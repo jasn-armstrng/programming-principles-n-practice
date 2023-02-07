@@ -8,9 +8,11 @@
  */
 
 #include <iostream>
+#include <vector>
+
+bool is_isbn(std::string& isbn);
 
 class Invalid {}; // To be used as exception
-bool is_isbn(std::string& isbn);
 
 class Patron {
   public:
@@ -61,6 +63,13 @@ class Book {
     std::string ISBN, Title, Author, Copyright_Date; // Using ISBN-13
     bool Checked_Out;
     Genre GENRE;
+};
+
+class Library {
+  public:
+  private:
+    std::vector<Book> books;
+    std::vector<Patron> patrons;
 };
 
 bool is_isbn(std::string& isbn) {

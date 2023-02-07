@@ -10,8 +10,7 @@
 #include <iostream>
 #include "../headers/library.h"
 
-int main() try
-{
+int main() try {
   Book the_hobbit { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
   std::cout << the_hobbit;
 
@@ -26,13 +25,11 @@ int main() try
   std::cout << (the_hobbit != daughter_of_fortune) << '\n';
   return 0;
 }
-catch(Invalid)
-{
+catch(Invalid) {
   std::cerr << "Error: ISBN should be in the form 978-n, where n is a 10-digit number.\n";
   return 1;
 }
-catch(...)
-{
+catch(...) {
   std::cerr << "Error: Unknown exception!\n";
   return 2;
 }
