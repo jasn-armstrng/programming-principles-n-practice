@@ -9,6 +9,9 @@
 
 #include <iostream>
 #include <vector>
+#include "./chrono.h"
+
+using namespace Chrono;
 
 bool is_isbn(std::string& isbn);
 
