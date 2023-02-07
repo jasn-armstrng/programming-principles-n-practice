@@ -72,6 +72,12 @@ class Library {
     std::vector<Patron> patrons;
 };
 
+struct Transaction {
+  Book book;
+  Patron patron;
+  Date date;
+};
+
 bool is_isbn(std::string& isbn) {
   // Checks if ISBN-13 is valid
   if(isbn.size() != 14) { return false; } // is 14 digits long
