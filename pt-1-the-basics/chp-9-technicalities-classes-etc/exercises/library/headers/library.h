@@ -20,7 +20,6 @@ struct Transaction {
   Book book;
   Patron patron;
   Date date;
-  std::vector<Transaction> transactions;
 };
 
 
@@ -38,6 +37,7 @@ class Library {
   private:
     std::vector<Book> Books;
     std::vector<Patron> Patrons;
+    std::vector<Transaction> transactions;
 
     // Verification methods for books and patrons
     bool book_exists(const Book& book) const;
@@ -70,5 +70,8 @@ void Library::checkout_book(const Patron& patron, Book& book)
   if(!patron_exists(patron)) { error("Patron does not exists!"); }
   if(!book_exists(book)) { error("Book does not exists!"); }
   if(patron.has_fees()) { error("Patron has outstanding fees!"); }
+
+  Transaction transaction { book, patron, Date{2023, Month::feb, 8} };
+  transactions.push_back(transaction);
   book.checkout(book);
 }
