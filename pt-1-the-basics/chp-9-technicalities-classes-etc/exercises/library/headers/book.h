@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include "./std_lib_facilities.h"
+#include "./std_lib_facilities.h" // For error()
 
 enum class Genre // Book genres
 {
