@@ -84,6 +84,9 @@ int main() try
   std::cout << p1.fees() << '\n';
   std::cout << p1.has_fees() << '\n';
 
+  // Test checkout with outstanding fees
+  l1.checkout_book(p1, b2); // jason..., Daughter of Fortune
+
   return 0;
 }
 catch(std::exception& e)

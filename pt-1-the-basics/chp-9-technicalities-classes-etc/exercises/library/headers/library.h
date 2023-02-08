@@ -69,5 +69,6 @@ void Library::checkout_book(const Patron& patron, Book& book)
 {
   if(!patron_exists(patron)) { error("Patron does not exists!"); }
   if(!book_exists(book)) { error("Book does not exists!"); }
+  if(patron.has_fees()) { error("Patron has outstanding fees!"); }
   book.checkout(book);
 }
