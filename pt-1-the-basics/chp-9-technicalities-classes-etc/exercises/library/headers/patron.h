@@ -13,7 +13,7 @@ int number { 0 }; // incremented when a patron is created
 class Patron
 {
   public:
-    // Contructor
+    // Constructor
     Patron(std::string user_name);
 
     // Getters
@@ -31,12 +31,16 @@ class Patron
     double Fees { 0 };
 };
 
-// Member function definitions
+
+// Member function definitions .................................................
 Patron::Patron(std::string user_name):User_Name{user_name}
 {
   ++number;
   ID = std::to_string(number);
 }
 
-// Helper functions
-bool operator==(const Patron& a, const Patron& b) { return (a.id() == b.id()); }
+// Helper functions ............................................................
+bool operator==(const Patron& a, const Patron& b)
+{
+  return (a.id() == b.id());
+}

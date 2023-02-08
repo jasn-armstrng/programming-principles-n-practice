@@ -14,17 +14,17 @@ int main() try
 {
   // Test creation of new book objects, view book state
   Book b1 { "978-0618968636", "The Hobbit", "J. R. R. Tolkien", "January 1, 1973", Genre::fiction };
-  std::cout << b1;
+  std::cout << b1 << '\n';
 
   std::cout << '\n';
 
   Book b2 { "978-0006552314", "Daughter of Fortune", "Isabel Allende", "April 1, 2008", Genre::biography };
-  std::cout << b2;
+  std::cout << b2 << '\n';
 
   std::cout << '\n';
 
   Book b3 { "978-0142437230", "Don Quixote", "Miguel Cervantes", "February 25, 2003", Genre::fiction };
-  std::cout << b3;
+  std::cout << b3 << '\n';
 
   std::cout << '\n';
 
@@ -64,7 +64,7 @@ int main() try
   // Test checkout with valid user
   l1.checkout_book(p1, b1); // jason..., the hobbit
   std::cout << '\n';
-  std::cout << b1;
+  std::cout << b1 << '\n';
 
   // Test checkout with non-existent book
   // std::cout << '\n';
