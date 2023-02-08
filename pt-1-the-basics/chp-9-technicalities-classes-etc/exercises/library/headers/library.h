@@ -4,12 +4,12 @@
  * @brief Contains the definitions for classes and helper functions
  * @version 0.1
  * @date 2023-02-01
- *
  */
 
 #include <iostream>
 #include <vector>
 #include "./chrono.h"
+#include "./patron.h"
 
 using namespace Chrono; // for Date type in Transaction
 
@@ -63,44 +63,9 @@ class Book
 };
 
 
-int sequence {0};
-
-
-class Patron
-{
-  public:
-    Patron(std::string user_name):User_Name{user_name}
-    {
-      ++sequence;
-      Library_Card_Number = std::to_string(sequence);
-    }
-
-    // Getters
-    std::string user_name() const { return User_Name; }
-    std::string library_card_number() const { return Library_Card_Number; }
-    double library_fees() const { return Library_Fees; }
-
-    // Setters
-    void set_library_fees(Patron& patron, double fee) {
-      patron.Library_Fees += fee;
-      owes_fee = true;
-    }
-
-  private:
-    std::string User_Name;
-    std::string Library_Card_Number;
-    double Library_Fees { 0 };
-    bool owes_fee { false };
-};
-
 bool operator==(const Book& a, const Book& b)
 {
   return (a.title() == b.title());
-}
-
-bool operator==(const Patron& a, const Patron& b)
-{
-  return (a.library_card_number() == b.library_card_number());
 }
 
 

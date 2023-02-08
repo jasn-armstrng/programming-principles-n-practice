@@ -48,9 +48,9 @@ int main() try
 
   // Check created patron attributes
   std::cout << '\n';
-  std::cout << p1.user_name() << " " << p1.library_card_number() << '\n';
-  std::cout << p2.user_name() << " " << p2.library_card_number() << '\n';
-  std::cout << p3.user_name() << " " << p3.library_card_number() << '\n';
+  std::cout << p1.user_name() << " " << p1.id() << '\n';
+  std::cout << p2.user_name() << " " << p2.id() << '\n';
+  std::cout << p3.user_name() << " " << p3.id() << '\n';
 
   // Test adding patrons to library
   l1.add_patron(p1);
@@ -59,7 +59,7 @@ int main() try
 
   // List all patrons
   std::cout << '\n';
-  for(Patron p: l1.patrons()) { std::cout << p.library_card_number() << '\n'; }
+  for(Patron p: l1.patrons()) { std::cout << p.id() << '\n'; }
 
   // Test checkout with valid user
   l1.checkout_book(p1, b1); // jason..., the hobbit
@@ -73,10 +73,16 @@ int main() try
   // std::cout << b3;
 
   // Test checkout with non-existent patron
+  // std::cout << '\n';
+  // l1.checkout_book(p4, b2); // jason..., the hobbit
+  // std::cout << '\n';
+  // std::cout << b2;
+
+  // Test set library fees
+  p1.add_fee(0.50);
   std::cout << '\n';
-  l1.checkout_book(p4, b2); // jason..., the hobbit
-  std::cout << '\n';
-  std::cout << b2;
+  std::cout << p1.fees() << '\n';
+  std::cout << p1.has_fees() << '\n';
 
   return 0;
 }
