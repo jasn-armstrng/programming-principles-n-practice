@@ -55,5 +55,5 @@ namespace Chrono {
   std::ostream& operator<<(std::ostream& os, const Date& d);
 
 
-  std::istream& operator<<(std::istream& os, const Date& d);
+  std::istream& operator>>(std::istream& os, const Date& d);
 }
