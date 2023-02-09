@@ -1,3 +1,12 @@
+/**
+ * @file chrono.h
+ * @author Jason Armstrong
+ * @brief Date class definition and member declarations. See member definitions
+ *        in chrono.cpp
+ * @version 0.1
+ * @date 2023-02-06
+ */
+
 #include <iostream> // for istream and ostream facilities
 
 namespace Chrono {
