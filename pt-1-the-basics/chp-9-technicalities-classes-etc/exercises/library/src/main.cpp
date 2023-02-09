@@ -59,7 +59,8 @@ int main() try
 
   // List all patrons
   std::cout << '\n';
-  for(Patron p: l1.patrons()) { std::cout << p.id() << '\n'; }
+  l1.patrons();
+
 
   // Test checkout with valid user
   l1.checkout_book(p1, b1); // jason..., the hobbit
@@ -87,9 +88,9 @@ int main() try
   // Test checkout with outstanding fees
   // l1.checkout_book(p1, b2); // jason..., Daughter of Fortune
 
-  // Test list all library checkouts
+  // Test list all Patrons owing fees
   std::cout << '\n';
-  l1.checkouts();
+  l1.outstanding_fees();
 
   return 0;
 }
