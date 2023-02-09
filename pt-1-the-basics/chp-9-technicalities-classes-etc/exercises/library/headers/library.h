@@ -20,15 +20,15 @@ struct Transaction {
   Book book;
   Patron patron;
   Date date;
-  std::vector<Transaction> transactions;
 };
 
 
 class Library {
   public:
     // Getters
-    void list_books() const;
+    void books() const;
     std::vector<Patron> patrons() const { return Patrons; }
+    void checkouts() const;
 
     // Setters
     void add_book(const Book& book) { Books.push_back(book); }
@@ -38,6 +38,7 @@ class Library {
   private:
     std::vector<Book> Books;
     std::vector<Patron> Patrons;
+    std::vector<Transaction> transactions;
 
     // Verification methods for books and patrons
     bool book_exists(const Book& book) const;
@@ -45,7 +46,7 @@ class Library {
 };
 
 // Member function definitions .................................................
-void Library::list_books() const
+void Library::books() const
 {
   for(Book b: Books) { std::cout << b.title() << '\n'; }
 }
@@ -67,7 +68,23 @@ bool Library::patron_exists(const Patron& patron) const
 
 void Library::checkout_book(const Patron& patron, Book& book)
 {
+  // Verify if transa
   if(!patron_exists(patron)) { error("Patron does not exists!"); }
   if(!book_exists(book)) { error("Book does not exists!"); }
+  if(patron.has_fees()) { error("Patron has outstanding fees!"); }
+
+  Transaction transaction { book, patron, Date{2023, Month::feb, 8} };
+  transactions.push_back(transaction);
   book.checkout(book);
+}
+
+
+void Library::checkouts() const
+{
+  for(Transaction t: transactions)
+  {
+    std::cout << t.date << ", "
+              << t.patron.user_name() << ", "
+              << t.book.title() << '\n';
+  }
 }

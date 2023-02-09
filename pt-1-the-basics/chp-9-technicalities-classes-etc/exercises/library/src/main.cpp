@@ -38,7 +38,7 @@ int main() try
   l1.add_book(b2);
 
   std::cout << '\n';
-  l1.list_books();
+  l1.books();
 
   // Test creation of patron
   Patron p1 { "jasonarmstrong" };
@@ -83,6 +83,13 @@ int main() try
   std::cout << '\n';
   std::cout << p1.fees() << '\n';
   std::cout << p1.has_fees() << '\n';
+
+  // Test checkout with outstanding fees
+  // l1.checkout_book(p1, b2); // jason..., Daughter of Fortune
+
+  // Test list all library checkouts
+  std::cout << '\n';
+  l1.checkouts();
 
   return 0;
 }
