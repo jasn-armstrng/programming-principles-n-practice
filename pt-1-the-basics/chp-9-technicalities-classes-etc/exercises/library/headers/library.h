@@ -28,7 +28,6 @@ class Library {
     // Getters
     void books() const;
     std::vector<Patron> patrons() const { return Patrons; }
-    void checkouts() const;
 
     // Setters
     void add_book(const Book& book) { Books.push_back(book); }
@@ -76,15 +75,4 @@ void Library::checkout_book(const Patron& patron, Book& book)
   Transaction transaction { book, patron, Date{2023, Month::feb, 8} };
   transactions.push_back(transaction);
   book.checkout(book);
-}
-
-
-void Library::checkouts() const
-{
-  for(Transaction t: transactions)
-  {
-    std::cout << t.date << ", "
-              << t.patron.user_name() << ", "
-              << t.book.title() << '\n';
-  }
 }
