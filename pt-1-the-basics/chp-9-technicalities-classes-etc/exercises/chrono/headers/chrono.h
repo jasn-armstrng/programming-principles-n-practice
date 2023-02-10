@@ -76,33 +76,26 @@ namespace Chrono
 
   bool is_date(int d, Month m, int y)
   {
-    /**
-     * Checks:
-     * - date is between 1 and 31
-     * - month is between 1 and 12
-     * - year is between 1 and 9999
-     * - if year is leap year Feb 29 is allowed
-     * - month day values in "30 days has September ..." mnemonic applies
-     */
-    if(d <= 0) { return false; }
+    // Valid date checks
+    if(d < 1) { return false; } // date >= 1
 
-    if(m < Month::jan || m > Month::dec) { return false; }
+    if(m < Month::jan || m > Month::dec) { return false; } // 1 <= month <= 12
 
     int days_in_month;
-    switch(m)
+    switch(m) // month day values in "30 days has September ..." mnemonic applies
     {
       case Month::feb:
-        days_in_month = is_leap_year(y) ? 29 : 28;
+        days_in_month = is_leap_year(y) ? 29 : 28; // if leap year Feb 29 is allowed
         break;
-      // case Month::apr: case Month::jun: case Month::sep: case Month::nov:
-      //   days_in_month = 30;
-      //   break;
+      case Month::apr: case Month::jun: case Month::sep: case Month::nov:
+        days_in_month = 30;
+        break;
       default:
         days_in_month = 31;
         break;
     }
 
-    //if(d > days_in_month) { return false; }
+    if(d > days_in_month) { return false; } // date <= (at most) 31
 
     return true;
   }
