@@ -36,7 +36,7 @@ namespace Chrono
       int y; // year
   };
 
-
+  // Helper functions ..........................................................
   std::ostream& operator<<(std::ostream& os, const Month& month)
   {
     switch (month)
@@ -61,5 +61,49 @@ namespace Chrono
   std::ostream& operator<<(std::ostream& os, const Date& date)
   {
     return os << date.dd() << '/' << date.mm() << '/' << date.yr(); // dd/mm/yyyy
+  }
+
+
+  bool is_leap_year(int y)
+  {
+    // a leap year is divisible by 4 or 400 but not 100
+    if(y % 400 == 0) { return true; }
+    if(y % 100 == 0) { return false; }
+    if(y % 4 == 0) { return true; }
+    return false;
+  }
+
+
+  bool is_date(int d, Month m, int y)
+  {
+    /**
+     * Checks:
+     * - date is between 1 and 31
+     * - month is between 1 and 12
+     * - year is between 1 and 9999
+     * - if year is leap year Feb 29 is allowed
+     * - month day values in "30 days has September ..." mnemonic applies
+     */
+    if(d <= 0) { return false; }
+
+    if(m < Month::jan || m > Month::dec) { return false; }
+
+    int days_in_month;
+    switch(m)
+    {
+      case Month::feb:
+        days_in_month = is_leap_year(y) ? 29 : 28;
+        break;
+      // case Month::apr: case Month::jun: case Month::sep: case Month::nov:
+      //   days_in_month = 30;
+      //   break;
+      default:
+        days_in_month = 31;
+        break;
+    }
+
+    //if(d > days_in_month) { return false; }
+
+    return true;
   }
 };
