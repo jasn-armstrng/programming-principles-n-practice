@@ -16,16 +16,16 @@ namespace Chrono
     jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
   };
 
+
   bool is_date(const int d, const Month m, const int y);
+
 
   class Date
   {
     public:
-      Date(int date, Month month, int year):d{date}, m{month}, y{year}
-      {
-        // Check if day and year are valid. If not throw error
-        if(!is_date(date, month, year)) { error("Invalid date value(s)!"); }
-      }
+      Date(int date, Month month, int year); // Date constructor
+
+      Date(); // Default date constructor
 
       // Non-modifying member functions
       int dd() const { return d; } // 1-31
@@ -38,6 +38,25 @@ namespace Chrono
       Month m; // month
       int y; // year
   };
+
+  // Member functions ..........................................................
+  Date::Date(int date, Month month, int year):d{date}, m{month}, y{year}
+  {
+    // Check if day and year are valid. If not throw error
+    if(!is_date(date, month, year)) { error("Invalid date value(s)!"); }
+  }
+
+
+  const Date& default_date() // Define default date 1/1/1970
+  {
+    static Date def_dt { 1, Month::jan, 1970 };
+    return def_dt;
+  }
+
+
+  Date::Date():d{default_date().dd()},
+               m{default_date().mm()},
+               y{default_date().yr()} { }
 
   // Helper functions ..........................................................
   std::ostream& operator<<(std::ostream& os, const Month& month)
