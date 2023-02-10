@@ -7,6 +7,7 @@
  */
 
 #include <iostream>
+#include "./std_lib_facilities.h"
 
 namespace Chrono
 {
@@ -15,6 +16,7 @@ namespace Chrono
     jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
   };
 
+  bool is_date(const int d, const Month m, const int y);
 
   class Date
   {
@@ -22,6 +24,7 @@ namespace Chrono
       Date(int date, Month month, int year):d{date}, m{month}, y{year}
       {
         // Check if day and year are valid. If not throw error
+        if(!is_date(date, month, year)) { error("Invalid date value(s)!"); }
       }
 
       // Non-modifying member functions
@@ -68,13 +71,16 @@ namespace Chrono
   {
     // a leap year is divisible by 4 or 400 but not 100
     if(y % 400 == 0) { return true; }
+
     if(y % 100 == 0) { return false; }
+
     if(y % 4 == 0) { return true; }
+
     return false;
   }
 
 
-  bool is_date(int d, Month m, int y)
+  bool is_date(const int d, const Month m, const int y)
   {
     // Valid date checks
     if(d < 1) { return false; } // date >= 1

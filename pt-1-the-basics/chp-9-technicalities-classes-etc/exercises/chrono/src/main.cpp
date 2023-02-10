@@ -11,7 +11,7 @@
 
 using namespace Chrono;
 
-int main()
+int main() try
 {
   // Test Date construction
   Date date { 23, Month::jul, 2023 };
@@ -21,5 +21,19 @@ int main()
   std::cout << date.dd() << ' ' << date.mon() << ' ' << date.yr() << '\n';
   std::cout << date << '\n';
 
+  // Test bad date values, error throw and catch
+  // Date date2 { 0, Month::jul, 2023 }; // day < 1
+  // Date date2 { 33, Month::jul, 2023 }; // day > 31
+  // Date date2 { 33, Month::jul, 10000 }; //
+  // Date date2 { 39, Month::feb, 2023 };
+
   return 0;
+}
+catch(std::exception& e)
+{
+  std::cerr << "Error: " << e.what() << '\n';
+}
+catch(...)
+{
+  std::cerr << "Error: Unknown exception!\n";
 }
