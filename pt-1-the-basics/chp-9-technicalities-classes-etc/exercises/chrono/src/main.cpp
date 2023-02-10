@@ -7,8 +7,17 @@
  */
 
 #include <iostream>
+#include "../headers/chrono.h"
+
+using namespace Chrono;
 
 int main()
 {
+  // Test Date construction
+  Date date { 23, Month::jul, 2023 };
+
+  // Test Date member function outputs
+  std::cout << date.dd() << '/' << date.mm() << '/' << date.yr() << '\n';
+  std::cout << date.dd() << " " << date.mon() << ", " << date.yr() << '\n';
   return 0;
 }
