@@ -56,4 +56,10 @@ namespace Chrono
       default: return os; break;
     };
   }
+
+
+  std::ostream& operator<<(std::ostream& os, const Date& date)
+  {
+    return os << date.dd() << '/' << date.mm() << '/' << date.yr(); // dd/mm/yyyy
+  }
 };
