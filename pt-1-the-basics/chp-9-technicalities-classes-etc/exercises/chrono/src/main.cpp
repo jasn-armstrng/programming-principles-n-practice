@@ -27,6 +27,12 @@ int main() try
   // Date date2 { 33, Month::jul, 10000 }; //
   // Date date2 { 39, Month::feb, 2023 };
 
+  Date date1 { 23, Month::jul, 2023 };
+  Date date2 { 24, Month::jul, 2023 };
+
+  std::cout << (date == date1) << '\n';
+  std::cout << (date == date2) << '\n';
+
   return 0;
 }
 catch(std::exception& e)

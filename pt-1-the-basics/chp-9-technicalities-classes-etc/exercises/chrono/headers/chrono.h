@@ -67,6 +67,14 @@ namespace Chrono
   }
 
 
+  bool operator==(Date& a, Date& b)
+  {
+    return a.dd() == b.dd() &&
+           a.mm() == b.mm() &&
+           a.yr() == b.yr();
+  }
+
+
   bool is_leap_year(int y)
   {
     // a leap year is divisible by 4 or 400 but not 100
