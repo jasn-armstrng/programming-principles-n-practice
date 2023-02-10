@@ -111,6 +111,8 @@ namespace Chrono
 
     if(d > days_in_month) { return false; } // date <= (at most) 31
 
+    if(y < 1 || y > 9999) { return false; } // 1 <= year <= 9999
+
     return true;
   }
 };
