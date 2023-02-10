@@ -11,7 +11,7 @@
 
 namespace Chrono
 {
-  enum class Month // Used to construct a new date in the form dd/mm/yyyy
+  enum class Month
   {
     jan=1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
   };
