@@ -37,6 +37,14 @@ int main() try
 
   // Test feb 29 on leap year
   Date date4 { 29, Month::feb, 2024 };
+  std::cout << date4 << '\n';
+
+  // Test add_year()
+  date4.add_year(2);
+  std::cout << date4 << '\n';
+
+  date4.add_year(5);
+  std::cout << date4 << '\n';
 
   return 0;
 }
