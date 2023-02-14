@@ -18,6 +18,7 @@ namespace Chrono
 
 
   bool is_date(const int d, const Month m, const int y);
+  bool is_leap_year(int y);
 
 
   class Date
@@ -32,6 +33,11 @@ namespace Chrono
       int mm() const { return int(m); } // 1-12
       Month mon() const { return m; } // Jan-Dec
       int yr() const { return y; } // 1-9999 AD
+
+      // Modifying member functions
+      void add_day(int n);
+      void add_month(int n);
+      void add_year(int n);
 
     private:
       int d; // date
@@ -55,8 +61,19 @@ namespace Chrono
 
 
   Date::Date():d{default_date().dd()},
-               m{default_date().mm()},
+               m{default_date().mon()},
                y{default_date().yr()} { }
+
+
+  void Date::add_year(int n)
+  {
+    if(m == Month::feb && d == 29 && !is_leap_year(y + n))  // beware of leap years
+    {
+      d = 1;
+      m = Month::mar;
+    }
+    y += n;
+  }
 
   // Helper functions ..........................................................
   std::ostream& operator<<(std::ostream& os, const Month& month)
