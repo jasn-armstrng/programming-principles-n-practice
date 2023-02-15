@@ -17,6 +17,12 @@ namespace Chrono
   };
 
 
+  enum class Day
+  {
+    mon=1, tues, wed, thurs, fri, sat, sun
+  };
+
+
   bool is_date(const int d, const Month m, const int y);
   bool is_leap_year(int y);
 
@@ -35,8 +41,8 @@ namespace Chrono
       int yr() const { return y; } // 1-9999 AD
 
       // Modifying member functions
-      void add_day(int n);
-      void add_month(int n);
+      void add_day(int n); // to implement
+      void add_month(int n); // to implement
       void add_year(int n);
 
     private:
@@ -150,5 +156,11 @@ namespace Chrono
     if(y < 1 || y > 9999) { return false; } // 1 <= year <= 9999
 
     return true;
+  }
+
+
+  Date next_workday(Date& d)
+  {
+    // Workdays are Mon-Fri
   }
 };
